@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-57T37LX');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="manifest" href="manifest.json" />
+    <title>FacturApp</title>
+    <meta charset="utf-8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="title" content="Seminario Final - Díaz David" />
+    <meta name="description" content="Seminario Final de Ingeniería en Software - David Díaz" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.alimentosconciencia.com.ar/" />
+    <meta property="og:title" content="Seminario Final de Ingeniería en Software - David Díaz" />
+    <meta property="og:description" content="Seminario Final de Ingeniería en Software - David Díaz" />
+
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.min.css" />
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/style.min.css" />
+    <!-- endinject -->
+    <link rel="shortcut icon" href="images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="css/slick.css" />
+    <style>
+        body {
+/*            width: 100%;*/
+/*            overflow-x: hidden;*/
+/*            overscroll-behavior: contain;*/
+        }
+
+        html {
+            overscroll-behavior: contain;
+        }
+
+                html, body {
+            height:100%;
+        }
+        .header {
+            height:100%;
+        }
+
+        html {
+    overflow: hidden;
+}
+body {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling:touch;
+}
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #f3f3f3;
+            border-top: 3px solid #f25a41;
+            border-radius: 100%;
+            position: absolute;
+            z-index: 999;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            animation: spin 1s infinite linear;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .navbar.default-layout .navbar-brand-wrapper .navbar-brand img {
+            /*            height: 100px;*/
+            width: 115px;
+            padding-bottom: 0.51rem;
+        }
+
+        .navbar-brand-wrapper {
+            height: 100px;
+        }
+
+        #overlay {
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            position: fixed;
+            z-index: 99;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+
+        .btn-yellow {
+            color: #fff;
+            background-color: #d6d62f;
+            border-color: #d6d62f;
+        }
+
+        .main-panel {
+            width: 100%;
+        }
+
+
+
+        .navbar.default-layout .navbar-brand-wrapper {
+            height: 50px;
+        }
+
+        .navbar.default-layout {
+            background: #404041;
+        }
+
+        .banner {
+            max-width: 100%;
+            height: auto;
+        }
+
+        
+        .img2 {
+            width: 50px;
+        }
+
+        .img {
+            width:100%;
+        }
+
+        /*PC*/
+        @media (min-width:900px) {
+
+            .img-1 {
+                content:url("images/flyermalena1200x450.png");
+            }
+
+            .img-2{
+                content:url("images/flyermalena1200x450.png");
+            }
+
+            .img-3{
+                content:url("images/flyermalena1200x450.png");
+            }
+            
+            .imagen {
+                width: 50%;
+            }
+
+            .logo {
+                width: 15%;
+            }
+
+            .apreton {
+
+                height:200px; 
+                background: url(images/cta1.png) no-repeat center center fixed; 
+                -webkit-background-size: cover; 
+                -moz-background-size: cover; 
+                background-size: cover;
+
+            }
+
+            .cta-btn {
+                padding:50px 0;
+            }
+
+            .botones {
+                font-size: .995rem;
+                color:#363636;
+            }
+
+            .suconsulta {
+                font-size: 1.8rem;
+                color:#363636;
+            }
+
+            .comentarios {
+                /*margin-left: 33.33333333333333%;*/
+                margin-left: 20%;
+                width:60%;
+            }
+
+            .texto-comentario {
+                padding:15px 15px 5px 200px;
+                font-size:2rem;
+            }
+
+            .altura-comentario{
+                height:200px;
+            }
+
+            .text-envios{
+                font-size: 20px;
+            }
+        }
+
+
+        
+
+
+
+
+        /*Smartphone*/
+        @media (max-width:700px) {
+
+            .img-1 {
+                content:url("images/flyermalena.png");
+            }
+
+            .img-2{
+                content:url("images/flyermalena.png");
+            }
+
+            .img-3{
+                content:url("images/flyermalena.png");
+            }
+
+            .imagen {
+                width: 100%;
+            }
+            .logo {
+                width: 50%;
+            }
+
+            .comentarios {
+                width:100%;
+            }
+
+            .texto-comentario {
+                padding:15px 15px 5px 120px;
+                font-size: 0.7rem;
+            }
+
+            .altura-comentario{
+            }
+
+            .apreton {
+
+                height:130px; 
+                background: url(images/9009.png) no-repeat center center fixed; 
+                -webkit-background-size: cover; 
+                -moz-background-size: cover; 
+                background-size: cover;
+                background-attachment: fixed;
+            }
+
+            .cta-btn {
+                padding:40px 0;
+            }
+
+            .text-envios{
+                font-size: 13px;
+            }
+        }
+
+
+input {
+  height: 2em;
+  width: 2em;
+  vertical-align: middle;
+}
+    </style>
+</head>
+
+<body>
+    <div id="overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row no-print">
+            <div class="text-center col-10 navbar-brand-wrapper d-flex align-items-top justify-content-center" style="background-color: #404041">
+                <a class="navbar-brand brand-logo" style="padding-left:20%" href="/">
+                    <img src="images/logo.svg" alt="logo" />
+                </a>
+                <a class="navbar-brand brand-logo-mini" style="padding-left:20%" id="acceso" runat="server" href="/">
+                    <img src="images/logo.svg" alt="logo" />
+                </a>
+                
+            </div>
+         
+            <br />
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+
+            <div class="main-panel print" id="content">
+                <div class="content-wrapper">
+
+                    <form class="forms-sample" runat="server">
+                        <div class="row">
+                            <div class="col-12 ">
+                                        <h2 class="text-center">Registro de usuario</h2>
+                                        <div class="row">
+
+
+                                            <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                            <br><br><br>
+                                            <div class="form-group col-4">
+                                    <label for="txt_cuit">Email <small class="text-danger">*</small></label>
+                                    <input id="txtNombre" type="text"  class="form-control" autocomplete="off" required />
+                                </div>
+<br><br>
+                                            <div class="form-group col-4">
+                                    <label for="txt_cuit">Contraseña <small class="text-danger">*</small></label>
+                                    <input id="txtPassword" type="password"  class="form-control" autocomplete="off" required />
+                                </div>
+                                <br>
+                                            <div>
+  <input id="checkbox" type="checkbox" />
+  <label for="checkbox"> Al crear esta cuenta acepto los <a href="#">Términos y condiciones</a>.</label>
+</div>
+                                            <div>
+                                            <div>
+                                            <div>
+<br>
+<br>
+                                <a class="btn btn-lg btn-primary col-6 col-xl-1" rel="noopener noreferrer" href="inicio.html">Crear cuenta</a>
+
+
+
+                                    </div>
+                            </div>
+
+                          
+                        </div>
+                     
+                       
+
+                    </form>
+                </div>
+                 
+            </div>
+
+        </div>
+
+        <!-- page-body-wrapper ends -->
+    </div>
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/misc.js"></script>
+    <script src="js/off-canvas.js"></script>
+    <!-- endinject -->
+    <script type="text/javascript" src="js/slick.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // $('.your-class').slick({
+            //   slidesToShow: 1,
+            // slidesToScroll: 1,
+            // infinite: true,
+            // speed: 1000,
+            // autoplay: true,
+            // arrows: false
+            // });
+
+            var slider = $('.slider');
+
+            slider.slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                prevArrow: '',
+                nextArrow: '',
+                //fade: true,
+                speed: 1000
+            });
+
+            var durationList = $('.slider__item').map(function (index, item) {
+                return item.getAttribute('data-time');
+            });
+
+            var slideIndex = 0;
+            var changeSlide = function (timing) {
+                setTimeout(function () {
+                    if (timing !== 0) {
+                        slider.slick('slickNext');
+                    }
+                    if (slideIndex >= durationList.length) slideIndex = 0;
+                    changeSlide(durationList[slideIndex++]);
+
+                }, timing);
+            }
+            changeSlide(0);
+
+
+        });
+    </script>
+
+<div class="text-right" style="background-color: #363636">
+                            <label class="text-white mr-2">Seminario Final de Ingeniería en Software - David Díaz</label>
+                        </div>
+</body>
+</html>
+

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html lang="es-AR" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-57T37LX');</script>
+    <!-- End Google Tag Manager -->
+    <title>Alimentate Con-Ciencia</title>
+    <meta charset="utf-8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="title" content="Seminario Final - Díaz David" />
+    <meta name="description" content="Seminario Final de Ingeniería en Software - David Díaz" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.alimentosconciencia.com.ar/" />
+    <meta property="og:title" content="Seminario Final de Ingeniería en Software - David Díaz" />
+    <meta property="og:description" content="Seminario Final de Ingeniería en Software - David Díaz" />
+
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.min.css" />
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/style.min.css" />
+    <!-- endinject -->
+    <link rel="shortcut icon" href="images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="css/slick.css" />
+    <style>
+        body {
+/*            width: 100%;*/
+/*            overflow-x: hidden;*/
+/*            overscroll-behavior: contain;*/
+        }
+
+        html {
+            overscroll-behavior: contain;
+        }
+
+                html, body {
+            height:100%;
+        }
+        .header {
+            height:100%;
+        }
+
+        html {
+    overflow: hidden;
+}
+body {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling:touch;
+}
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #f3f3f3;
+            border-top: 3px solid #f25a41;
+            border-radius: 100%;
+            position: absolute;
+            z-index: 999;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            animation: spin 1s infinite linear;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .navbar.default-layout .navbar-brand-wrapper .navbar-brand img {
+            /*            height: 100px;*/
+            width: 115px;
+            padding-bottom: 0.51rem;
+        }
+
+        .navbar-brand-wrapper {
+            height: 100px;
+        }
+
+        #overlay {
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            position: fixed;
+            z-index: 99;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+
+        .btn-yellow {
+            color: #fff;
+            background-color: #d6d62f;
+            border-color: #d6d62f;
+        }
+
+        .main-panel {
+            width: 100%;
+        }
+
+
+
+        .navbar.default-layout .navbar-brand-wrapper {
+            height: 50px;
+        }
+
+        .navbar.default-layout {
+            background: #404041;
+        }
+
+        .banner {
+            max-width: 100%;
+            height: auto;
+        }
+
+        
+        .img2 {
+            width: 50px;
+        }
+
+        .img {
+            width:100%;
+        }
+
+        /*PC*/
+        @media (min-width:900px) {
+
+            .img-1 {
+                content:url("images/flyer1200x450.png");
+            }
+
+            .img-2{
+                content:url("images/flyer1200x450.png");
+            }
+
+            .img-3{
+                content:url("images/flyer1200x450.png");
+            }
+            
+            .imagen {
+                width: 50%;
+            }
+
+            .logo {
+                width: 15%;
+            }
+
+            .apreton {
+
+                height:260px; 
+                background: url(images/cta1.png) no-repeat center center fixed; 
+                -webkit-background-size: cover; 
+                -moz-background-size: cover; 
+                background-size: cover;
+
+            }
+
+            .cta-btn {
+                padding:50px 0;
+            }
+
+            .botones {
+                font-size: .995rem;
+                color:#363636;
+            }
+
+            .suconsulta {
+                font-size: 1.8rem;
+                color:#363636;
+            }
+
+            .comentarios {
+                /*margin-left: 33.33333333333333%;*/
+                margin-left: 20%;
+                width:60%;
+            }
+
+            .texto-comentario {
+                padding:15px 15px 5px 200px;
+                font-size:2rem;
+            }
+
+            .altura-comentario{
+                height:200px;
+            }
+
+            .text-envios{
+                font-size: 20px;
+            }
+        }
+
+
+        
+
+
+
+
+        /*Smartphone*/
+        @media (max-width:700px) {
+
+            .img-1 {
+                content:url("images/flyer-mobile.png");
+            }
+
+            .img-2{
+                content:url("images/flyer-mobile.png");
+            }
+
+            .img-3{
+                content:url("images/flyer-mobile.png");
+            }
+
+            .imagen {
+                width: 100%;
+            }
+            .logo {
+                width: 50%;
+            }
+
+            .comentarios {
+                width:100%;
+            }
+
+            .texto-comentario {
+                padding:15px 15px 5px 120px;
+                font-size: 0.7rem;
+            }
+
+            .altura-comentario{
+            }
+
+            .apreton {
+
+                height:310px; 
+                background: url(images/cta1-mobile.png) no-repeat center center fixed; 
+                -webkit-background-size: cover; 
+                -moz-background-size: cover; 
+                background-size: cover;
+                background-attachment: fixed;
+            }
+
+            .cta-btn {
+                padding:40px 0;
+            }
+
+            .text-envios{
+                font-size: 13px;
+            }
+        }
+
+
+
+.slick-slide {
+/*  background: #000;*/
+  color: white;
+/*  padding: 40px 20px;*/
+  font-size: 30px;
+  font-family: "Arial", "Helvetica";
+  text-align: center;
+}
+
+
+.slider {
+/* margin: 0 30px;*/
+}
+
+.slick-slide .img3 {
+/*  text-align: center;*/
+/*  padding: 40px 0;*/
+
+}
+
+
+
+.slider-comentario {
+
+}
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-57T37LX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row no-print">
+            <div class="text-center col-10 navbar-brand-wrapper d-flex align-items-top justify-content-center" style="background-color: #404041">
+                <a class="navbar-brand brand-logo" style="padding-left:20%" href="#">
+                    <img src="images/logo.svg" alt="logo" />
+                </a>
+                <a class="navbar-brand brand-logo-mini" style="padding-left:20%" id="acceso" runat="server" href="#">
+                    <img src="images/logo.svg" alt="logo" />
+                </a>
+                
+            </div>
+         
+            <br />
+            <br />
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+
+            <div class="main-panel print" id="content">
+                <div class="content-wrapper" style="padding:0;">
+
+                    <div class="slider">
+                        <div class="slider__item" data-time="4800">
+                            <img class="img img-1"  />
+                        </div>
+                        <div class="slider__item" data-time="5200">
+                            <img class="img img-2"/>
+                        </div>
+
+                        <div class="slider__item" data-time="4500">
+                            <img class="img img-3" />
+                        </div>
+                       
+                    </div>
+                    <div style="background-color:#404041">
+
+                    </div>
+                    <form class="forms-sample" runat="server">
+                        <div class="apreton">
+                            <div class="col-12 text-center">
+                                
+                            </div>
+                            <div class="col-12 align-items-stretch grid-margin text-center cta-btn">
+                            <h3 class="  text-center">Sumate para conocer de qué están hechos los alimentos, es fácil y rápido!</h3>
+                            <br>
+                            <br>
+                                <a class="btn btn-lg btn-primary col-6 col-xl-1" rel="noopener noreferrer" href="inicio.html"> Iniciar Sesión</a>
+                                <br><br>
+                                <a class="btn btn-lg btn-success col-6 col-xl-1" rel="noopener noreferrer"  href="nueva-cuenta.html"> Registrarme</a>
+                            </div>
+                        </div>
+                        
+
+                        <br />
+                        <div class="row">
+                            <div class="col-12 align-items-stretch grid-margin">
+
+                                        <h2 class="text-center">Analiza los productos para conocer qué comemos!</h2>
+                                        <div class="row">
+                                        <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
+                                            <i class="mdi mdi-glasses icon-lg"></i>
+                                            <br /> <span class="text-envios">Gráficos con Realidad Aumentada</span>
+                                        </div> 
+                                        <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
+                                            <i class="mdi mdi-food text-primary icon-lg"></i>
+                                            <br /> <span class="text-envios">Nutrientes e Ingredientes</span>
+                                        </div> 
+                                        <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
+                                            <i class="mdi mdi-cart text-warning icon-lg"></i>
+                                            <br /> <span class="text-envios">Analizá tu carrito de compras</span>
+                                        </div> 
+                                        <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
+                                            <i class="mdi mdi-bell text-success icon-lg">
+                                                <br /> </i> <span class="text-envios">Alertas personalizadas</span>
+                                        </div> 
+                                    </div>
+                            </div>
+
+                          
+                        </div>
+                     
+                        <div class="col-12 align-items-stretch" style="background-color:#fdf9c4">
+                            <br />
+                            <br />
+                        
+                            <br />
+                            <h3 class="text-light mb-3 text-center text-dark">¿Cómo funciona?</h3>
+                            <div class="slider col-lg-8 offset-lg-2 ">
+                                <a rel="noopenefer noreferrer" target="_blank" href="#">
+                                <h2 style="color:#000">1º Registrate para acceder al sitio.</h2>
+                                <!-- <img class="text-center" width="100px" src="images/logo.svg" alt="logo" /> -->
+                                </a>
+                                <a rel="noopenefer noreferrer" target="_blank" href="#">
+                                <h2 style="color:#000">2º Escaneá un producto para ver su información nutricional.</h2>
+                                </a>
+                            </div>
+                            <div class="text-center">
+                                <small class="text-black">Dentro del sitio se explica paso a paso cómo usar</small>
+                            </div>
+                            <br />
+                            <br />
+                        </div>
+                        
+                        <div style="background-color: #c5c6c8">
+                            <br />
+                            <div class="col-12 align-items-stretch text-center">
+                                <span class="text-center  suconsulta">Alimentate <b>con-ciencia</b></span><br />
+                                <span class="text-center  suconsulta">www.alimentateconciencia.com.ar</span><br />
+                                <br />
+                                <a class="btn btn-outline-success btn-fw botones" rel="noopener noreferrer" target="_blank" href="#"><i class="mdi mdi-whatsapp"></i>Enviar WhatsApp</a>
+                                <br />
+                                <a class="btn btn-outline-primary mt-1 botones" rel="noopener noreferrer" target="_blank" href="#"><i class="mdi mdi-facebook-messenger"></i>Enviar Mensaje</a>
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                        <div class="text-right" style="background-color: #363636">
+                            <label class="text-white mr-2">Seminario Final de Ingeniería en Software - David Díaz</label>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/misc.js"></script>
+    <script src="js/off-canvas.js"></script>
+    <!-- endinject -->
+    <script type="text/javascript" src="js/slick.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // $('.your-class').slick({
+            //   slidesToShow: 1,
+            // slidesToScroll: 1,
+            // infinite: true,
+            // speed: 1000,
+            // autoplay: true,
+            // arrows: false
+            // });
+
+            var slider = $('.slider');
+
+            slider.slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                prevArrow: '',
+                nextArrow: '',
+                //fade: true,
+                speed: 1000
+            });
+
+            var durationList = $('.slider__item').map(function (index, item) {
+                return item.getAttribute('data-time');
+            });
+
+            var slideIndex = 0;
+            var changeSlide = function (timing) {
+                setTimeout(function () {
+                    if (timing !== 0) {
+                        slider.slick('slickNext');
+                    }
+                    if (slideIndex >= durationList.length) slideIndex = 0;
+                    changeSlide(durationList[slideIndex++]);
+
+                }, timing);
+            }
+            changeSlide(0);
+
+
+        });
+    </script>
+
+</body>
+</html>
+
