@@ -8,6 +8,6 @@ La funcionalidad principal consiste en utilizar realidad aumentada para analizar
 Análisis de productos (Se recomienda acceder con un celular)
 En donde se deberá, mediante el uso de la cámara, enfocar la siguiente imagen:
 
-(https://github.com/davidadiaz11/seminario-final/blob/master/images/codigo.jpg)
+![Codigo AR](https://github.com/davidadiaz11/seminario-final/blob/master/images/codigo.jpg)
 
 La totalidad de las acciones y opciones en este sitio se encuentran inhabilitadas y no tienen ningún efecto real.
