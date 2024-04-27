@@ -16,5 +16,6 @@ public class ModelNutriente
     public string Nombre { get; set; }
     public bool EsOpcional { get; set; }
     public bool EsCritico { get; set; }
+    public double CantidadPorPorcion { get; set; }
 
 }

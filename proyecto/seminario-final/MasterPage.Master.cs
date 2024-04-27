@@ -13,5 +13,16 @@ namespace seminario_final
         {
 
         }
+
+        public string generar_js_exito(string obj)
+        {
+            return "iziToast.success({title:'',message:'" + obj + "',timeout:2300});";
+        }
+
+        public string generar_js_error(string obj)
+        {
+            return "iziToast.error({title:'Error',message:'" + obj + "',resetOnHover:true});";
+        }
+
     }
 }
