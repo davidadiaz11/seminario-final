@@ -74,7 +74,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <asp:Button CssClass="btn btn-primary btn-rounded btn-sm mt-2 mb-3 no-print" ID="btn_buscar" runat="server" Text="Buscar" />
+                                    <asp:Button CssClass="btn btn-primary btn-rounded  mt-2 mb-3 no-print" ID="btn_buscar" runat="server" Text="Buscar" />
                                 </div>
                                 <script type="text/javascript">
                                     "use strict";
@@ -155,7 +155,7 @@
                                                             <i class="mdi  mdi-receipt icon-md "></i>
                                                         </a>
 
-                                                        <a href="<%# String.Format("nuevo-producto?pro={0}", Eval("ID")) %>" class="mr-3">
+                                                        <a href="<%# String.Format("FormularioProducto?pro={0}", Eval("ID")) %>" class="mr-3">
                                                             <i class="mdi mdi-pencil text-muted icon-md"></i>
                                                         </a>
                                                         <a style='<%# ch_eliminados.Checked ? "display:none": "display:block" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">

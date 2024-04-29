@@ -245,10 +245,24 @@
     <Compile Include="FormularioProducto.aspx.designer.cs">
       <DependentUpon>FormularioProducto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelColorAlerta.cs" />
+    <Compile Include="Models\ModelFormaAlerta.cs" />
+    <Compile Include="Models\ModelIngredienteProducto.cs" />
+    <Compile Include="Models\ModelNutrienteProducto.cs" />
+    <Compile Include="Models\ModelTipoAlerta.cs" />
+    <Compile Include="Models\ModelFiltro.cs" />
+    <Compile Include="Models\ModelAlerta.cs" />
+    <Compile Include="Models\ModelTipoPorcion.cs" />
+    <Compile Include="Models\ModelNutriente.cs" />
+    <Compile Include="Models\ModelIngrediente.cs" />
     <Compile Include="Models\ModelUsuario.cs" />
     <Compile Include="Models\ModelProducto.cs" />
-    <Compile Include="ServiceProducto.cs" />
-    <Compile Include="MySQLRepositoryProducto.cs" />
+    <Compile Include="Repositories\MySQLRepositoryTiposPorcion.cs" />
+    <Compile Include="Repositories\MySQLRepositoryShared.cs" />
+    <Compile Include="Services\ServiceTiposPorcion.cs" />
+    <Compile Include="Services\ServiceShared.cs" />
+    <Compile Include="Services\ServiceProducto.cs" />
+    <Compile Include="Repositories\MySQLRepositoryProducto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

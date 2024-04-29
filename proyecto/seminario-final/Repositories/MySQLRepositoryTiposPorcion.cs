@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-public class MySQLRepositoryProducto
+public class MySQLRepositoryTiposPorcion
 {
-    public MySQLRepositoryProducto()
+    public MySQLRepositoryTiposPorcion()
     {
     }
 
-    static string cadena = "";
-    public static DataTable ObtenerProductos()
+    static string cadena = MySQLRepositoryShared.getConnectionString();
+    public static DataTable ObtenerTiposPorcion()
     {
-
-
         MySqlConnection cn = new MySqlConnection(cadena);
         DataTable dt = new DataTable();
 
@@ -25,8 +23,8 @@ public class MySQLRepositoryProducto
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT id, nombre, usuario, email FROM usuario
-                                WHERE habilitado=1";
+            cmd.CommandText = @"SELECT TPO_ID, TPO_NOMBRE FROM TIPOS_PORCION
+                                WHERE tpo_fecha_baja is null";
 
             dt.Load(cmd.ExecuteReader());
 
@@ -44,5 +42,6 @@ public class MySQLRepositoryProducto
         }
         return dt;
     }
+
 
 }
