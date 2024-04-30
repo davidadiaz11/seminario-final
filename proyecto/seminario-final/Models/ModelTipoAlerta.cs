@@ -14,5 +14,7 @@ public class ModelTipoAlerta
     }
     public uint Id { get; set; }
     public string Nombre { get; set; }
+    public string Forma { get; set; }
+    public string Color { get; set; }
 
 }

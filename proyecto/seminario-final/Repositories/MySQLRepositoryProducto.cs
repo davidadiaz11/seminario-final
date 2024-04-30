@@ -25,8 +25,10 @@ public class MySQLRepositoryProducto
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT id, nombre, usuario, email FROM usuario
-                                WHERE habilitado=1";
+            cmd.CommandText = @"SELECT pro_id, pro_nombre, pro_valor_energetico, pro_porcion, tpo_nombre
+                                FROM productos 
+                                JOIN tipos_porcion on tpo_id=pro_tpo_id
+                                WHERE tpo_fecha_baja is null and pro_fecha_baja is null";
 
             dt.Load(cmd.ExecuteReader());
 

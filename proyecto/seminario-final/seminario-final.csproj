@@ -177,6 +177,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Inicio.aspx" />
+    <Content Include="ListadoAlertas.aspx" />
     <Content Include="ListadoProductos.aspx" />
     <Content Include="ListadoAnalisis.aspx" />
     <Content Include="MasterPage.Master" />
@@ -245,8 +246,16 @@
     <Compile Include="FormularioProducto.aspx.designer.cs">
       <DependentUpon>FormularioProducto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListadoAlertas.aspx.cs">
+      <DependentUpon>ListadoAlertas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoAlertas.aspx.designer.cs">
+      <DependentUpon>ListadoAlertas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelColorAlerta.cs" />
     <Compile Include="Models\ModelFormaAlerta.cs" />
+    <Compile Include="Models\ModelNutrienteAlerta.cs" />
     <Compile Include="Models\ModelIngredienteProducto.cs" />
     <Compile Include="Models\ModelNutrienteProducto.cs" />
     <Compile Include="Models\ModelTipoAlerta.cs" />
@@ -257,8 +266,10 @@
     <Compile Include="Models\ModelIngrediente.cs" />
     <Compile Include="Models\ModelUsuario.cs" />
     <Compile Include="Models\ModelProducto.cs" />
+    <Compile Include="Repositories\MySQLRepositorySello.cs" />
     <Compile Include="Repositories\MySQLRepositoryTiposPorcion.cs" />
     <Compile Include="Repositories\MySQLRepositoryShared.cs" />
+    <Compile Include="Services\ServiceSello.cs" />
     <Compile Include="Services\ServiceTiposPorcion.cs" />
     <Compile Include="Services\ServiceShared.cs" />
     <Compile Include="Services\ServiceProducto.cs" />

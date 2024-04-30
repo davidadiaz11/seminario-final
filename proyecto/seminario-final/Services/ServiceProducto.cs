@@ -19,8 +19,8 @@ public class ServiceProducto
         {
             ModelProducto x = new ModelProducto()
             {
-                Id = Convert.ToUInt16(dr["id"]),
-                Nombre = dr["nombre"].ToString()
+                Id = Convert.ToUInt16(dr["pro_id"]),
+                Nombre = dr["pro_nombre"].ToString()
             };
             items.Add(x);
         }

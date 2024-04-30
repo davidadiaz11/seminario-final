@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 /// <summary>
 /// Descripción breve de ModelIngrediente
 /// </summary>
@@ -16,6 +18,6 @@ public class ModelAlerta
     public string Nombre { get; set; }
     public string Leyenda { get; set; }
     public ModelTipoAlerta TipoAlerta { get; set; }
-    public double ValorCritico { get; set; }
+    public List<ModelNutrienteAlerta> NutrientesAlerta { get; set; }
 
 }

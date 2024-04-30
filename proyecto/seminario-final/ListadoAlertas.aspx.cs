@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace seminario_final
 {
-    public partial class ListadoProductos : System.Web.UI.Page
+    public partial class ListadoAlertas : System.Web.UI.Page
     {
-        List<ModelProducto> productos = new List<ModelProducto>();
+        List<ModelAlerta> alertas = new List<ModelAlerta>();
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
         private ushort idUsuario = 0;
         protected void Page_Load(object sender, EventArgs e)
@@ -25,7 +25,7 @@ namespace seminario_final
             }
             buscar_filtros();
             populate(vista_lista.PageSize);
-            Page.Title = "Productos";
+            Page.Title = "Alertas";
         }
 
         private void configurarPantalla()
@@ -52,16 +52,16 @@ namespace seminario_final
             ddl_cant_filas.SelectedValue = vista_lista.PageSize.ToString();
         }
 
-       
+
         public void mensaje(string msj, string estilo)
         {
             span_mensaje.InnerText = msj;
         }
 
-        private void eliminar(int idProducto)
+        private void eliminar(int idAlerta)
         {
             var master = Master as MasterPage;
-            if (idProducto > 0 && ServiceProducto.Eliminar(idProducto, idUsuario))
+            if (idAlerta > 0 && ServiceProducto.Eliminar(idAlerta, idUsuario))
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
             else
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
@@ -110,7 +110,7 @@ namespace seminario_final
 
         protected string GetPageLink(int noOfPage)
         {
-            return ServiceShared.GetPageLink(noOfPage, Request, "productos");
+            return ServiceShared.GetPageLink(noOfPage, Request, "alertas");
         }
 
         private void populate(int filasPorPag)
@@ -119,7 +119,7 @@ namespace seminario_final
             int cantPags = 0;
             int encontrados = 0;
             //Fetch data from URL
-            string sortName = string.IsNullOrEmpty(Request.QueryString["sortname"]) ? "pro_nombre" : Request.QueryString["sortname"];
+            string sortName = string.IsNullOrEmpty(Request.QueryString["sortname"]) ? "ale_nombre" : Request.QueryString["sortname"];
             string sortDir = string.IsNullOrEmpty(Request.QueryString["sortdir"]) ? "asc" : Request.QueryString["sortdir"];
             int.TryParse(Request.QueryString["page"], out pageNo);
 
@@ -130,12 +130,12 @@ namespace seminario_final
             hfSortDir.Value = sortDir;
             //Fetch data from Server 
 
-            productos = ServiceProducto.ObtenerTodosFiltrados(out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, idUsuario, ch_eliminados.Checked);
+            alertas = ServiceSello.ObtenerTodosFiltrados(out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, idUsuario, ch_eliminados.Checked);
             cantPags = (encontrados / filasPorPag) + ((encontrados % filasPorPag) > 0 ? 1 : 0);
-            vista_lista.DataSource = productos;
+            vista_lista.DataSource = alertas;
             vista_lista.DataBind();
 
-            rpt_viajes.DataSource = productos;
+            rpt_viajes.DataSource = alertas;
             rpt_viajes.DataBind();
 
             h_nombre.DataBind();
@@ -143,7 +143,7 @@ namespace seminario_final
             h_ingredientes.DataBind();
             h_nutrientes.DataBind();
 
-            mensaje(encontrados + " productos encontrados", "text-success");
+            mensaje(encontrados + " alertas encontrados", "text-success");
             l1Pagger.Text = GetPageLink(cantPags);
         }
         protected void ddl_cant_filas_SelectedIndexChanged(object sender, EventArgs e)

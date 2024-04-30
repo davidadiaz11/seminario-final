@@ -4,15 +4,6 @@ INSERT INTO usuarios (USU_NOMBRE, USU_USUARIOS, USU_CONTRASENA,
 USU_ID_ALTA, USU_FECHA_ALTA)
 VALUES ('Admin', 1, 'Admin', 1, now());
 
-INSERT INTO tipos_alerta(TAL_COLOR, TAL_FORMA, 
-TAL_USU_ID_ALTA, TAL_FECHA_ALTA, TAL_USU_ID_MODIFICACION, TAL_FECHA_MODIFICACION)
-VALUES ('000000', 1,
-(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now(),
-(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now()
-);
-
-
-
 INSERT INTO tipos_porcion(TPO_NOMBRE, 
 TPO_USU_ID_ALTA, TPO_FECHA_ALTA,
 TPO_USU_ID_MODIFICACION, TPO_FECHA_MODIFICACION)
@@ -232,3 +223,36 @@ VALUES(
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now(),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now()
 );
+
+
+
+
+INSERT INTO tipos_alerta(tal_nombre, tal_color, tal_forma,
+tal_USU_ID_ALTA, tal_FECHA_ALTA,
+tal_USU_ID_MODIFICACION, tal_FECHA_MODIFICACION
+)
+values ('Sello de advertencia', '000000', 1,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now(),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now()
+);
+
+
+INSERT INTO alertas(ale_nombre, ale_leyenda, ale_tal_id,
+ale_USU_ID_ALTA, ale_FECHA_ALTA,
+ale_USU_ID_MODIFICACION, ale_FECHA_MODIFICACION
+)
+values ('Exceso en sodio', 'Exceso en sodio', (select tal_id from tipos_alerta where tal_nombre='Sello de advertencia'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now(),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now()
+);
+
+
+INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_valor_critico,
+anu_USU_ID_ALTA, anu_FECHA_ALTA,
+anu_USU_ID_MODIFICACION, anu_FECHA_MODIFICACION
+)
+values ((select ale_id from alertas where ale_nombre='Exceso en sodio'), (select nut_id from nutrientes where nut_nombre='Sodio'), 1,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now(),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now()
+);
+
