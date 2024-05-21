@@ -87,10 +87,12 @@ public class ServiceSello
         return resultado;
     }
 
-    public static ModelAlerta ObtenerPorId( ushort usuario, int idAlerta)
+    public static ModelNutriente ObtenerPorId( ushort usuario, int idAlerta)
     {
-        DataTable dt = MySQLRepositorySello.ObtenerUno(usuario, idAlerta);
-        List<ModelNutrienteProducto> nutrientes = new List<ModelNutrienteProducto>();
+        DataSet ds = MySQLRepositorySello.ObtenerUno(usuario, idAlerta);
+        DataTable dt = ds.Tables[0];
+        DataTable dt_nutrientes = ds.Tables[1];
+        List<ModelNutriente> nutrientes = new List<ModelNutriente>();
 
         if (dt.Rows.Count != 1)
         {
@@ -111,29 +113,35 @@ public class ServiceSello
             }
         };
 
-        
-        //foreach (DataRow drNut in dt_nutrientes.Rows)
-        //{
 
-        //    ModelNutrienteProducto y = new ModelNutrienteProducto()
-        //    {
-        //        Id = Convert.ToUInt32(drNut["npr_pro_id"]),
-        //        Nutriente = new ModelNutriente()
-        //        {
-        //            Nombre = drNut["nut_nombre"].ToString(),
-        //            CantidadPorPorcion = Convert.ToDouble(drNut["NPR_CANTIDAD_POR_PORCION"])
-        //        }
-        //    };
-        //    nutrientes.Add(y);
-        //}
-        //var dic_nutrientes = nutrientes.GroupBy(x => x.Id).ToDictionary(g => g.Key, g => g);
+        foreach (DataRow drNut in dt_nutrientes.Rows)
+        {
 
-        //    item.IngredientesProducto = dic_ingredientes[item.Id].ToList();
-        //    item.NutrientesProducto = dic_nutrientes[item.Id].ToList();
-
-        return item;
+            ModelNutriente nut = new ModelNutriente()
+            {
+                Id = Convert.ToUInt32(drNut["nut_id"]),
+                Nombre = drNut["nut_nombre"].ToString(),
+                NutrientesAlerta = new List<ModelNutrienteAlerta>()
+                {
+                    new ModelNutrienteAlerta()
+                    {
+                        Id = Convert.ToUInt32(drNut["anu_id"]),
+                        ValorCritico = Convert.ToDouble(drNut["anu_valor_critico"]),
+                        Alerta = new ModelAlerta()
+                        {
+                            Id = Convert.ToUInt16(dr["ale_id"]),
+                            Nombre = dr["ale_nombre"].ToString(),
+                            Leyenda = drNut["ale_leyenda"].ToString(),
+                            TipoAlerta = new ModelTipoAlerta()
+                            {
+                                Nombre = dr["tal_nombre"].ToString()
+                            }
+                        }
+                    }
+                }
+            };
+            nutrientes.Add(nut);
+        }
+        return nutrientes.First();
     }
-
-
-
 }

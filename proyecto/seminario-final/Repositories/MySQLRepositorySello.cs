@@ -151,10 +151,12 @@ public class MySQLRepositorySello
         return dt;
     }
 
-    public static DataTable ObtenerUno(ushort usuario, int idSello)
+    public static DataSet ObtenerUno(ushort usuario, int idSello)
     {
         MySqlConnection cn = new MySqlConnection(cadena);
+        DataSet ds = new DataSet();
         DataTable dt = new DataTable();
+        DataTable dt_nutrientes = new DataTable();
         try
         {
             cn.Open();
@@ -169,6 +171,17 @@ public class MySQLRepositorySello
             cmd.Parameters.Add(new MySqlParameter("@ale_id", idSello));
 
             dt.Load(cmd.ExecuteReader());
+
+
+            cmd.CommandText = @"SELECT anu_id, nut_id, nut_nombre, anu_valor_critico
+                                FROM ALERTAS_X_NUTRIENTE 
+                                JOIN nutrientes on anu_nut_id=nut_id
+                                WHERE anu_fecha_baja is null AND anu_ale_id=@ale_id and nut_fecha_baja IS NULL;";
+            dt_nutrientes.Load(cmd.ExecuteReader());
+
+
+            ds.Tables.Add(dt);
+            ds.Tables.Add(dt_nutrientes);
         }
         catch (Exception ex)
         {
@@ -180,7 +193,7 @@ public class MySQLRepositorySello
                 cn.Close();
         }
 
-        return dt;
+        return ds;
     }
 
     public static bool ModificarSello(ModelAlerta alerta)
@@ -210,15 +223,15 @@ public class MySQLRepositorySello
             if (esEdicion)
             {
                 //TODO-TESIS: Hay que ver, cuáles relaciones borrar y cuáles relaciones dejar
-                foreach (ModelNutrienteAlerta nutriente in alerta.NutrientesAlerta)
-                {
-                    var sssql = "update ALERTAS_X_NUTRIENTE set anu_valor_critico=@anu_valor_critico where anu_id=@anu_id;";
-                    cmd.Parameters.Add(new MySqlParameter("@anu_valor_critico", nutriente.ValorCritico));
-                    cmd.Parameters.Add(new MySqlParameter("@anu_id", nutriente.Id));
-                    cmd.CommandText = sssql;
-                    cmd.ExecuteNonQuery();
-                    cmd.Parameters.Clear();
-                }
+                //foreach (ModelNutrienteAlerta nutriente in alerta.NutrientesAlerta)
+                //{
+                //    var sssql = "update ALERTAS_X_NUTRIENTE set anu_valor_critico=@anu_valor_critico where anu_id=@anu_id;";
+                //    cmd.Parameters.Add(new MySqlParameter("@anu_valor_critico", nutriente.ValorCritico));
+                //    cmd.Parameters.Add(new MySqlParameter("@anu_id", nutriente.Id));
+                //    cmd.CommandText = sssql;
+                //    cmd.ExecuteNonQuery();
+                //    cmd.Parameters.Clear();
+                //}
             }
 
             

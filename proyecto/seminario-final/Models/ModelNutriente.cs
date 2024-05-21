@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 /// <summary>
 /// Descripción breve de ModelIngrediente
 /// </summary>
@@ -17,5 +19,7 @@ public class ModelNutriente
     public bool EsOpcional { get; set; }
     public bool EsCritico { get; set; }
     public double CantidadPorPorcion { get; set; }
+
+    public List<ModelNutrienteAlerta> NutrientesAlerta { get; set; }
 
 }

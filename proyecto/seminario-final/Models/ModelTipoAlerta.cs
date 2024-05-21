@@ -16,5 +16,5 @@ public class ModelTipoAlerta
     public string Nombre { get; set; }
     public string Forma { get; set; }
     public string Color { get; set; }
-
+    public bool EsGenerica { get; set; }
 }

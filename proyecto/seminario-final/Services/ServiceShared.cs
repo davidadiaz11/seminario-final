@@ -6,12 +6,103 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Text;
 
+
 public class ServiceShared
 {
     public ServiceShared()
     {
     }
 
+    static List<ModelColorAlerta> colores = new List<ModelColorAlerta>()
+    {
+        new ModelColorAlerta()
+        {
+            Nombre = ColoresEnum.NEGRO.ToString(),
+            CodigoHexadecimal = "000000"
+        },
+        
+        new ModelColorAlerta()
+        {
+            Nombre = ColoresEnum.AZUL.ToString(),
+            CodigoHexadecimal = "094293"
+        },
+                
+        new ModelColorAlerta()
+        {
+            Nombre = ColoresEnum.VERDE.ToString(),
+            CodigoHexadecimal = "226C12"
+        },
+                
+        new ModelColorAlerta()
+        {
+            Nombre = ColoresEnum.ROJO.ToString(),
+            CodigoHexadecimal = "CE2A23"
+        },
+                
+        new ModelColorAlerta()
+        {
+            Nombre = ColoresEnum.NARANJA.ToString(),
+            CodigoHexadecimal = "E3AB58"
+        },
+
+                       
+        new ModelColorAlerta()
+        {
+            Nombre = ColoresEnum.AMARILLO.ToString(),
+            CodigoHexadecimal = "FFFF00"
+        },    
+        
+        new ModelColorAlerta()
+        {
+            Nombre = ColoresEnum.AQUA.ToString(),
+            CodigoHexadecimal = "00FFFF"
+        },
+         
+        new ModelColorAlerta()
+        {
+            Nombre = ColoresEnum.VIOLETA.ToString(),
+            CodigoHexadecimal = "EE82EE"
+        }
+    };
+
+    static List<ModelFormaAlerta> formas = new List<ModelFormaAlerta>()
+    {
+        new ModelFormaAlerta()
+        {
+            Id = 1,
+            Nombre = "HEXAGONO"
+        },
+
+        new ModelFormaAlerta()
+        {
+            Id = 2,
+            Nombre = "RECTANGULO",
+        },
+
+        new ModelFormaAlerta()
+        {
+            Id = 3,
+            Nombre = "CIRCULO"
+        },
+
+    };
+
+    public static List<ModelColorAlerta> GetColores()
+    {
+        return colores;
+    }
+    public static List<ModelFormaAlerta> GetFormas()
+    {
+        return formas;
+    }
+    public static ModelColorAlerta GetColorAlerta(string nombreColor)
+    {
+        return colores.First(x => x.Nombre == nombreColor.ToUpper());
+    }
+    public static ModelFormaAlerta GetColorForma(string nombreForma)
+    {
+        return formas.First(x => x.Nombre == nombreForma.ToUpper());
+    }
 
     public static string GetSortLink(string dataField, HttpRequest Request)
     {

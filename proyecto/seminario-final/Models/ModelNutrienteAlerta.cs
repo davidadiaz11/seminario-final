@@ -4,8 +4,7 @@
     {
     }
     public uint Id { get; set; }
-    public ModelNutriente Nutriente { get; set; }
+    public ModelAlerta Alerta { get; set; }
     public double ValorCritico { get; set; }
-
 
 }
