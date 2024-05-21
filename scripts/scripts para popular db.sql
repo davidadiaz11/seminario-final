@@ -256,3 +256,24 @@ values ((select ale_id from alertas where ale_nombre='Exceso en sodio'), (select
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now()
 );
 
+
+
+INSERT INTO alertas(ale_nombre, ale_leyenda, ale_tal_id,
+ale_USU_ID_ALTA, ale_FECHA_ALTA,
+ale_USU_ID_MODIFICACION, ale_FECHA_MODIFICACION
+)
+values ('Exceso en grasas saturadas', 'Exceso en grasas saturadas', (select tal_id from tipos_alerta where tal_nombre='Sello de advertencia'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now(),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now()
+);
+
+
+
+INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_valor_critico,
+anu_USU_ID_ALTA, anu_FECHA_ALTA,
+anu_USU_ID_MODIFICACION, anu_FECHA_MODIFICACION
+)
+values ((select ale_id from alertas where ale_nombre='Exceso en grasas saturadas'), (select nut_id from nutrientes where nut_nombre='Grasas saturadas'), 10,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now(),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'), now()
+);
