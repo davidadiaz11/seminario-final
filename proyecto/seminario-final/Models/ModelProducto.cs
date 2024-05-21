@@ -19,8 +19,6 @@ public class ModelProducto
 
     public uint Id { get; set; }
     public string Nombre { get; set; }
-    public IEnumerable<ModelIngredienteProducto> IngredientesProducto { get; set; }
-    public string IngredientesText { get { return String.Join(", ", IngredientesProducto.Select(x => x.Ingrediente.Nombre).ToList()); } }
     public IEnumerable<ModelNutrienteProducto> NutrientesProducto { get; set; }
     public double ValorEnergetico { get; set; }
     public string NutrientesText { get { return String.Join(", ", NutrientesProducto.Select(x => x.Nutriente.Nombre + ": " + x.Nutriente.CantidadPorPorcion + " g").ToList()); } }

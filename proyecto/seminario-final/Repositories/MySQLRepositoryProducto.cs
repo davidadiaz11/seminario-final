@@ -185,7 +185,7 @@ public class MySQLRepositoryProducto
         MySqlConnection cn = new MySqlConnection(cadena);
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
-        DataTable dt_detalles = new DataTable();
+        //DataTable dt_detalles = new DataTable();
         DataTable dt_nutrientes = new DataTable();
         try
         {
@@ -201,14 +201,14 @@ public class MySQLRepositoryProducto
             cmd.Parameters.Add(new MySqlParameter("@pro_id", idProducto));
 
             dt.Load(cmd.ExecuteReader());
-            string segundaQuery =
-            @"SELECT ipr_pro_id , ing_nombre
-                                    from  ingredientes_x_productos
-                                JOIN ingredientes on ing_id=ipr_ing_id
-                                where ipr_pro_id=@pro_id and ipr_fecha_Baja is null and ing_fecha_baja is null;";
+            //string segundaQuery =
+            //@"SELECT ipr_pro_id , ing_nombre
+            //                        from  ingredientes_x_productos
+            //                    JOIN ingredientes on ing_id=ipr_ing_id
+            //                    where ipr_pro_id=@pro_id and ipr_fecha_Baja is null and ing_fecha_baja is null;";
 
-            cmd.CommandText = segundaQuery;
-            dt_detalles.Load(cmd.ExecuteReader());
+            //cmd.CommandText = segundaQuery;
+            //dt_detalles.Load(cmd.ExecuteReader());
             string terceraQuery = @"SELECT npr_pro_id, nut_nombre, NPR_CANTIDAD_POR_PORCION from
                                 nutrientes_x_productos
                                 join nutrientes on npr_nut_id=nut_id
@@ -231,7 +231,7 @@ public class MySQLRepositoryProducto
         }
 
         ds.Tables.Add(dt);
-        ds.Tables.Add(dt_detalles);
+        //ds.Tables.Add(dt_detalles);
         ds.Tables.Add(dt_nutrientes);
         return ds;
     }
