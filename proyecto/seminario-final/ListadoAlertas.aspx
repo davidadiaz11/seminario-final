@@ -128,7 +128,8 @@
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
-                                                    <ItemTemplate><%#   Eval("TipoAlerta.Forma") + " " + Eval("TipoAlerta.Color") %></ItemTemplate>
+                                                    <ItemTemplate><%#   Eval("TipoAlerta.Forma.Nombre") + " " + Eval("TipoAlerta.Color.CodigoHexadecimal")  %>
+                                                    </ItemTemplate>
                                                     <HeaderTemplate>
                                                         Forma y Color
                                                     </HeaderTemplate>

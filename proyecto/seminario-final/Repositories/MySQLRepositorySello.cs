@@ -173,10 +173,11 @@ public class MySQLRepositorySello
             dt.Load(cmd.ExecuteReader());
 
 
-            cmd.CommandText = @"SELECT anu_id, nut_id, nut_nombre, anu_valor_critico
+            cmd.CommandText = @"SELECT anu_id, nut_id, nut_nombre, anu_valor_critico, tca_id, tca_nombre
                                 FROM ALERTAS_X_NUTRIENTE 
                                 JOIN nutrientes on anu_nut_id=nut_id
-                                WHERE anu_fecha_baja is null AND anu_ale_id=@ale_id and nut_fecha_baja IS NULL;";
+                                JOIN tipos_calculo on anu_tca_id=tca_id
+                                WHERE anu_ale_id=@ale_id AND anu_fecha_baja is null AND nut_fecha_baja IS NULL AND tca_fecha_baja is null;";
             dt_nutrientes.Load(cmd.ExecuteReader());
 
 

@@ -144,7 +144,6 @@ namespace seminario_final
             {
                 Id = Convert.ToUInt32(ddl_tipo_porcion.SelectedValue)
             };
-            nuevoProducto.ValorEnergetico = Convert.ToUInt32(txt_valor_energetico.Text);
 
             List<ModelNutrienteProducto> nuevosNutrientesProductos = new List<ModelNutrienteProducto>();
 

@@ -25,7 +25,7 @@ public class MySQLRepositoryProducto
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT pro_id, pro_nombre, pro_valor_energetico, pro_porcion, tpo_nombre
+            cmd.CommandText = @"SELECT pro_id, pro_nombre, pro_porcion, tpo_nombre
                                 FROM productos 
                                 JOIN tipos_porcion on tpo_id=pro_tpo_id
                                 WHERE tpo_fecha_baja is null and pro_fecha_baja is null";
@@ -99,7 +99,7 @@ public class MySQLRepositoryProducto
             dtcan.Load(cmd.ExecuteReader());
             encontrados = Convert.ToInt32(dtcan.Rows[0]["cant"]);
 
-            cmd.CommandText = @"SELECT pro_id, pro_nombre, pro_valor_energetico, pro_porcion, tpo_nombre
+            cmd.CommandText = @"SELECT pro_id, pro_nombre, pro_porcion, tpo_nombre
                                 FROM productos 
                                 JOIN tipos_porcion on tpo_id=pro_tpo_id
                                 
@@ -156,9 +156,8 @@ public class MySQLRepositoryProducto
                                 nutrientes_x_productos
                                 join nutrientes on npr_nut_id=nut_id
 								LEFT JOIN alertas_x_nutriente on npr_nut_id=anu_nut_id
-								LEFT JOIN alertas on anu_ale_id=ale_id
                                 where npr_pro_id in (@pro_id) AND 
-                                npr_fecha_baja is null AND anu_fecha_baja is null AND ale_fecha_baja is null;";
+                                npr_fecha_baja is null AND anu_fecha_baja is null;";
 
             cmd.CommandText = terceraQuery;
 
@@ -196,7 +195,7 @@ public class MySQLRepositoryProducto
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT pro_id, pro_nombre, pro_valor_energetico, pro_porcion, pro_ingredientes, tpo_nombre
+            cmd.CommandText = @"SELECT pro_id, pro_nombre, pro_porcion, pro_ingredientes, tpo_nombre
                                 FROM productos 
                                 JOIN tipos_porcion on tpo_id=pro_tpo_id
                                 WHERE tpo_fecha_baja is null AND pro_id=@pro_id and pro_fecha_baja IS NULL;";
@@ -215,9 +214,8 @@ public class MySQLRepositoryProducto
                                 nutrientes_x_productos
                                 join nutrientes on npr_nut_id=nut_id
 								LEFT JOIN alertas_x_nutriente on npr_nut_id=anu_nut_id
-								LEFT JOIN alertas on anu_ale_id=ale_id
                                 where npr_pro_id=@pro_id AND 
-                                npr_fecha_baja is null AND anu_fecha_baja is null AND ale_fecha_baja is null;";
+                                npr_fecha_baja is null AND anu_fecha_baja is null;";
 
             cmd.CommandText = terceraQuery;
             dt_nutrientes.Load(cmd.ExecuteReader());
@@ -251,12 +249,11 @@ public class MySQLRepositoryProducto
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-            cmd.CommandText = @"UPDATE productos set pro_nombre=@pro_nombre, pro_valor_energetico=@pro_valor_energetico, pro_porcion=@pro_porcion,
+            cmd.CommandText = @"UPDATE productos set pro_nombre=@pro_nombre, pro_porcion=@pro_porcion,
                                 pro_tpo_id=@pro_tpo_id
                                 WHERE pro_id=@pro_id and pro_fecha_baja IS NULL;";
             cmd.Parameters.Add(new MySqlParameter("@pro_id", nuevoProducto.Id));
             cmd.Parameters.Add(new MySqlParameter("@pro_nombre", nuevoProducto.Nombre));
-            cmd.Parameters.Add(new MySqlParameter("@pro_valor_energetico", nuevoProducto.ValorEnergetico));
             cmd.Parameters.Add(new MySqlParameter("@pro_porcion", nuevoProducto.Porcion));
             cmd.Parameters.Add(new MySqlParameter("@pro_tpo_id", nuevoProducto.TipoPorcion.Id));
 

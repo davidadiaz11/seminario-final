@@ -60,8 +60,10 @@ public class ServiceSello
                 TipoAlerta = new ModelTipoAlerta()
                 {
                     Nombre = dr["tal_nombre"].ToString(),
-                    Forma = dr["tal_forma"].ToString(),
-                    Color  = dr["tal_color"].ToString()
+                    Forma = ServiceShared.GetFormaAlerta(Convert.ToInt32(dr["tal_forma"])),
+                    Color  = new ModelColorAlerta(){ 
+                        CodigoHexadecimal = dr["tal_color"].ToString()
+                    }
                 }
             };
             items.Add(x);

@@ -20,7 +20,7 @@ public class ModelProducto
     public uint Id { get; set; }
     public string Nombre { get; set; }
     public IEnumerable<ModelNutrienteProducto> NutrientesProducto { get; set; }
-    public double ValorEnergetico { get; set; }
+    public double ValorEnergetico { get { return NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Calorías").Nutriente.CantidadPorPorcion; } }
     public string NutrientesText { get { return String.Join(", ", NutrientesProducto.Select(x => x.Nutriente.Nombre + ": " + x.Nutriente.CantidadPorPorcion + " g").ToList()); } }
     public uint Porcion { get; set; }
     public ModelTipoPorcion TipoPorcion { get; set; }

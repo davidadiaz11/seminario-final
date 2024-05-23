@@ -99,9 +99,13 @@ public class ServiceShared
     {
         return colores.First(x => x.Nombre == nombreColor.ToUpper());
     }
-    public static ModelFormaAlerta GetColorForma(string nombreForma)
+    public static ModelFormaAlerta GetFormaAlerta(string nombreForma)
     {
         return formas.First(x => x.Nombre == nombreForma.ToUpper());
+    }
+       public static ModelFormaAlerta GetFormaAlerta(int idForma)
+    {
+        return formas.First(x => x.Id == idForma);
     }
 
     public static string GetSortLink(string dataField, HttpRequest Request)
