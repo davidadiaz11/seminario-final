@@ -44,11 +44,11 @@ namespace seminario_final
 
         private void configurarPaginador()
         {
-            if (Session["cant_comp"] == null)
+            if (Session["cant_resultados"] == null)
             {
-                Session["cant_comp"] = 3;
+                Session["cant_resultados"] = 3;
             }
-            vista_lista.PageSize = Convert.ToInt32(Session["cant_comp"]);
+            vista_lista.PageSize = Convert.ToInt32(Session["cant_resultados"]);
             ddl_cant_filas.SelectedValue = vista_lista.PageSize.ToString();
         }
 
@@ -148,7 +148,7 @@ namespace seminario_final
         }
         protected void ddl_cant_filas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session["cant_cli"] = Convert.ToByte(ddl_cant_filas.SelectedValue);
+            Session["cant_resultados"] = Convert.ToByte(ddl_cant_filas.SelectedValue);
         }
 
 
