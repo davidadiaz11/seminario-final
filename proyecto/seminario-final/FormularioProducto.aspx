@@ -3,7 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Cuerpo" runat="server">
     <div class="main-panel">
         <div class="content-wrapper">
-            <div class="row">
                 <form class="forms-sample" runat="server">
                     <div class="row">
                         <div class="col-12 ">
@@ -138,7 +137,6 @@
                         </div>
                     </div>
                 </form>
-            </div>
             </div>
 
     </div>
