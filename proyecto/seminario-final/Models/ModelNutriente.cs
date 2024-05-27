@@ -18,6 +18,7 @@ public class ModelNutriente
     public string Nombre { get; set; }
     public bool EsOpcional { get; set; }
     public bool EsCritico { get; set; }
+    public ModelTipoNutriente TipoNutriente { get; set; }
     public double CantidadPorPorcion { get; set; }
 
     public List<ModelNutrienteAlerta> NutrientesAlerta { get; set; }

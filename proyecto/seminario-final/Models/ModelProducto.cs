@@ -26,5 +26,8 @@ public class ModelProducto
     public ModelTipoPorcion TipoPorcion { get; set; }
     public string PorcionText { get { return Porcion + " (" + TipoPorcion?.Nombre + ")"; } }
     public string Ingredientes { get; set; }
-    public IEnumerable<ModelAlerta> Alertas { get; set; }
+    //public IEnumerable<ModelAlerta> Alertas { get; set; }
+    //public IEnumerable<ModelNutrienteAlerta> NutrientesAlerta { get; set; }
+    public List<ModelNutrienteAlerta> NutrienteAlertas { get; internal set; }
+    public List<ModelAlerta> IngredientesAlertas { get; internal set; }
 }
