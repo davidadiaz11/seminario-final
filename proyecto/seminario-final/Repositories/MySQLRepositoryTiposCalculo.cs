@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-public class MySQLRepositoryNutriente
+public class MySQLRepositoryTiposCalculo
 {
-    public MySQLRepositoryNutriente()
+    public MySQLRepositoryTiposCalculo()
     {
     }
 
     static string cadena = MySQLRepositoryShared.getConnectionString();
-    public static DataTable ObtenerNutrientes()
+    public static DataTable ObtenerTiposCalculo()
     {
         MySqlConnection cn = new MySqlConnection(cadena);
         DataTable dt = new DataTable();
@@ -23,13 +23,14 @@ public class MySQLRepositoryNutriente
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT nut_id, nut_nombre, nut_tipo_nutriente
-                                FROM nutrientes 
-                                WHERE nut_fecha_baja is null;";
+            cmd.CommandText = @"SELECT TCA_ID, TCA_NOMBRE, TCA_NOMBRE_ENUM FROM TIPOS_CALCULO
+                                WHERE tca_fecha_baja is null";
 
             dt.Load(cmd.ExecuteReader());
+
+
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             throw;
         }
@@ -41,5 +42,6 @@ public class MySQLRepositoryNutriente
         }
         return dt;
     }
+
 
 }
