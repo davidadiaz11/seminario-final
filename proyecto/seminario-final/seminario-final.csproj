@@ -166,6 +166,8 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="FormularioPerfil.aspx" />
+    <Content Include="FormularioAlerta.aspx" />
     <Content Include="FormularioProducto.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -177,10 +179,12 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Inicio.aspx" />
+    <Content Include="ListadoPerfiles.aspx" />
     <Content Include="ListadoAlertas.aspx" />
     <Content Include="ListadoProductos.aspx" />
     <Content Include="ListadoAnalisis.aspx" />
     <Content Include="MasterPage.Master" />
+    <Content Include="AnalisisNuevo.aspx" />
     <Content Include="NuevoAnalisis.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -239,12 +243,37 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Enums\FormasEnum.cs" />
+    <Compile Include="Enums\TiposNutrienteEnum.cs" />
+    <Compile Include="Enums\TiposCalculoEnum.cs" />
+    <Compile Include="Enums\ColoresEnum.cs" />
+    <Compile Include="FormularioPerfil.aspx.cs">
+      <DependentUpon>FormularioPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioPerfil.aspx.designer.cs">
+      <DependentUpon>FormularioPerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioAlerta.aspx.cs">
+      <DependentUpon>FormularioAlerta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioAlerta.aspx.designer.cs">
+      <DependentUpon>FormularioAlerta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormularioProducto.aspx.cs">
       <DependentUpon>FormularioProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="FormularioProducto.aspx.designer.cs">
       <DependentUpon>FormularioProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoPerfiles.aspx.cs">
+      <DependentUpon>ListadoPerfiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoPerfiles.aspx.designer.cs">
+      <DependentUpon>ListadoPerfiles.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoAlertas.aspx.cs">
       <DependentUpon>ListadoAlertas.aspx</DependentUpon>
@@ -256,20 +285,37 @@
     <Compile Include="Models\ModelColorAlerta.cs" />
     <Compile Include="Models\ModelFormaAlerta.cs" />
     <Compile Include="Models\ModelNutrienteAlerta.cs" />
-    <Compile Include="Models\ModelIngredienteProducto.cs" />
     <Compile Include="Models\ModelNutrienteProducto.cs" />
+    <Compile Include="Models\ModelTipoNutriente.cs" />
+    <Compile Include="Models\ModelTipoCalculo.cs" />
     <Compile Include="Models\ModelTipoAlerta.cs" />
     <Compile Include="Models\ModelFiltro.cs" />
     <Compile Include="Models\ModelAlerta.cs" />
     <Compile Include="Models\ModelTipoPorcion.cs" />
     <Compile Include="Models\ModelNutriente.cs" />
-    <Compile Include="Models\ModelIngrediente.cs" />
+    <Compile Include="Models\ModelPerfil.cs" />
     <Compile Include="Models\ModelUsuario.cs" />
     <Compile Include="Models\ModelProducto.cs" />
+    <Compile Include="AnalisisNuevo.aspx.cs">
+      <DependentUpon>AnalisisNuevo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnalisisNuevo.aspx.designer.cs">
+      <DependentUpon>AnalisisNuevo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\MySQLRepositoryNutriente.cs" />
+    <Compile Include="Repositories\MySQLRepositoryAnalisis.cs" />
+    <Compile Include="Repositories\MySQLRepositoryPerfil.cs" />
     <Compile Include="Repositories\MySQLRepositorySello.cs" />
+    <Compile Include="Repositories\MySQLRepositoryTiposCalculo.cs" />
     <Compile Include="Repositories\MySQLRepositoryTiposPorcion.cs" />
     <Compile Include="Repositories\MySQLRepositoryShared.cs" />
+    <Compile Include="Services\ServiceAnalisis.cs" />
+    <Compile Include="Services\ServicePerfiles.cs" />
+    <Compile Include="Services\ServiceTiposNutriente.cs" />
     <Compile Include="Services\ServiceSello.cs" />
+    <Compile Include="Services\ServiceNutriente.cs" />
+    <Compile Include="Services\ServiceTiposCalculo.cs" />
     <Compile Include="Services\ServiceTiposPorcion.cs" />
     <Compile Include="Services\ServiceShared.cs" />
     <Compile Include="Services\ServiceProducto.cs" />
