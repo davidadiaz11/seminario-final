@@ -1,8 +1,13 @@
+INSERT INTO ROLES(ROL_NOMBRE)
+VALUES ('Administrador');
+
+INSERT INTO ROLES(ROL_NOMBRE)
+VALUES ('Usuario consumidor');
 
 
-INSERT INTO usuarios (USU_NOMBRE, USU_USUARIOS, USU_CONTRASENA,
+INSERT INTO usuarios (USU_NOMBRE, USU_USUARIOS, USU_CONTRASENA, USU_ROL_ID,
 USU_ID_ALTA)
-VALUES ('Admin', 1, 'Admin', 1);
+VALUES ('Admin', 1, 'Admin', 1, (select rol_id from roles where rol_nombre='Administrador'));
 
 INSERT INTO tipos_porcion(TPO_NOMBRE, 
 TPO_USU_ID_ALTA,
@@ -12,57 +17,57 @@ VALUES ('gramos',
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO,
+INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO, NUT_TIPO_NUTRIENTE,
 NUT_USU_ID_ALTA,
 NUT_USU_ID_MODIFICACION)
 VALUES
-('Carbohidratos', 0, 1,
+('Carbohidratos', 0, 1, 3,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
 
-INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO,
+INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO, NUT_TIPO_NUTRIENTE,
 NUT_USU_ID_ALTA,
 NUT_USU_ID_MODIFICACION)
 VALUES
-('Proteínas', 0, 1,
+('Proteínas', 0, 1, 2,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO,
+INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO, NUT_TIPO_NUTRIENTE,
 NUT_USU_ID_ALTA,
 NUT_USU_ID_MODIFICACION)
 VALUES
-('Grasas totales', 0, 1,
+('Grasas totales', 0, 1, 1,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO,
+INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO, NUT_TIPO_NUTRIENTE,
 NUT_USU_ID_ALTA,
 NUT_USU_ID_MODIFICACION)
 VALUES
-('Grasas saturadas', 0, 1,
+('Grasas saturadas', 0, 1, 1,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO,
+INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO, NUT_TIPO_NUTRIENTE,
 NUT_USU_ID_ALTA,
 NUT_USU_ID_MODIFICACION)
 VALUES
-('Grasas trans', 0, 1,
+('Grasas trans', 0, 1, 1,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO,
+INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO, NUT_TIPO_NUTRIENTE,
 NUT_USU_ID_ALTA,
 NUT_USU_ID_MODIFICACION)
 VALUES
-('Fibra', 0, 1,
+('Fibra', 0, 1, 3,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -87,11 +92,11 @@ VALUES
 );
 
 
-INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO,
+INSERT INTO nutrientes(NUT_NOMBRE, NUT_ES_OPCIONAL, NUT_ES_CRITICO, NUT_TIPO_NUTRIENTE,
 NUT_USU_ID_ALTA,
 NUT_USU_ID_MODIFICACION)
 VALUES
-('Azúcares añadidos', 0, 1,
+('Azúcares añadidos', 0, 1, 3,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -101,7 +106,7 @@ INSERT INTO productos(PRO_NOMBRE, PRO_PORCION, PRO_INGREDIENTES, PRO_TPO_ID,
 PRO_USU_ID_ALTA,
 PRO_USU_ID_MODIFICACION
 )
-VALUES ('Dulce de leche repostero Los quebrachitos', 20, 'Leche entera pasteurizada, Azúcar, Glucosa', (select TPO_ID from TIPOS_PORCION where TPO_NOMBRE='gramos'),
+VALUES ('Dulce de leche repostero Los quebrachitos', 20, 'Leche entera pasteurizada, Azucar, Glucosa', (select TPO_ID from TIPOS_PORCION where TPO_NOMBRE='gramos'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -273,20 +278,20 @@ values ('Exceso en sodio', 'Exceso en sodio', (select tal_id from tipos_alerta w
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_valor_critico,
+INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_operador, anu_valor_critico,
 anu_USU_ID_ALTA,
 anu_USU_ID_MODIFICACION
 )
-values ((select ale_id from alertas where ale_nombre='Exceso en sodio'), (select nut_id from nutrientes where nut_nombre='Sodio'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_CUANTITATIVO_100G'), 300,
+values ((select ale_id from alertas where ale_nombre='Exceso en sodio'), (select nut_id from nutrientes where nut_nombre='Sodio'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_CUANTITATIVO_100G'), '>', 300,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_valor_critico,
+INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_operador, anu_valor_critico,
 anu_USU_ID_ALTA,
 anu_USU_ID_MODIFICACION
 )
-values ((select ale_id from alertas where ale_nombre='Exceso en sodio'), (select nut_id from nutrientes where nut_nombre='Sodio'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_SOBRE_CALORIAS'), 1,
+values ((select ale_id from alertas where ale_nombre='Exceso en sodio'), (select nut_id from nutrientes where nut_nombre='Sodio'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_SOBRE_CALORIAS'), '>', 1,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -302,11 +307,11 @@ values ('Exceso en grasas saturadas', 'Exceso en grasas saturadas', (select tal_
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_valor_critico,
+INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_operador, anu_valor_critico,
 anu_USU_ID_ALTA,
 anu_USU_ID_MODIFICACION
 )
-values ((select ale_id from alertas where ale_nombre='Exceso en grasas saturadas'), (select nut_id from nutrientes where nut_nombre='Grasas saturadas'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_PORCENTUAL'), 10,
+values ((select ale_id from alertas where ale_nombre='Exceso en grasas saturadas'), (select nut_id from nutrientes where nut_nombre='Grasas saturadas'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_PORCENTUAL'), '>', 10,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -322,11 +327,11 @@ values ('Exceso en grasas totales', 'Exceso en grasas totales', (select tal_id f
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_valor_critico,
+INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_operador, anu_valor_critico,
 anu_USU_ID_ALTA,
 anu_USU_ID_MODIFICACION
 )
-values ((select ale_id from alertas where ale_nombre='Exceso en grasas totales'), (select nut_id from nutrientes where nut_nombre='Grasas totales'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_PORCENTUAL'), 30,
+values ((select ale_id from alertas where ale_nombre='Exceso en grasas totales'), (select nut_id from nutrientes where nut_nombre='Grasas totales'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_PORCENTUAL'), '>', 30,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -343,11 +348,11 @@ values ('Exceso en calorías', 'Exceso en calorias', (select tal_id from tipos_a
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_valor_critico,
+INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_operador, anu_valor_critico,
 anu_USU_ID_ALTA,
 anu_USU_ID_MODIFICACION
 )
-values ((select ale_id from alertas where ale_nombre='Exceso en calorías'), (select nut_id from nutrientes where nut_nombre='Calorías'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_CUANTITATIVO_100G'), 275,
+values ((select ale_id from alertas where ale_nombre='Exceso en calorías'), (select nut_id from nutrientes where nut_nombre='Calorías'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_CUANTITATIVO_100G'), '>', 275,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -363,11 +368,11 @@ values ('Exceso en azúcares', 'Exceso en azucares', (select tal_id from tipos_a
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_valor_critico,
+INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_operador, anu_valor_critico,
 anu_USU_ID_ALTA,
 anu_USU_ID_MODIFICACION
 )
-values ((select ale_id from alertas where ale_nombre='Exceso en azúcares'), (select nut_id from nutrientes where nut_nombre='Azúcares añadidos'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_PORCENTUAL'), 10,
+values ((select ale_id from alertas where ale_nombre='Exceso en azúcares'), (select nut_id from nutrientes where nut_nombre='Azúcares añadidos'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_PORCENTUAL'), '>', 10,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -384,17 +389,35 @@ values ((select ale_id from alertas where ale_nombre='Exceso en azúcares'), (se
 -- ESTOS SCRIPTS SON EXCLUSIVAMENTE PARA SIMULAR EL USO DEL SISTEMA
 
 
-INSERT INTO usuarios (USU_NOMBRE, USU_USUARIOS, USU_CONTRASENA,
+INSERT INTO usuarios (USU_NOMBRE, USU_USUARIOS, USU_CONTRASENA, USU_ROL_ID,
 USU_ID_ALTA)
-VALUES ('Demo', 2, 'Demo', 2);
+VALUES ('Demo', 2, 'Demo', 2, (select rol_id from roles where rol_nombre='Usuario consumidor'));
+
+INSERT INTO PERFILES(PRF_NOMBRE, PRF_USU_ID, PRF_INGREDIENTES_PROHIBIDOS, PRF_FECHA_NACIMIENTO, PRF_ES_PRINCIPAL, 
+PRF_USU_ID_ALTA,
+PRF_USU_ID_MODIFICACION
+)
+values ('Demo', (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Demo'), 'maní', '2000-01-01', 1,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO PERFILES(PRF_NOMBRE, PRF_USU_ID, PRF_INGREDIENTES_PROHIBIDOS, PRF_FECHA_NACIMIENTO,
+PRF_USU_ID_ALTA,
+PRF_USU_ID_MODIFICACION
+)
+values ('Hijo menor', (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Demo'), 'lactosa;leche', '2024-01-01',
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
 
 INSERT INTO tipos_alerta(tal_nombre, tal_color, tal_forma,
 tal_USU_ID_ALTA,
 tal_USU_ID_MODIFICACION,
 )
 values ('Rectángulo verde saludable', '7fe757', 2,
-(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Demo'),
-(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Demo')
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
 -- ALERTA PERSONALIZADA
@@ -404,15 +427,15 @@ ale_USU_ID_ALTA,
 ale_USU_ID_MODIFICACION
 )
 values ('Mitad de sodio', 'Mitad de sodio recomendado', (select tal_id from tipos_alerta where tal_nombre='Rectángulo verde saludable'),
-(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Demo'),
-(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Demo')
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 
-INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_valor_critico,
+INSERT INTO alertas_x_nutriente(anu_ale_id, anu_nut_id, anu_tca_id, anu_operador, anu_valor_critico,
 anu_USU_ID_ALTA,
 anu_USU_ID_MODIFICACION
 )
-values ((select ale_id from alertas where ale_nombre='Mitad de sodio'), (select nut_id from nutrientes where nut_nombre='Sodio'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_CUANTITATIVO_100G'), 150,
-(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Demo'),
-(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Demo')
+values ((select ale_id from alertas where ale_nombre='Mitad de sodio'), (select nut_id from nutrientes where nut_nombre='Sodio'), (select tca_id from tipos_calculo where tca_nombre_enum='CALCULO_CUANTITATIVO_100G'), '<', 150,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
