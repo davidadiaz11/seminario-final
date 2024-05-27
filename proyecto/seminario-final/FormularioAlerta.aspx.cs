@@ -7,27 +7,27 @@ namespace seminario_final
 {
     public partial class FormularioAlerta : Page
     {
-        protected ModelAlerta alerta;
-        protected ModelNutriente nutriente;
-        string idAlerta = "";
+        protected ModelNutriente nutrientePersistido;
+        protected ModelAlerta alertaPersistida;
+        string idNutrienteAlerta = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            idAlerta = Request.QueryString["ale"];
-            if (idAlerta == null)
-            {
-                return;
-            }
+            idNutrienteAlerta = Request.QueryString["anu"];
+            //if (idAlerta == null)
+            //{
+            //    return;
+            //}
             if (!IsPostBack)
             {
                 CargarColores();
                 CargarNutrientes();
+                CargarTiposCalculo();
                 CargarFormas();
-                ObtenerAlerta();
-                if (alerta != null)
+                if (idNutrienteAlerta != null)
                 {
+                    ObtenerNutrienteAlertaPorId();
                     CargarAlerta();
                 }
-                
             }
         }
 
@@ -35,15 +35,19 @@ namespace seminario_final
         {
             ddl_color.DataSource = ServiceShared.GetColores();
             ddl_color.DataTextField = "Nombre";
-            ddl_color.DataValueField = "Nombre";
+            ddl_color.DataValueField = "CodigoHexadecimal";
             ddl_color.DataBind();
-        }        
+        }
         private void CargarFormas()
         {
             ddl_forma.DataSource = ServiceShared.GetFormas();
             ddl_forma.DataTextField = "Nombre";
             ddl_forma.DataValueField = "Id";
             ddl_forma.DataBind();
+            ddl_forma.SelectedValue = "2"; // FormasEnum.RECTANGULO.ToString();
+            ddl_forma.DataBind();
+
+            ddl_forma.Enabled = false;
         }
         private void CargarNutrientes()
         {
@@ -53,23 +57,42 @@ namespace seminario_final
             ddl_nutriente.DataBind();
         }
 
-        private void ObtenerAlerta()
+
+        private void CargarTiposCalculo()
         {
-            nutriente = ServiceSello.ObtenerPorId(1,Convert.ToInt32(idAlerta));
-            alerta = nutriente.NutrientesAlerta.First().Alerta;
+            if (string.IsNullOrEmpty(ddl_nutriente.SelectedValue))
+            {
+                return;
+            }
+            uint idNutriente = Convert.ToUInt32(ddl_nutriente.SelectedValue);
+            List<ModelTipoCalculo> tiposCalculo = ServiceTiposCalculo.ObtenerTiposCalculo(idNutriente);
+            ddl_tipoCalculo.DataSource = tiposCalculo;
+            ddl_tipoCalculo.DataTextField = "Nombre";
+            ddl_tipoCalculo.DataValueField = "Id";
+            ddl_tipoCalculo.DataBind();
+        }
+
+        private void ObtenerNutrienteAlertaPorId()
+        {
+            if (string.IsNullOrEmpty(idNutrienteAlerta))
+            {
+                return;
+            }
+            ddl_color.Enabled = false;
+            nutrientePersistido = ServiceSello.ObtenerNutrienteAlertaPorId(Convert.ToUInt32(idNutrienteAlerta));
+            alertaPersistida = nutrientePersistido.NutrientesAlerta.First().Alerta;
         }
 
         private void CargarAlerta()
         {
-            tituloAlerta.InnerText = alerta.Nombre;
-            txt_nombre.Text = alerta.Nombre;
-            txt_leyenda.Text = alerta.Leyenda;
-
-            if (alerta.Id > 0)
-            {
-                ddl_nutriente.SelectedValue = nutriente.Id.ToString();
-                txt_valor_critico.Text = nutriente.NutrientesAlerta.First().ValorCritico.ToString();
-            }
+            tituloAlerta.InnerText = alertaPersistida.Nombre;
+            txt_nombre.Text = alertaPersistida.Nombre;
+            txt_leyenda.Text = alertaPersistida.Leyenda;
+            ddl_color.SelectedValue = alertaPersistida.TipoAlerta.Color.CodigoHexadecimal;
+            ddl_forma.SelectedValue = alertaPersistida.TipoAlerta.Forma.Id.ToString();
+            ddl_nutriente.SelectedValue = nutrientePersistido.Id.ToString();
+            ddl_tipoCalculo.SelectedValue = nutrientePersistido.NutrientesAlerta.First().TipoCalculo.Id.ToString();
+            txt_valor_critico.Text = nutrientePersistido.NutrientesAlerta.First().ValorCritico.ToString();
         }
 
         private bool ValidarFormulario()
@@ -99,32 +122,43 @@ namespace seminario_final
             return true;
         }
 
-        private ModelAlerta crearObjetoAlerta()
+
+        private ModelNutriente crearObjetoDesdeFormulario()
         {
-            ObtenerAlerta();
-            ModelAlerta nuevaAlerta = new ModelAlerta();
-            nuevaAlerta.Id = alerta.Id;
-            nuevaAlerta.Nombre = txt_nombre.Text;
-            nuevaAlerta.Leyenda = txt_leyenda.Text;
-         
-
-            //List<ModelNutrienteProducto> nuevosNutrientesAlertas = new List<ModelNutrienteProducto>();
-
-            //foreach (ModelNutrienteProducto item in producto.NutrientesProducto)
-            //{
-            //    ModelNutrienteProducto mnp = new ModelNutrienteProducto()
-            //    {
-            //        Id = item.Id,
-            //        Nutriente = new ModelNutriente()
-            //        {
-            //            CantidadPorPorcion = item.Nutriente.CantidadPorPorcion
-            //        }
-            //    };
-            //    nuevosNutrientesProductos.Add(mnp);
-            //}
-            //nuevoProducto.NutrientesProducto = nuevosNutrientesProductos;
-            
-            return nuevaAlerta;
+            ModelNutriente nut = new ModelNutriente()
+            {
+                Id = Convert.ToUInt32(ddl_nutriente.SelectedValue),
+                NutrientesAlerta = new List<ModelNutrienteAlerta>()
+                {
+                    new ModelNutrienteAlerta()
+                    {
+                        Id = string.IsNullOrEmpty(idNutrienteAlerta) ? 0 : Convert.ToUInt32(idNutrienteAlerta),
+                        ValorCritico = Convert.ToDouble(txt_valor_critico.Text),
+                        Operador = ddl_criterio.SelectedValue,
+                        TipoCalculo = new ModelTipoCalculo()
+                        {
+                            Id = Convert.ToUInt32(ddl_tipoCalculo.SelectedValue)
+                        },
+                        Alerta = new ModelAlerta()
+                        {
+                            Id = string.IsNullOrEmpty(idNutrienteAlerta) ? 0 : alertaPersistida.Id,
+                            Nombre = txt_nombre.Text,
+                            Leyenda = txt_leyenda.Text,
+                            TipoAlerta = new ModelTipoAlerta()
+                            {
+                                Id = string.IsNullOrEmpty(idNutrienteAlerta) ? 0 : alertaPersistida.TipoAlerta.Id,
+                                Forma = ServiceShared.GetFormaAlerta(Convert.ToInt32(ddl_forma.SelectedValue)),
+                                Color = new ModelColorAlerta()
+                                {
+                                    Id = string.IsNullOrEmpty(idNutrienteAlerta) ? 0 : alertaPersistida.TipoAlerta.Color.Id,
+                                    CodigoHexadecimal = ddl_color.SelectedValue
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            return nut;
         }
 
         protected void btn_guardar_Click(object sender, EventArgs e)
@@ -134,15 +168,24 @@ namespace seminario_final
             {
                 return;
             }
-            ModelAlerta nuevaAlerta = crearObjetoAlerta();
-            var resModificacion = ServiceSello.ModificarAlerta(nuevaAlerta);
+            ObtenerNutrienteAlertaPorId();
+
+            ModelNutriente nuevoElemento = crearObjetoDesdeFormulario();
+
+            var resModificacion = ServiceSello.GuardarAlerta(nuevoElemento, nutrientePersistido);
             var master = Master as MasterPage;
             if (!resModificacion)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al modificar"), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al guardar"), true);
                 return;
             }
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Modificada correctamente."), true);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Guardada correctamente."), true);
+
+        }
+
+        protected void ddl_nutriente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarTiposCalculo();
         }
     }
 }

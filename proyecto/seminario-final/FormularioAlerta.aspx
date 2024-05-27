@@ -15,13 +15,13 @@
 
                                             <div class="text-center">
 
-                                                <img width="200" src="images/sellos/exceso_en_sodio.png" alt="logo" />
+                                                <%--<img width="200" src="images/sellos/exceso_en_sodio.png" alt="logo" />--%>
                                                 <br>
                                                 <br>
                                                 <h3 id="tituloAlerta" runat="server"></h3>
                                             </div>
 
-
+                                                      
                                             <div class="form-group">
                                                 <label for="txt_nombre">Nombre <small class="text-danger">*</small></label>
                                                 <asp:TextBox placeholder="Nombre de la alerta" ID="txt_nombre" AutoCompleteType="Disabled" CssClass="form-control" runat="server"></asp:TextBox>
@@ -52,25 +52,32 @@
                                                   
                                             <div class="form-group">
                                                 <label for="ddl_nutriente">Nutriente</label>
-                                                <asp:DropDownList CssClass="form-control" ID="ddl_nutriente" runat="server">
+                                                <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddl_nutriente_SelectedIndexChanged"  CssClass="form-control" ID="ddl_nutriente" runat="server">
                                                 </asp:DropDownList>
                                                 <asp:RequiredFieldValidator Display="Dynamic" CssClass="p-0 text-danger small" ControlToValidate="ddl_nutriente" InitialValue="" ID="rf_nutriente" runat="server" ErrorMessage="Seleccione Nutriente"></asp:RequiredFieldValidator>
                                             </div>
 
 
                                             <div class="form-group">
+                                                 <label for="ddl_forma">Tipo de cálculo</label>
+                                                 <asp:DropDownList CssClass="form-control" ID="ddl_tipoCalculo" runat="server">
+                                                 </asp:DropDownList>
+                                                 <asp:RequiredFieldValidator Display="Dynamic" CssClass="p-0 text-danger small" ControlToValidate="ddl_tipoCalculo" InitialValue="" ID="rf_tipoCalculo" runat="server" ErrorMessage="Seleccione Tipo de cálculo"></asp:RequiredFieldValidator>
+                                             </div>
+                                            
+                                            <div class="form-group">
                                                  <label for="ddl_forma">Criterio</label>
                                                  <asp:DropDownList CssClass="form-control" ID="ddl_criterio" runat="server">
-                                                     <asp:ListItem Value="<="> Menor o igual </asp:ListItem>
-                                                     <asp:ListItem Value=">="> Mayor o igual </asp:ListItem>
+                                                     <asp:ListItem Value="<"> Menor o igual </asp:ListItem>
+                                                     <asp:ListItem Value=">"> Mayor o igual </asp:ListItem>
                                                  </asp:DropDownList>
                                                  <asp:RequiredFieldValidator Display="Dynamic" CssClass="p-0 text-danger small" ControlToValidate="ddl_criterio" InitialValue="" ID="rf_criterio" runat="server" ErrorMessage="Seleccione Tipo"></asp:RequiredFieldValidator>
                                              </div>
 
 
                                             <div class="form-group">
-                                                <label for="txt_valor_critico">Porcentaje crítico <small class="text-danger">*</small></label>
-                                                <asp:TextBox ID="txt_valor_critico" min="0" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                                                <label for="txt_valor_critico">Valor crítico <small class="text-danger">*</small></label>
+                                                <asp:TextBox ID="txt_valor_critico" min="0" placeholder="De 0 a 100" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
                                                 <asp:RequiredFieldValidator Display="Dynamic" CssClass="p-0 text-danger small" ControlToValidate="txt_valor_critico" ID="rf_valor_critico" runat="server" ErrorMessage="Ingrese porcentaje crítico"></asp:RequiredFieldValidator>
                                             </div>
                                             

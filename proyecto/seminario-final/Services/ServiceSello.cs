@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using MySql.Data.MySqlClient;
 using System.Data;
+using seminario_final;
+using System.Web.Services.Description;
 
 public class ServiceSello
 {
@@ -11,6 +11,8 @@ public class ServiceSello
     {
     }
 
+    //TODO-TESIS: buscar los idUsuario
+    private static ushort idUsuario = 2;
     public static List<ModelAlerta> ObtenerAlertas()
     {
         DataTable dt = MySQLRepositorySello.ObtenerSellos();
@@ -45,24 +47,46 @@ public class ServiceSello
         return true;
     }
 
-    public static List<ModelAlerta> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, ushort usuario, bool eliminados)
+    public static List<ModelNutriente> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, ushort usuario, bool eliminados)
     {
         DataTable dt = MySQLRepositorySello.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, usuario, eliminados);
-        List<ModelAlerta> items = new List<ModelAlerta>();
-        List<ModelNutrienteProducto> nutrientes = new List<ModelNutrienteProducto>();
+        List<ModelNutriente> items = new List<ModelNutriente>();
         foreach (DataRow dr in dt.Rows)
         {
-            ModelAlerta x = new ModelAlerta()
+            //armar desde nutriente y hacia abajo.
+
+
+            ModelNutriente x = new ModelNutriente()
             {
-                Id = Convert.ToUInt16(dr["ale_id"]),
-                Nombre = dr["ale_nombre"].ToString(),
-                Leyenda = dr["ale_leyenda"].ToString(),
-                TipoAlerta = new ModelTipoAlerta()
+                Id = Convert.ToUInt16(dr["nut_id"]),
+                Nombre = dr["nut_nombre"].ToString(),
+                NutrientesAlerta = new List<ModelNutrienteAlerta>()
                 {
-                    Nombre = dr["tal_nombre"].ToString(),
-                    Forma = ServiceShared.GetFormaAlerta(Convert.ToInt32(dr["tal_forma"])),
-                    Color  = new ModelColorAlerta(){ 
-                        CodigoHexadecimal = dr["tal_color"].ToString()
+                    new ModelNutrienteAlerta()
+                    {
+                        Id = Convert.ToUInt32(dr["anu_id"]),
+                        Operador = dr["anu_operador"].ToString(),
+                        TipoCalculo = new ModelTipoCalculo()
+                        {
+                            Id = Convert.ToUInt32(dr["anu_tca_id"])
+                        },
+                        ValorCritico = Convert.ToDouble(dr["anu_valor_critico"]),
+                        Alerta = new ModelAlerta()
+                        {
+                            Id = Convert.ToUInt32(dr["ale_id"]),
+                            Nombre = dr["ale_nombre"].ToString(),
+                            Leyenda = dr["ale_leyenda"].ToString(),
+                            TipoAlerta = new ModelTipoAlerta()
+                            {
+                                Id = Convert.ToUInt32(dr["tal_id"]),
+                                EsGenerica = Convert.ToBoolean(dr["tal_es_generica"]),
+                                Forma = ServiceShared.GetFormaAlerta(Convert.ToInt32(dr["tal_forma"])),
+                                Color = new ModelColorAlerta()
+                                {
+                                    CodigoHexadecimal = dr["tal_color"].ToString()
+                                }
+                            }
+                        }
                     }
                 }
             };
@@ -71,12 +95,53 @@ public class ServiceSello
         return items;
     }
 
-    public static bool ModificarAlerta(ModelAlerta alerta)
+    public static ModelNutriente ObtenerNutrienteAlertaPorId(uint idNutrienteAlerta)
+    {
+        DataTable dt = MySQLRepositorySello.ObtenerNutrienteAlertaPorId(idNutrienteAlerta);
+        DataRow dr = dt.Rows[0];
+                
+            ModelNutriente x = new ModelNutriente()
+            {
+                Id = Convert.ToUInt16(dr["nut_id"]),
+                Nombre = dr["nut_nombre"].ToString(),
+                NutrientesAlerta = new List<ModelNutrienteAlerta>()
+                {
+                    new ModelNutrienteAlerta()
+                    {
+                        Id = Convert.ToUInt32(dr["anu_id"]),
+                        Operador = dr["anu_operador"].ToString(),
+                        TipoCalculo = new ModelTipoCalculo()
+                        {
+                            Id = Convert.ToUInt32(dr["anu_tca_id"])
+                        },
+                        ValorCritico = Convert.ToDouble(dr["anu_valor_critico"]),
+                        Alerta = new ModelAlerta()
+                        {
+                            Id = Convert.ToUInt32(dr["ale_id"]),
+                            Nombre = dr["ale_nombre"].ToString(),
+                            Leyenda = dr["ale_leyenda"].ToString(),
+                            TipoAlerta = new ModelTipoAlerta()
+                            {
+                                Id = Convert.ToUInt32(dr["tal_id"]),
+                                Forma = ServiceShared.GetFormaAlerta(Convert.ToInt32(dr["tal_forma"])),
+                                Color = new ModelColorAlerta()
+                                {
+                                    CodigoHexadecimal = dr["tal_color"].ToString()
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+        return x;
+    }
+
+    public static bool GuardarAlerta(ModelNutriente nutriente, ModelNutriente nutrientePersistido)
     {
         var resultado = false;
         try
         {
-            resultado = MySQLRepositorySello.ModificarSello(alerta);
+            resultado = MySQLRepositorySello.GuardarSello(idUsuario, nutriente, nutrientePersistido);
             if (!resultado)
             {
                 throw new Exception("Error al actualizar alerta.");
@@ -88,7 +153,7 @@ public class ServiceSello
         }
         return resultado;
     }
-
+    
     public static ModelNutriente ObtenerPorId( ushort usuario, int idAlerta)
     {
         DataSet ds = MySQLRepositorySello.ObtenerUno(usuario, idAlerta);

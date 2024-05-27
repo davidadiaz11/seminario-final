@@ -1,6 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ListadoAlertas.aspx.cs" Inherits="seminario_final.ListadoAlertas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Cuerpo" runat="server">
+
+    <style>
+        .dot {
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
     <div class="main-panel">
         <div class="content-wrapper">
             <form id="form1" runat="server">
@@ -16,66 +26,15 @@
                                         <div>
                                             <small>Cantidad de filas: </small>
                                             <asp:DropDownList OnSelectedIndexChanged="ddl_cant_filas_SelectedIndexChanged" AutoPostBack="true" ID="ddl_cant_filas" runat="server">
-                                                <asp:ListItem Value="3">3</asp:ListItem>
-                                                <asp:ListItem Value="4">4</asp:ListItem>
                                                 <asp:ListItem Value="5">5</asp:ListItem>
                                                 <asp:ListItem Value="10">10</asp:ListItem>
                                                 <asp:ListItem Value="15">15</asp:ListItem>
-                                                <asp:ListItem Value="20">20</asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <asp:LinkButton ID="lnk_nombre" CssClass="nav-link-filtro small mr-2" runat="server" aria-expanded="false" aria-controls="fil_nombre" data-toggle="collapse" href="#fil_nombre">
-                                <span>Nombre</span>
-                                    </asp:LinkButton>
-
-                                    <asp:LinkButton ID="lnk_doc" CssClass="nav-link-filtro small mr-2" runat="server" aria-expanded="false" aria-controls="doc" data-toggle="collapse" href="#doc">
-                                <span>Ingredientes</span>
-                                    </asp:LinkButton>
-
-                                    <asp:LinkButton ID="lnk_sello" CssClass="nav-link-filtro small mr-2" runat="server" aria-expanded="false" aria-controls="sello" data-toggle="collapse" href="#sello">
-                                <span>Sello</span>
-                                    </asp:LinkButton>
-
                                 </div>
                                 <asp:CheckBox CssClass="form-group" ID="ch_eliminados" Text="Ver alertas eliminadas" runat="server" />
-                                <div class="collapse mt-1" id="fil_nombre">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <p class="mr-2 mt-1">Nombre</p>
-                                            <asp:TextBox ID="txt_nombre" AutoCompleteType="Disabled" CssClass="form-control form-control-sm col-xl-2 col-lg-2 col-md-2 col-9" runat="server"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="collapse mt-1" id="doc">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <p class="mr-2 mt-1">Ingrediente</p>
-                                            <asp:DropDownList CssClass="form-control form-control-sm col-xl-2 col-lg-2 col-md-2 col-6" ID="ddl_ingrediente" runat="server">
-                                                <asp:ListItem></asp:ListItem>
-                                                <asp:ListItem Value="1"> Ingrediente 1 </asp:ListItem>
-                                                <asp:ListItem Value="2"> Ingrediente 2 </asp:ListItem>
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="collapse mt-1" id="sello">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <p class="mr-2 mt-1">Sello</p>
-                                            <asp:DropDownList CssClass="form-control form-control-sm col-xl-2 col-lg-2 col-md-2 col-6" ID="ddl_sello" runat="server">
-                                                <asp:ListItem></asp:ListItem>
-                                                <asp:ListItem Value="1"> Sello 1 </asp:ListItem>
-                                                <asp:ListItem Value="2"> Sello 2 </asp:ListItem>
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <asp:Button CssClass="btn btn-primary btn-rounded  mt-2 mb-3 no-print" ID="btn_buscar" runat="server" Text="Buscar" />
-                                </div>
+
                                 <script type="text/javascript">
                                     "use strict";
                                     window.onload = function () {
@@ -114,21 +73,44 @@
                                         <asp:GridView ID="vista_lista" CssClass="table table-striped order" GridLines="None" runat="server" AllowSorting="true" AutoGenerateColumns="False" AllowPaging="True">
                                             <Columns>
                                                 <asp:TemplateField>
-                                                    <ItemTemplate><%#Eval("Nombre") %></ItemTemplate>
+                                                    <ItemTemplate><%#Eval("NutrientesAlerta[0].Alerta.Nombre") %></ItemTemplate>
                                                     <HeaderTemplate>
                                                         <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nombre"? hfSortDir.Value.ToLower() : "" %>'
                                                             Text="Nombre" NavigateUrl='<%#string.Format("/Alertas?{0}",GetSortLink("nombre")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
-                                                    <ItemTemplate><%# Eval("Leyenda") %></ItemTemplate>
+                                                    <ItemTemplate><%# Eval("NutrientesAlerta[0].Alerta.Leyenda") %></ItemTemplate>
                                                     <HeaderTemplate>
-                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "porcion"? hfSortDir.Value.ToLower() : "" %>'
-                                                            Text="Porción" NavigateUrl='<%#string.Format("/Alertas?{0}",GetSortLink("porcion")) %>'></asp:HyperLink>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "leyenda"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Leyenda" NavigateUrl='<%#string.Format("/Alertas?{0}",GetSortLink("leyenda")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
-                                                    <ItemTemplate><%#   Eval("TipoAlerta.Forma.Nombre") + " " + Eval("TipoAlerta.Color.CodigoHexadecimal")  %>
+                                                    <ItemTemplate><%# Eval("Nombre") %></ItemTemplate>
+                                                    <HeaderTemplate>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nutriente"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Nutriente" NavigateUrl='<%#string.Format("/Alertas?{0}",GetSortLink("nutriente")) %>'></asp:HyperLink>
+                                                    </HeaderTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate><%# Eval("NutrientesAlerta[0].Operador").ToString() == ">" ? "Mayor o igual" : "Menor o igual" %></ItemTemplate>
+                                                    <HeaderTemplate>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "operador"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Operador" NavigateUrl='<%#string.Format("/Alertas?{0}",GetSortLink("operador")) %>'></asp:HyperLink>
+                                                    </HeaderTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate><%# Eval("NutrientesAlerta[0].ValorCritico") %></ItemTemplate>
+                                                    <HeaderTemplate>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "valorcritico"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Valor Crítico" NavigateUrl='<%#string.Format("/Alertas?{0}",GetSortLink("valorcritico")) %>'></asp:HyperLink>
+                                                    </HeaderTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate>
+                                                        <%#   Eval("NutrientesAlerta[0].Alerta.TipoAlerta.Forma.Nombre") %>
+                                                        <span class="dot" style='<%# "background-color:#" + Eval("NutrientesAlerta[0].Alerta.TipoAlerta.Color.CodigoHexadecimal") %>'></span>
                                                     </ItemTemplate>
                                                     <HeaderTemplate>
                                                         Forma y Color
@@ -136,14 +118,10 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Acción">
                                                     <ItemTemplate>
-                                                        <a class="text-warning mr-3" href="<%# String.Format("Alertas?ale={0}", Eval("ID")) %>">
-                                                            <i class="mdi  mdi-receipt icon-md "></i>
-                                                        </a>
-
-                                                        <a href="<%# String.Format("FormularioAlerta?ale={0}", Eval("Id")) %>" class="mr-3">
+                                                        <a href="<%# String.Format("FormularioAlerta?anu={0}", Eval("NutrientesAlerta[0].Id")) %>" class="mr-3">
                                                             <i class="mdi mdi-pencil text-muted icon-md"></i>
                                                         </a>
-                                                        <a style='<%# ch_eliminados.Checked ? "display:none": "display:block" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
+                                                        <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
                                                             <i class="mdi mdi-delete text-black icon-md"></i>
                                                         </a>
                                                     </ItemTemplate>
@@ -170,42 +148,36 @@
 
                 <div class="row order small" id="vista_repeater" style="display: none" runat="server">
                     <div class="col-12">
-
-                        <asp:HyperLink ID="h_nombre" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nombre"? hfSortDir.Value.ToLower() : "" %>'
-                            Text="Nombre" NavigateUrl='<%#string.Format("/Alertas?{0}",GetSortLink("nombre")) %>'></asp:HyperLink>
-                        <asp:HyperLink ID="h_tipo_porcion" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "porcion"? hfSortDir.Value.ToLower() : "" %>'
-                            Text="Porción" NavigateUrl='<%#string.Format("/Alertas?{0}",GetSortLink("porcion")) %>'></asp:HyperLink>
-                        <asp:HyperLink ID="h_alertas" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "alertas"? hfSortDir.Value.ToLower() : "" %>'
-                            Text="Alertas" NavigateUrl='<%#string.Format("/Alertas?{0}",GetSortLink("alertas")) %>'></asp:HyperLink>
-                        <asp:HyperLink ID="h_ingredientes" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ingredientes"? hfSortDir.Value.ToLower() : "" %>'
-                            Text="Ingredientes" NavigateUrl='<%#string.Format("/Alertas?{0}",GetSortLink("ingredientes")) %>'></asp:HyperLink>
-                        <asp:HyperLink ID="h_nutrientes" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nutrientes"? hfSortDir.Value.ToLower() : "" %>'
-                            Text="Nutrientes" NavigateUrl='<%#string.Format("/Alertas?{0}",GetSortLink("nutrientes")) %>'></asp:HyperLink>
                         <div class="row mt-2">
                             <asp:Repeater ID="rpt_viajes" runat="server">
                                 <ItemTemplate>
                                     <div class="col-md-4">
                                         <div class="card card-statistics">
                                             <div class="card-body">
-                                                <a class="text-black" href="<%# String.Format("FormularioAlerta?ale={0}", Eval("ID")) %>">
+                                                <a class="text-black" href="<%# String.Format("FormularioAlerta?anu={0}", Eval("NutrientesAlerta[0].Id")) %>">
 
                                                     <div class="wrapper d-flex justify-content-between">
                                                         <div class="side-left">
                                                             <p class="display-6 mb-1 font-weight-light">
-                                                                <asp:Label Text='<%# Eval("Nombre") %>' runat="server" />
+                                                                <asp:Label Text='<%# "Nombre: " + Eval("NutrientesAlerta[0].Alerta.Nombre") %>' runat="server" />
                                                             </p>
                                                             <p class="mb-1">
-                                                                <asp:Label Text='<%# Eval("Leyenda") %>' runat="server" />
+                                                                <asp:Label Text='<%# "Leyenda: " + Eval("NutrientesAlerta[0].Alerta.Leyenda") %>' runat="server" />
                                                             </p>
-                                                        
-                                                            <a class="text-warning" href="<%# String.Format("Alertas?ale={0}", Eval("ID")) %>"><i class="mdi  mdi-receipt icon-md "></i></a>
-                                                            <a class="text-muted" href="<%# String.Format("FormularioAlerta?ale={0}", Eval("ID")) %>"><i class="mdi  mdi-pencil icon-md ml-2 "></i></a>
-                                                            <a style='<%# ch_eliminados.Checked ? "display:none": "display:block" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
+
+
+
+                                                            <a class="text-muted" href="<%# String.Format("FormularioAlerta?anu={0}", Eval("NutrientesAlerta[0].Id")) %>"><i class="mdi  mdi-pencil icon-md ml-2 "></i></a>
+                                                            <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
                                                                 <i class="mdi mdi-delete text-black icon-md"></i>
                                                             </a>
                                                         </div>
                                                         <div class="side-right text-right font-weight-light">
-                                                            <p>
+                                                            <p class="mb-1">
+                                                                <small>
+                                                                    <asp:Label Text='<%#  Eval("NutrientesAlerta[0].Alerta.TipoAlerta.Forma.Nombre") %>' runat="server" />
+                                                                    <span class="dot" style='<%# "background-color:#" + Eval("NutrientesAlerta[0].Alerta.TipoAlerta.Color.CodigoHexadecimal") %>'></span>
+                                                                </small>
                                                             </p>
                                                         </div>
                                                     </div>

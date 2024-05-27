@@ -30,7 +30,7 @@ public class ServiceShared
         new ModelColorAlerta()
         {
             Nombre = ColoresEnum.VERDE.ToString(),
-            CodigoHexadecimal = "226C12"
+            CodigoHexadecimal = "7fe757"
         },
                 
         new ModelColorAlerta()

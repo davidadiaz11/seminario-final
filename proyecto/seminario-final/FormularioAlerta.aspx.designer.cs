@@ -114,6 +114,24 @@ namespace seminario_final
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rf_nutriente;
 
         /// <summary>
+        /// Control ddl_tipoCalculo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_tipoCalculo;
+
+        /// <summary>
+        /// Control rf_tipoCalculo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rf_tipoCalculo;
+
+        /// <summary>
         /// Control ddl_criterio.
         /// </summary>
         /// <remarks>
