@@ -1,0 +1,8 @@
+[
+  {"size": 0.5,  "color": "#e4605e", "label": "Carbohidratos", "nombreColor": "Turquesa"},
+  {"size": 1,  "color": "#7fe757", "label": "Fibra", "nombreColor": "Verde"},
+  {"size": 2,  "color": "#0159ff", "label": "Proteinas", "nombreColor": "Azul"},
+  {"size": 1.5,"color": "#eeeeee", "label": "Sodio", "nombreColor": "Gris"},
+  {"size": 1.5,"color": "#FCF5E0", "label": "Azucares", "nombreColor": "Manteca"},
+  {"size": 2,  "color": "#e5d972", "label": "Grasas totales", "nombreColor": "Amarillo"}
+]
