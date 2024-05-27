@@ -24,6 +24,6 @@ public class ModelUsuario
     public string nombre { get; set; }
     public string usuario { get; set; }
     public string email { get; set; }
-
+    public List<ModelPerfil> Perfiles { get; set; }
 
 }
