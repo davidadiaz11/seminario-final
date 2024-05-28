@@ -282,6 +282,10 @@
     <Compile Include="ListadoAlertas.aspx.designer.cs">
       <DependentUpon>ListadoAlertas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CalculosAlerta\CalculoSobreCalorias.cs" />
+    <Compile Include="Models\CalculosAlerta\CalculoCuantitativo.cs" />
+    <Compile Include="Models\CalculosAlerta\CalculoPorcentual.cs" />
+    <Compile Include="Models\CalculosAlerta\ICalculoAlerta.cs" />
     <Compile Include="Models\ModelColorAlerta.cs" />
     <Compile Include="Models\ModelFormaAlerta.cs" />
     <Compile Include="Models\ModelNutrienteAlerta.cs" />
@@ -310,6 +314,7 @@
     <Compile Include="Repositories\MySQLRepositoryTiposCalculo.cs" />
     <Compile Include="Repositories\MySQLRepositoryTiposPorcion.cs" />
     <Compile Include="Repositories\MySQLRepositoryShared.cs" />
+    <Compile Include="Services\Fabrics\CalculoAlertaFabric.cs" />
     <Compile Include="Services\ServiceAnalisis.cs" />
     <Compile Include="Services\ServicePerfiles.cs" />
     <Compile Include="Services\ServiceTiposNutriente.cs" />
