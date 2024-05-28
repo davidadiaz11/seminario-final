@@ -4,6 +4,9 @@ using System.Linq;
 using System.Data;
 using seminario_final;
 using System.Web.Services.Description;
+using seminario_final.Validators;
+using FluentValidation.Results;
+using FluentValidation;
 
 public class ServiceSello
 {
@@ -141,6 +144,13 @@ public class ServiceSello
         var resultado = false;
         try
         {
+            var validator = new AlertaValidator();
+            ValidationResult result = validator.Validate(nutriente.NutrientesAlerta.First().Alerta);
+            if (!result.IsValid)
+            {
+                throw new Exception(result.Errors.First().ErrorMessage);
+            }
+
             resultado = MySQLRepositorySello.GuardarSello(idUsuario, nutriente, nutrientePersistido);
             if (!resultado)
             {
