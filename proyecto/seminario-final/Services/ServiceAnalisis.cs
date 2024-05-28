@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using Microsoft.Ajax.Utilities;
+using seminario_final.Models;
+using seminario_final.Services.Fabrics;
 
 public class ServiceAnalisis
 {
@@ -89,73 +91,15 @@ public class ServiceAnalisis
     public static ModelProducto ObtenerPorId(ushort idUsuario, int idProducto)
     {
         ModelProducto item = Mapper(idUsuario, idProducto);
-
         List<ModelNutrienteProducto> listaAlertas = new List<ModelNutrienteProducto>();
-        //TODO-TESIS: SEGUIR ACÁ: está trayendo 12 nutrientes. hay que separar nutrientes de alertas.  es realmente necesario? porque está funcionando bien.
         foreach (var item2 in item.NutrientesProducto)
         {
             if(item2.Nutriente.NutrientesAlerta == null)
             {
                 continue;
             }
-
-            bool esCalculoPorcentual = item2.Nutriente.NutrientesAlerta[0].TipoCalculo.NombreEnum == TiposCalculoEnum.CALCULO_PORCENTUAL.ToString();
-            bool esCalculoCuantitativo = item2.Nutriente.NutrientesAlerta[0].TipoCalculo.NombreEnum == TiposCalculoEnum.CALCULO_CUANTITATIVO_100G.ToString();
-            bool esCalculoSobreCalorias = item2.Nutriente.NutrientesAlerta[0].TipoCalculo.NombreEnum == TiposCalculoEnum.CALCULO_SOBRE_CALORIAS.ToString();
-
-            if (esCalculoCuantitativo)
-            {
-                var multiplicador = 100 / item.Porcion;
-                var cantidadX100 = item2.Nutriente.CantidadPorPorcion * multiplicador;
-                if (item2.Nutriente.NutrientesAlerta[0].Operador == ">" && cantidadX100 >= item2.Nutriente.NutrientesAlerta[0].ValorCritico)
-                {
-                    item2.Nutriente.NutrientesAlerta[0].ValorReal = cantidadX100;
-                    item2.Nutriente.NutrientesAlerta[0].ValorDiferencial = (item2.Nutriente.NutrientesAlerta[0].ValorReal - item2.Nutriente.NutrientesAlerta[0].ValorCritico) / item2.Nutriente.NutrientesAlerta[0].ValorCritico * 100;
-
-                    listaAlertas.Add(item2);
-                }
-                else if (item2.Nutriente.NutrientesAlerta[0].Operador == "<" && cantidadX100 <= item2.Nutriente.NutrientesAlerta[0].ValorCritico)
-                {
-                    item2.Nutriente.NutrientesAlerta[0].ValorReal = cantidadX100;
-                    item2.Nutriente.NutrientesAlerta[0].ValorDiferencial = (item2.Nutriente.NutrientesAlerta[0].ValorReal - item2.Nutriente.NutrientesAlerta[0].ValorCritico) / item2.Nutriente.NutrientesAlerta[0].ValorCritico * 100;
-                    listaAlertas.Add(item2);
-                }
-            }
-
-            if (esCalculoPorcentual)
-            {
-                var multiplicador = ServiceTiposNutriente.ObtenerTipoNutrientes(item2.Nutriente.TipoNutriente.Id).CaloriasPorGramo * 100;
-
-                var cantidadPorcentual = (item2.Nutriente.CantidadPorPorcion * multiplicador) / item.ValorEnergetico;
-
-                if (item2.Nutriente.NutrientesAlerta[0].Operador == ">" && cantidadPorcentual >= item2.Nutriente.NutrientesAlerta[0].ValorCritico)
-                {
-                    item2.Nutriente.NutrientesAlerta[0].ValorReal = cantidadPorcentual;
-                    item2.Nutriente.NutrientesAlerta[0].ValorDiferencial = (item2.Nutriente.NutrientesAlerta[0].ValorReal - item2.Nutriente.NutrientesAlerta[0].ValorCritico) / item2.Nutriente.NutrientesAlerta[0].ValorCritico * 100;
-                    listaAlertas.Add(item2);
-                }
-                else if (item2.Nutriente.NutrientesAlerta[0].Operador == "<" && cantidadPorcentual <= item2.Nutriente.NutrientesAlerta[0].ValorCritico)
-                {
-                    item2.Nutriente.NutrientesAlerta[0].ValorReal = cantidadPorcentual;
-                    item2.Nutriente.NutrientesAlerta[0].ValorDiferencial = (item2.Nutriente.NutrientesAlerta[0].ValorReal - item2.Nutriente.NutrientesAlerta[0].ValorCritico) / item2.Nutriente.NutrientesAlerta[0].ValorCritico * 100;
-                    listaAlertas.Add(item2);
-                }
-            }
-
-            if (esCalculoSobreCalorias)
-            {
-                var cantidadCalculada = item2.Nutriente.CantidadPorPorcion  / item.ValorEnergetico;
-
-                if (item2.Nutriente.NutrientesAlerta[0].Operador == ">" && cantidadCalculada >= item2.Nutriente.NutrientesAlerta[0].ValorCritico)
-                {
-                    listaAlertas.Add(item2);
-                }
-                else if (item2.Nutriente.NutrientesAlerta[0].Operador == "<" && cantidadCalculada <= item2.Nutriente.NutrientesAlerta[0].ValorCritico)
-                {
-                    listaAlertas.Add(item2);
-                }
-
-            }
+            ICalculoAlerta calculoAlerta = CalculoAlertaFabric.ObtenerCalculoAlerta(item2);
+            listaAlertas.AddRange(calculoAlerta.Calcular(item, item2));
         }
         item.NutrienteAlertas = listaAlertas.Where(x => x.Nutriente.NutrientesAlerta != null).Select(x => x.Nutriente.NutrientesAlerta.First()).ToList();
 
