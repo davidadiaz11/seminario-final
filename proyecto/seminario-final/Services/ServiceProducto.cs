@@ -118,6 +118,11 @@ public class ServiceProducto
         var resultado = false;
         try
         {
+            if (!ServiceShared.ValidarPermisos())
+            {
+                return resultado;
+            }
+
             resultado = MySQLRepositoryProducto.ModificarProducto(nuevoProducto);
             if (!resultado)
             {
