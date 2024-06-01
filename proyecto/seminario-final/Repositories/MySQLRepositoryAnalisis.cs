@@ -61,6 +61,48 @@ public class MySQLRepositoryAnalisis
         return ds;
     }
 
+    public static DataTable ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, ushort usuario, bool eliminados)
+    {
+        MySqlConnection cn = new MySqlConnection(cadena);
+        DataTable dt = new DataTable();
+        try
+        {
+            cn.Open();
+            MySqlCommand cmd = new MySqlCommand();
+
+            cmd.Connection = cn;
+            cmd.Parameters.Clear();
+            cmd.Connection = cn;
+
+            cmd.CommandText = @"SELECT COUNT(ahi_id) cant 
+                                FROM analisis_historicos where ahi_usu_id_alta=@usu_id";
+
+            
+            cmd.Parameters.Add(new MySqlParameter("@usu_id", usuario));
+            DataTable dtcan = new DataTable();
+            dtcan.Load(cmd.ExecuteReader());
+            encontrados = Convert.ToInt32(dtcan.Rows[0]["cant"]);
+
+            cmd.CommandText = @"SELECT ahi_id, ahi_fecha, pro_id, pro_nombre
+                                FROM analisis_historicos join productos on ahi_pro_id=pro_id where ahi_usu_id_alta=@usu_id ";
+
+            cmd.CommandText += @" ORDER BY " + columna + " " + sort + " LIMIT " + inicio + "," + cant;
+            dt.Load(cmd.ExecuteReader());
+
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+
+        finally
+        {
+            if (cn != null && cn.State == ConnectionState.Open)
+                cn.Close();
+        }
+        return dt;
+    }
+
     public static bool GuardarAnalisis(ushort idUsuario, int idProducto)
     {
         MySqlConnection cn = new MySqlConnection(cadena);

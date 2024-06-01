@@ -292,6 +292,7 @@
     <Compile Include="Models\CalculosAlerta\ICalculoAlerta.cs" />
     <Compile Include="Models\ModelColorAlerta.cs" />
     <Compile Include="Models\ModelFormaAlerta.cs" />
+    <Compile Include="Models\ModelAnalisis.cs" />
     <Compile Include="Models\ModelNutrienteAlerta.cs" />
     <Compile Include="Models\ModelNutrienteProducto.cs" />
     <Compile Include="Models\ModelTipoNutriente.cs" />

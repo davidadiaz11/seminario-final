@@ -99,20 +99,22 @@ public class ServiceAnalisis
         item.NutrienteAlertas = listaAlertas.Where(x => x.Nutriente.NutrientesAlerta != null).Select(x => x.Nutriente.NutrientesAlerta.First()).ToList();
 
         //TODO-TESIS: NO funciona cuando busco los perfiles. el cn.Open() se queda pensando indefinidamente.
-        //List<ModelPerfil> perfiles = ObtenerPerfiles();
-        //TODO-TESIS: Buscar si hay algún ingrediente q deba alertar.
-
-        //ObtenerIngredientesIndeseados
-        List<string> ingredientesIndeseados = new List<string>() { "azúcar" };
         item.IngredientesAlertas = new List<ModelAlerta>();
-        foreach (var ing in ingredientesIndeseados.Where(x => item.Ingredientes.ToLower().Contains(x.ToLower())).ToList())
+        List<ModelPerfil> perfiles = ObtenerPerfiles();
+
+        foreach (ModelPerfil prf in perfiles)
         {
-            //agregar alerta
-            ModelAlerta alert = new ModelAlerta()
+            List<string> ingredientes = prf.IngredientesProhibidos.Split(';').ToList();
+
+            foreach (var ing in ingredientes.Where(x => item.Ingredientes.ToLower().Contains(x.ToLower())).ToList())
             {
-                Leyenda = "Contiene " + ing
-            };
-            item.IngredientesAlertas.Add(alert);
+                ModelAlerta alert = new ModelAlerta()
+                {
+                    Leyenda = "Contiene " + ing,
+                    Perfil = prf
+                };
+                item.IngredientesAlertas.Add(alert);
+            }
         }
 
         return item;
@@ -122,6 +124,26 @@ public class ServiceAnalisis
     {
         return ServicePerfiles.ObtenerPerfiles();
 
+    }
+
+    public static List<ModelAnalisis> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, ushort usuario, bool eliminados)
+    {
+        DataTable dt = MySQLRepositoryAnalisis.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, usuario, eliminados);
+        List<ModelAnalisis> items = new List<ModelAnalisis>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            items.Add(new ModelAnalisis()
+            {
+                Id = Convert.ToUInt16(dr["ahi_id"]),
+                Fecha = Convert.ToDateTime(dr["ahi_fecha"]),
+                Producto = new ModelProducto()
+                {
+                    Id = Convert.ToUInt32(dr["pro_id"]),
+                    Nombre = dr["pro_nombre"].ToString()
+                }
+            });
+        }
+        return items;
     }
 
     public static bool GuardarAnalisis(int idProducto)
