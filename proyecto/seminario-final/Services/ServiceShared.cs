@@ -172,4 +172,10 @@ public class ServiceShared
         link = sb.ToString();
         return link;
     }
+
+    public static bool ValidarPermisos()
+    {
+        ModelUsuario usuarioActual = ServiceUsuario.ObtenerUsuario();
+        return usuarioActual.Rol == RolesEnum.Administrador.ToString();
+    }
 }

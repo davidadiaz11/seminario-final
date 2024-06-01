@@ -140,19 +140,13 @@ public class ServiceSello
         return x;
     }
 
-    private static bool ValidarPermisos()
-    {
-        ModelUsuario usuarioActual = ServiceUsuario.ObtenerUsuario();
-        return usuarioActual.Rol == RolesEnum.Administrador.ToString();
-    }
-
     public static bool GuardarAlerta(ModelNutriente nutriente, ModelNutriente nutrientePersistido)
     {
         var resultado = false;
         try
         {
 
-            if (nutrientePersistido != null && nutrientePersistido.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica && !ValidarPermisos())
+            if (nutrientePersistido != null && nutrientePersistido.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica && !ServiceShared.ValidarPermisos())
             {
                 return resultado;
             }
