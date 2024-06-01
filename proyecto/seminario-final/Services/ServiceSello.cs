@@ -206,4 +206,27 @@ public class ServiceSello
         }
         return nutrientes.First();
     }
+
+    public static List<ModelAlerta> ObtenerUltimosSellos()
+    {
+        DataTable dt = MySQLRepositorySello.ObtenerUltimosSellos(idUsuario);
+        List<ModelAlerta> items = new List<ModelAlerta>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            items.Add(new ModelAlerta()
+            {
+                Id = Convert.ToUInt16(dr["ale_id"]),
+                Leyenda = dr["ale_leyenda"].ToString(),
+                FechaCreacion = Convert.ToDateTime(dr["ale_fecha_alta"]),
+                TipoAlerta = new ModelTipoAlerta()
+                {
+                    Color = new ModelColorAlerta(dr["tal_color"].ToString()),
+                    Forma = ServiceShared.GetFormaAlerta(Convert.ToInt32(dr["tal_forma"])),
+                    EsGenerica = Convert.ToBoolean(dr["tal_es_generica"])
+                }
+            }); ;
+        }
+        return items;
+    }
+    
 }

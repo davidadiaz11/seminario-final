@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 
 /// <summary>
@@ -19,5 +20,6 @@ public class ModelAlerta
     public string Leyenda { get; set; }
     public ModelTipoAlerta TipoAlerta { get; set; }
     public ModelPerfil Perfil { get; set; }
+    public DateTime FechaCreacion { get; set; }
 
 }

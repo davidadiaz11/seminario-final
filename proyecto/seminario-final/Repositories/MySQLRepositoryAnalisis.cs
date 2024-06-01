@@ -102,6 +102,34 @@ public class MySQLRepositoryAnalisis
         }
         return dt;
     }
+    public static DataTable ObtenerUltimosAnalisis(ushort idUsuario)
+    {
+        MySqlConnection cn = new MySqlConnection(cadena);
+        DataTable dt = new DataTable();
+        try
+        {
+            cn.Open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = cn;
+            cmd.Parameters.Clear();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT ahi_id, ahi_fecha, pro_id, pro_nombre
+                                FROM analisis_historicos join productos on ahi_pro_id=pro_id where ahi_usu_id_alta=@usu_id ORDER BY ahi_id desc LIMIT 0,3";
+            cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
+            dt.Load(cmd.ExecuteReader());
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+
+        finally
+        {
+            if (cn != null && cn.State == ConnectionState.Open)
+                cn.Close();
+        }
+        return dt;
+    }
     public static DataTable VerificarProductoAnalizado(ushort idUsuario, uint idProducto)
     {
         MySqlConnection cn = new MySqlConnection(cadena);

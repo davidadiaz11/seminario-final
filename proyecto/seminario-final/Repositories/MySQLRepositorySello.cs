@@ -361,4 +361,35 @@ public class MySQLRepositorySello
         }
         return true;
     }
+
+    public static DataTable ObtenerUltimosSellos(ushort idUsuario)
+    {
+        MySqlConnection cn = new MySqlConnection(cadena);
+        DataTable dt = new DataTable();
+        try
+        {
+            cn.Open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = cn;
+            cmd.Parameters.Clear();
+            cmd.Connection = cn;
+            cmd.CommandText = @"SELECT ale_id, ale_leyenda, ale_fecha_alta, tal_forma, tal_color, tal_es_generica
+                                FROM alertas JOIN tipos_alerta on ale_tal_id=tal_id
+                                where ale_usu_id_alta=@usu_id and ale_fecha_baja is null ORDER BY ale_id desc LIMIT 0,3";
+            cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
+            dt.Load(cmd.ExecuteReader());
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+
+        finally
+        {
+            if (cn != null && cn.State == ConnectionState.Open)
+                cn.Close();
+        }
+        return dt;
+    }
+    
 }

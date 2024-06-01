@@ -12,6 +12,11 @@ public class ModelFormaAlerta
         Id = pId;
         Nombre = pNombre;
     }
+    public ModelFormaAlerta(uint pId)
+    {
+        Id = pId;
+    }
+
     public uint Id { get; set; }
     public string Nombre { get; set; }
 

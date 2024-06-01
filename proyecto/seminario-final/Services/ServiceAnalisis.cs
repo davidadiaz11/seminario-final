@@ -146,6 +146,26 @@ public class ServiceAnalisis
         return items;
     }
 
+    public static List<ModelAnalisis> ObtenerUltimosAnalisis()
+    {
+        DataTable dt = MySQLRepositoryAnalisis.ObtenerUltimosAnalisis(idUsuario);
+        List<ModelAnalisis> items = new List<ModelAnalisis>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            items.Add(new ModelAnalisis()
+            {
+                Id = Convert.ToUInt16(dr["ahi_id"]),
+                Fecha = Convert.ToDateTime(dr["ahi_fecha"]),
+                Producto = new ModelProducto()
+                {
+                    Id = Convert.ToUInt32(dr["pro_id"]),
+                    Nombre = dr["pro_nombre"].ToString()
+                }
+            });
+        }
+        return items;
+    }
+
     public static bool VerificarProductoAnalizado(uint idProducto) {
         var resultado = false;
         try

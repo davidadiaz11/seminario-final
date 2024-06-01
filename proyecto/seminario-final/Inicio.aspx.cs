@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace seminario_final
 {
@@ -11,7 +7,24 @@ namespace seminario_final
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                ObtenerUltimosAnalisis();
+                ObtenerUltimosSellos();
+            }
+        }
 
+        private void ObtenerUltimosAnalisis()
+        {
+            List<ModelAnalisis> lista = ServiceAnalisis.ObtenerUltimosAnalisis();
+            rpt_ultimos.DataSource = lista;
+            rpt_ultimos.DataBind();
+        }
+        private void ObtenerUltimosSellos()
+        {
+            List<ModelAlerta> lista = ServiceSello.ObtenerUltimosSellos();
+            rpt_ultimos_sellos.DataSource = lista;
+            rpt_ultimos_sellos.DataBind();
         }
     }
 }
