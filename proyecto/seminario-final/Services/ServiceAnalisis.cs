@@ -146,11 +146,34 @@ public class ServiceAnalisis
         return items;
     }
 
-    public static bool GuardarAnalisis(int idProducto)
+    public static bool VerificarProductoAnalizado(uint idProducto) {
+        var resultado = false;
+        try
+        {
+            //TODO-TESIS: validar que si a este producto ya lo guardé hoy, no lo guarde de nuevo
+
+            DataTable dt = MySQLRepositoryAnalisis.VerificarProductoAnalizado(idUsuario, idProducto);
+            resultado = Convert.ToInt32(dt.Rows[0]["cant"]) > 0;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        return resultado;
+    }
+
+    public static bool GuardarAnalisis(uint idProducto)
     {
         var resultado = false;
         try
         {
+            //TODO-TESIS: validar que si a este producto ya lo guardé hoy, no lo guarde de nuevo
+            if (VerificarProductoAnalizado(idProducto))
+            {
+                resultado = true;
+                return resultado;
+            }
+
             resultado = MySQLRepositoryAnalisis.GuardarAnalisis(idUsuario, idProducto);
             if (!resultado)
             {

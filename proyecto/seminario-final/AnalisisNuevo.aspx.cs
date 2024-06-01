@@ -22,8 +22,10 @@ namespace seminario_final
         }
 
         [WebMethod]
-        public static bool GuardarAnalisis(int idProducto)
+        public static bool GuardarAnalisis(uint idProducto)
         {
+            //TODO-TESIS: dejar de hardcodear
+            idProducto = 1;
             bool res = ServiceAnalisis.GuardarAnalisis(idProducto);
             return res;
         }

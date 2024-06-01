@@ -199,8 +199,7 @@
                 agregarInfoNutrientes(response.d);
                 agregarInfoIngredientes(response.d.Ingredientes);
 
-                //TODO-TESIS: Probar
-                //guardarAnalisis();
+                guardarAnalisis(idClickeado);
 
                 if (!comparacion) {
                     habilitarPanelDerecho()

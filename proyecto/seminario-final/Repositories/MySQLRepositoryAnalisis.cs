@@ -102,8 +102,40 @@ public class MySQLRepositoryAnalisis
         }
         return dt;
     }
+    public static DataTable VerificarProductoAnalizado(ushort idUsuario, uint idProducto)
+    {
+        MySqlConnection cn = new MySqlConnection(cadena);
+        DataTable dt = new DataTable();
+        try
+        {
+            cn.Open();
+            MySqlCommand cmd = new MySqlCommand();
 
-    public static bool GuardarAnalisis(ushort idUsuario, int idProducto)
+            cmd.Connection = cn;
+            cmd.Parameters.Clear();
+            cmd.Connection = cn;
+
+            cmd.CommandText = @"SELECT COUNT(ahi_id) cant 
+                                FROM analisis_historicos where ahi_usu_id_alta=@usu_id and ahi_pro_id=@pro_id and DATEDIFF(ahi_fecha, now()) <= 0";
+
+            cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
+            cmd.Parameters.Add(new MySqlParameter("@pro_id", idProducto));
+            dt.Load(cmd.ExecuteReader());
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+
+        finally
+        {
+            if (cn != null && cn.State == ConnectionState.Open)
+                cn.Close();
+        }
+        return dt;
+    }
+
+    public static bool GuardarAnalisis(ushort idUsuario, uint idProducto)
     {
         MySqlConnection cn = new MySqlConnection(cadena);
         try
