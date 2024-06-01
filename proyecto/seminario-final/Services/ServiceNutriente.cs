@@ -35,7 +35,7 @@ public class ServiceNutriente
                 Nombre = dr["nut_nombre"].ToString(),
                 TipoNutriente = dr["nut_tipo_nutriente"] == DBNull.Value ? null : ServiceTiposNutriente.ObtenerTipoNutrientes(Convert.ToUInt16(dr["nut_tipo_nutriente"]))
             };
-            if(x.Id == idNutriente)
+            if (x.Id == idNutriente)
             {
                 return x;
             }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
 public class ServiceTiposCalculo
 {
     public ServiceTiposCalculo()
@@ -25,7 +24,6 @@ public class ServiceTiposCalculo
         }
 
         ModelNutriente nutriente = ServiceNutriente.ObtenerNutriente(idNutriente);
-
         List<ModelTipoCalculo> tiposCalculoFiltrado = new List<ModelTipoCalculo>()
             {
                 items.First(x => x.NombreEnum == TiposCalculoEnum.CALCULO_CUANTITATIVO_100G.ToString())

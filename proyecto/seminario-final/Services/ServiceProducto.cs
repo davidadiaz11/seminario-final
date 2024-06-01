@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using MySql.Data.MySqlClient;
 using System.Data;
 
 public class ServiceProducto
@@ -49,10 +47,8 @@ public class ServiceProducto
     {
         DataSet ds = MySQLRepositoryProducto.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, usuario, eliminados);
         DataTable dt = ds.Tables[0];
-        //DataTable dt_ingredientes = ds.Tables[1];
         DataTable dt_nutrientes = ds.Tables[1];
         List<ModelProducto> items = new List<ModelProducto>();
-        //List<ModelIngredienteProducto> ingredientes = new List<ModelIngredienteProducto>();
         List<ModelNutrienteProducto> nutrientes = new List<ModelNutrienteProducto>();
         foreach (DataRow dr in dt.Rows)
         {
@@ -69,24 +65,6 @@ public class ServiceProducto
             items.Add(x);
         }
 
-       
-
-        //foreach (DataRow dr in dt_ingredientes.Rows)
-        //{
-        //    ModelIngredienteProducto y = new ModelIngredienteProducto()
-        //    {
-        //        Id = Convert.ToUInt32(dr["ipr_pro_id"]),
-        //        Ingrediente = new ModelIngrediente()
-        //        {
-        //            Nombre = dr["ing_nombre"].ToString()
-        //        }
-        //    };
-        //    ingredientes.Add(y);
-        //}
-
-        //var dic_ingredientes = ingredientes.GroupBy(x => x.Id).ToDictionary(g => g.Key, g => g);
-
-
         foreach (DataRow dr in dt_nutrientes.Rows)
         {
 
@@ -98,7 +76,7 @@ public class ServiceProducto
                     Nombre = dr["nut_nombre"].ToString(),
                     CantidadPorPorcion = Convert.ToDouble(dr["NPR_CANTIDAD_POR_PORCION"])
                 }
-            } ;
+            };
             nutrientes.Add(y);
         }
         var dic_nutrientes = nutrientes.GroupBy(x => x.Id).ToDictionary(g => g.Key, g => g);
@@ -106,7 +84,6 @@ public class ServiceProducto
 
         foreach (ModelProducto item in items)
         {
-            //item.IngredientesProducto = dic_ingredientes[item.Id].ToList();
             item.NutrientesProducto = dic_nutrientes[item.Id].ToList();
         }
 
@@ -136,13 +113,11 @@ public class ServiceProducto
         return resultado;
     }
 
-    public static ModelProducto ObtenerPorId( ushort usuario, int idProducto)
+    public static ModelProducto ObtenerPorId(ushort usuario, int idProducto)
     {
         DataSet ds = MySQLRepositoryProducto.ObtenerUno(usuario, idProducto);
         DataTable dt = ds.Tables[0];
-        //DataTable dt_ingredientes = ds.Tables[1];
         DataTable dt_nutrientes = ds.Tables[1];
-        //List<ModelIngredienteProducto> ingredientes = new List<ModelIngredienteProducto>();
         List<ModelNutrienteProducto> nutrientes = new List<ModelNutrienteProducto>();
 
         if (dt.Rows.Count != 1)
@@ -164,23 +139,6 @@ public class ServiceProducto
                 Nombre = dr["tpo_nombre"].ToString()
             }
         };
-
-        //foreach (DataRow drIng in dt_ingredientes.Rows)
-        //{
-        //    ModelIngredienteProducto y = new ModelIngredienteProducto()
-        //    {
-        //        Id = Convert.ToUInt32(drIng["ipr_pro_id"]),
-        //        Ingrediente = new ModelIngrediente()
-        //        {
-        //            Nombre = drIng["ing_nombre"].ToString()
-        //        }
-        //    };
-        //    ingredientes.Add(y);
-        //}
-
-        //var dic_ingredientes = ingredientes.GroupBy(x => x.Id).ToDictionary(g => g.Key, g => g);
-
-
         foreach (DataRow drNut in dt_nutrientes.Rows)
         {
 
@@ -196,13 +154,7 @@ public class ServiceProducto
             nutrientes.Add(y);
         }
         var dic_nutrientes = nutrientes.GroupBy(x => x.Id).ToDictionary(g => g.Key, g => g);
-
-            //item.IngredientesProducto = dic_ingredientes[item.Id].ToList();
-            item.NutrientesProducto = dic_nutrientes[item.Id].ToList();
-
+        item.NutrientesProducto = dic_nutrientes[item.Id].ToList();
         return item;
     }
-
-
-
 }

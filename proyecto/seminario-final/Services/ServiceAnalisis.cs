@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
-using Microsoft.Ajax.Utilities;
 using seminario_final.Models;
 using seminario_final.Services.Fabrics;
 
@@ -18,14 +17,11 @@ public class ServiceAnalisis
         DataTable dt = ds.Tables[0];
         DataTable dt_nutrientes = ds.Tables[1];
         List<ModelNutrienteProducto> nutrientes = new List<ModelNutrienteProducto>();
-
         if (dt.Rows.Count != 1)
         {
             return null;
         }
-
         DataRow dr = dt.Rows[0];
-
         ModelProducto item = new ModelProducto()
         {
             Id = Convert.ToUInt16(dr["pro_id"]),
@@ -84,7 +80,6 @@ public class ServiceAnalisis
         }
         var dic_nutrientes = nutrientes.GroupBy(x => x.Id).ToDictionary(g => g.Key, g => g);
         item.NutrientesProducto = dic_nutrientes[item.Id].ToList();
-
         return item;
     }
 
@@ -94,7 +89,7 @@ public class ServiceAnalisis
         List<ModelNutrienteProducto> listaAlertas = new List<ModelNutrienteProducto>();
         foreach (var item2 in item.NutrientesProducto)
         {
-            if(item2.Nutriente.NutrientesAlerta == null)
+            if (item2.Nutriente.NutrientesAlerta == null)
             {
                 continue;
             }
@@ -108,7 +103,7 @@ public class ServiceAnalisis
         //TODO-TESIS: Buscar si hay algún ingrediente q deba alertar.
 
         //ObtenerIngredientesIndeseados
-        List<string> ingredientesIndeseados = new List<string>(){"azúcar"};
+        List<string> ingredientesIndeseados = new List<string>() { "azúcar" };
         item.IngredientesAlertas = new List<ModelAlerta>();
         foreach (var ing in ingredientesIndeseados.Where(x => item.Ingredientes.ToLower().Contains(x.ToLower())).ToList())
         {

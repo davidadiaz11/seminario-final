@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
-using seminario_final;
-using System.Web.Services.Description;
 using seminario_final.Validators;
 using FluentValidation.Results;
-using FluentValidation;
 
 public class ServiceSello
 {
@@ -56,9 +53,6 @@ public class ServiceSello
         List<ModelNutriente> items = new List<ModelNutriente>();
         foreach (DataRow dr in dt.Rows)
         {
-            //armar desde nutriente y hacia abajo.
-
-
             ModelNutriente x = new ModelNutriente()
             {
                 Id = Convert.ToUInt16(dr["nut_id"]),
@@ -102,12 +96,12 @@ public class ServiceSello
     {
         DataTable dt = MySQLRepositorySello.ObtenerNutrienteAlertaPorId(idNutrienteAlerta);
         DataRow dr = dt.Rows[0];
-                
-            ModelNutriente x = new ModelNutriente()
-            {
-                Id = Convert.ToUInt16(dr["nut_id"]),
-                Nombre = dr["nut_nombre"].ToString(),
-                NutrientesAlerta = new List<ModelNutrienteAlerta>()
+
+        ModelNutriente x = new ModelNutriente()
+        {
+            Id = Convert.ToUInt16(dr["nut_id"]),
+            Nombre = dr["nut_nombre"].ToString(),
+            NutrientesAlerta = new List<ModelNutrienteAlerta>()
                 {
                     new ModelNutrienteAlerta()
                     {
@@ -136,7 +130,7 @@ public class ServiceSello
                         }
                     }
                 }
-            };
+        };
         return x;
     }
 
@@ -145,7 +139,6 @@ public class ServiceSello
         var resultado = false;
         try
         {
-
             if (nutrientePersistido != null && nutrientePersistido.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica && !ServiceShared.ValidarPermisos())
             {
                 return resultado;
@@ -170,8 +163,8 @@ public class ServiceSello
         }
         return resultado;
     }
-    
-    public static ModelNutriente ObtenerPorId( ushort usuario, int idAlerta)
+
+    public static ModelNutriente ObtenerPorId(ushort usuario, int idAlerta)
     {
         DataSet ds = MySQLRepositorySello.ObtenerUno(usuario, idAlerta);
         DataTable dt = ds.Tables[0];
@@ -183,24 +176,9 @@ public class ServiceSello
             //responder que no se encontró
             return null;
         }
-
         DataRow dr = dt.Rows[0];
-
-        ModelAlerta item = new ModelAlerta()
-        {
-            Id = Convert.ToUInt16(dr["ale_id"]),
-            Nombre = dr["ale_nombre"].ToString(),
-            Leyenda = dr["ale_leyenda"].ToString(),
-            TipoAlerta = new ModelTipoAlerta()
-            {
-                Nombre = dr["tal_nombre"].ToString()
-            }
-        };
-
-
         foreach (DataRow drNut in dt_nutrientes.Rows)
         {
-
             ModelNutriente nut = new ModelNutriente()
             {
                 Id = Convert.ToUInt32(drNut["nut_id"]),

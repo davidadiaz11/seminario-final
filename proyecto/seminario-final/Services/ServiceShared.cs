@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MySql.Data.MySqlClient;
-using System.Data;
 using System.Text;
 
 
@@ -20,44 +18,44 @@ public class ServiceShared
             Nombre = ColoresEnum.NEGRO.ToString(),
             CodigoHexadecimal = "000000"
         },
-        
+
         new ModelColorAlerta()
         {
             Nombre = ColoresEnum.AZUL.ToString(),
             CodigoHexadecimal = "094293"
         },
-                
+
         new ModelColorAlerta()
         {
             Nombre = ColoresEnum.VERDE.ToString(),
             CodigoHexadecimal = "7fe757"
         },
-                
+
         new ModelColorAlerta()
         {
             Nombre = ColoresEnum.ROJO.ToString(),
             CodigoHexadecimal = "CE2A23"
         },
-                
+
         new ModelColorAlerta()
         {
             Nombre = ColoresEnum.NARANJA.ToString(),
             CodigoHexadecimal = "E3AB58"
         },
 
-                       
+
         new ModelColorAlerta()
         {
             Nombre = ColoresEnum.AMARILLO.ToString(),
             CodigoHexadecimal = "FFFF00"
-        },    
-        
+        },
+
         new ModelColorAlerta()
         {
             Nombre = ColoresEnum.AQUA.ToString(),
             CodigoHexadecimal = "00FFFF"
         },
-         
+
         new ModelColorAlerta()
         {
             Nombre = ColoresEnum.VIOLETA.ToString(),
@@ -103,7 +101,7 @@ public class ServiceShared
     {
         return formas.First(x => x.Nombre == nombreForma.ToUpper());
     }
-       public static ModelFormaAlerta GetFormaAlerta(int idForma)
+    public static ModelFormaAlerta GetFormaAlerta(int idForma)
     {
         return formas.First(x => x.Id == idForma);
     }
