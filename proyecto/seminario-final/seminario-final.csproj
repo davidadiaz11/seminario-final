@@ -246,6 +246,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Enums\RolesEnum.cs" />
     <Compile Include="Enums\FormasEnum.cs" />
     <Compile Include="Enums\TiposNutrienteEnum.cs" />
     <Compile Include="Enums\TiposCalculoEnum.cs" />
@@ -315,9 +316,11 @@
     <Compile Include="Repositories\MySQLRepositoryPerfil.cs" />
     <Compile Include="Repositories\MySQLRepositorySello.cs" />
     <Compile Include="Repositories\MySQLRepositoryTiposCalculo.cs" />
+    <Compile Include="Repositories\MySQLRepositoryUsuario.cs" />
     <Compile Include="Repositories\MySQLRepositoryTiposPorcion.cs" />
     <Compile Include="Repositories\MySQLRepositoryShared.cs" />
     <Compile Include="Services\Fabrics\CalculoAlertaFabric.cs" />
+    <Compile Include="Services\ServiceUsuario.cs" />
     <Compile Include="Services\ServiceAnalisis.cs" />
     <Compile Include="Services\ServicePerfiles.cs" />
     <Compile Include="Services\ServiceTiposNutriente.cs" />
