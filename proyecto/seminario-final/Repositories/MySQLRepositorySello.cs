@@ -166,7 +166,7 @@ public class MySQLRepositorySello
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT anu_id, nut_id, nut_nombre, anu_tca_id, anu_operador, anu_valor_critico, ale_id, ale_nombre, ale_leyenda, tal_id, tal_color, tal_forma
+            cmd.CommandText = @"SELECT anu_id, nut_id, nut_nombre, anu_tca_id, anu_operador, anu_valor_critico, ale_id, ale_nombre, ale_leyenda, tal_id, tal_color, tal_forma, tal_es_generica
                                 FROM ALERTAS_X_NUTRIENTE 
                                 JOIN nutrientes on anu_nut_id=nut_id
                                 JOIN alertas on anu_ale_id=ale_id

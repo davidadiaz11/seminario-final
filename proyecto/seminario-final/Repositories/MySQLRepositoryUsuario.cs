@@ -25,7 +25,7 @@ public class MySQLRepositoryUsuario
             cmd.Connection = cn;
             cmd.CommandText = @"SELECT USU_ID, USU_NOMBRE, ROL_ID, ROL_NOMBRE
                                 FROM USUARIOS JOIN ROLES ON USU_ROL_ID=ROL_ID
-                                WHERE usu_id=@usu_id usu_fecha_baja is null and rol_fecha_baja is null";
+                                WHERE usu_id=@usu_id and usu_fecha_baja is null and rol_fecha_baja is null";
             cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
             dt.Load(cmd.ExecuteReader());
         }

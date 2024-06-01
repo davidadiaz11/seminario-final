@@ -12,13 +12,6 @@ public class ModelUsuario
     {
     }
 
-    public ModelUsuario(ushort pId, string pNombre, string pEmail)
-    {
-        id = pId;
-        nombre = pNombre;
-        email = pEmail;
-    }
-
     public ushort Id { get; set; }
     public string Nombre { get; set; }
     public string Email { get; set; }

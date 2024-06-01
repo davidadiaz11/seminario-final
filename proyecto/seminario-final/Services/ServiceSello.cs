@@ -127,6 +127,7 @@ public class ServiceSello
                             {
                                 Id = Convert.ToUInt32(dr["tal_id"]),
                                 Forma = ServiceShared.GetFormaAlerta(Convert.ToInt32(dr["tal_forma"])),
+                                EsGenerica = Convert.ToBoolean(dr["tal_es_generica"]),
                                 Color = new ModelColorAlerta()
                                 {
                                     CodigoHexadecimal = dr["tal_color"].ToString()
@@ -151,7 +152,7 @@ public class ServiceSello
         try
         {
 
-            if (nutrientePersistido.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica && !ValidarPermisos())
+            if (nutrientePersistido != null && nutrientePersistido.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica && !ValidarPermisos())
             {
                 return resultado;
             }
