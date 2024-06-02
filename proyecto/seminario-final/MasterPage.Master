@@ -338,13 +338,6 @@ input {
                         <span class="menu-title">Productos</span>
                     </a>
                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link" runat="server" id="A1" href="FormularioProducto">
-                        <i class="menu-icon mdi mdi-check-circle"></i>
-                        <span class="menu-title">Modificar productos</span>
-                    </a>
-                </li>
-             
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#sub-sellos" aria-expanded="false" aria-controls="ui-basic">
                         <i class="menu-icon mdi  mdi-account-location"></i>
