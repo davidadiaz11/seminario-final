@@ -19,7 +19,7 @@ namespace seminario_final
                 vista_lista.PageSize = Convert.ToInt16(ddl_cant_filas.SelectedValue);
                 if (Request["__EVENTTARGET"] == "eliminar")
                 {
-                    eliminar(Convert.ToInt32(Request["__EVENTARGUMENT"]));
+                    eliminar(Convert.ToUInt32(Request["__EVENTARGUMENT"]));
                 }
             }
             populate(vista_lista.PageSize);
@@ -56,7 +56,7 @@ namespace seminario_final
             span_mensaje.InnerText = msj;
         }
 
-        private void eliminar(int idAlerta)
+        private void eliminar(uint idAlerta)
         {
             var master = Master as MasterPage;
             if (idAlerta > 0 && ServicePerfiles.Eliminar(idAlerta))

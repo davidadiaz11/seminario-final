@@ -90,7 +90,7 @@ public class MySQLRepositoryPerfil
         return true;
     }
 
-    public static bool EliminarPerfil(int idUsuario, ModelPerfil perfil)
+    public static bool EliminarPerfil(uint idPerfil, ushort idUsuario)
     {
         MySqlConnection cn = new MySqlConnection(cadena);
         try
@@ -102,9 +102,10 @@ public class MySQLRepositoryPerfil
             cmd.Connection = cn;
             cmd.CommandText = @"UPDATE PERFILES set prf_usu_id_baja=@usu_id, prf_fecha_baja=now(),
                             WHERE prf_id=@prf_id and prf_fecha_baja IS NULL;";
-            cmd.Parameters.Add(new MySqlParameter("@prf_id", perfil.Id));
+            cmd.Parameters.Add(new MySqlParameter("@prf_id", idPerfil));
             cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
-            cmd.ExecuteNonQuery();
+            var res = cmd.ExecuteNonQuery();
+            return res == 1;
         }
         catch (Exception ex)
         {

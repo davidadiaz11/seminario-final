@@ -29,22 +29,19 @@ public class ServiceSello
         return items;
     }
 
-    //TODO-TESIS: RESOLVER
-    public static bool Eliminar(int idAlerta)
+    public static bool Eliminar(int idNutrienteAlerta)
     {
-        DataTable dt = MySQLRepositoryProducto.ObtenerProductos();
-        List<ModelProducto> items = new List<ModelProducto>();
-        foreach (DataRow dr in dt.Rows)
+        bool res = false;
+        try
         {
-            ModelProducto x = new ModelProducto()
-            {
-                Id = Convert.ToUInt16(dr["id"]),
-                Nombre = dr["nombre"].ToString()
-            };
-            items.Add(x);
-        }
 
-        return true;
+            res = MySQLRepositorySello.EliminarSello(idNutrienteAlerta, idUsuario);
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        return res;
     }
 
     public static List<ModelNutriente> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
@@ -165,9 +162,9 @@ public class ServiceSello
         return resultado;
     }
 
-    public static ModelNutriente ObtenerPorId(ushort usuario, int idAlerta)
+    public static ModelNutriente ObtenerPorId(int idAlerta)
     {
-        DataSet ds = MySQLRepositorySello.ObtenerUno(usuario, idAlerta);
+        DataSet ds = MySQLRepositorySello.ObtenerUno(idUsuario, idAlerta);
         DataTable dt = ds.Tables[0];
         DataTable dt_nutrientes = ds.Tables[1];
         List<ModelNutriente> nutrientes = new List<ModelNutriente>();

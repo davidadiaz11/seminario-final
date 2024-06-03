@@ -329,19 +329,6 @@ public class MySQLRepositorySello
                     cmd.Parameters.Add(new MySqlParameter("@ANU_VALOR_CRITICO", nutriente.NutrientesAlerta.First().ValorCritico));
                     cmd.ExecuteNonQuery();
                 }
-
-
-                //TODO-TESIS: Hay que ver, cuáles relaciones borrar y cuáles relaciones dejar
-                //foreach (ModelNutrienteAlerta nutriente in alerta.NutrientesAlerta)
-                //{
-                //    var sssql = "update ALERTAS_X_NUTRIENTE set anu_valor_critico=@anu_valor_critico where anu_id=@anu_id;";
-                //    cmd.Parameters.Add(new MySqlParameter("@anu_valor_critico", nutriente.ValorCritico));
-                //    cmd.Parameters.Add(new MySqlParameter("@anu_id", nutriente.Id));
-                //    cmd.CommandText = sssql;
-                //    cmd.ExecuteNonQuery();
-                //    cmd.Parameters.Clear();
-                //}
-
             }
             trans.Commit();
 
@@ -391,5 +378,34 @@ public class MySQLRepositorySello
         }
         return dt;
     }
-    
+
+    public static bool EliminarSello(int idNutrienteAlerta, ushort idUsuario)
+    {
+        MySqlConnection cn = new MySqlConnection(cadena);
+        try
+        {
+            cn.Open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = cn;
+            cmd.Parameters.Clear();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE ALERTAS_X_NUTRIENTE set anu_usu_id_baja=@usu_id, anu_fecha_baja=now(),
+                            WHERE anu_id=@anu_id and anu_fecha_baja IS NULL;";
+            cmd.Parameters.Add(new MySqlParameter("@anu_id", idNutrienteAlerta));
+            cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
+            var res = cmd.ExecuteNonQuery();
+            return res == 1;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        finally
+        {
+            if (cn != null && cn.State == ConnectionState.Open)
+                cn.Close();
+        }
+        return true;
+    }
+
 }

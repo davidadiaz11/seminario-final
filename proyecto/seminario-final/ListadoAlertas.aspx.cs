@@ -57,10 +57,10 @@ namespace seminario_final
             span_mensaje.InnerText = msj;
         }
 
-        private void eliminar(int idAlerta)
+        private void eliminar(int idNutrienteAlerta)
         {
             var master = Master as MasterPage;
-            if (idAlerta > 0 && ServiceSello.Eliminar(idAlerta))
+            if (idNutrienteAlerta > 0 && ServiceSello.Eliminar(idNutrienteAlerta))
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
             else
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);

@@ -121,7 +121,7 @@
                                                         <a href="<%# String.Format("FormularioAlerta?anu={0}", Eval("NutrientesAlerta[0].Id")) %>" class="mr-3">
                                                             <i class="mdi mdi-pencil text-muted icon-md"></i>
                                                         </a>
-                                                        <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
+                                                        <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("NutrientesAlerta[0].Id") %>');" href="#">
                                                             <i class="mdi mdi-delete text-black icon-md"></i>
                                                         </a>
                                                     </ItemTemplate>
@@ -168,7 +168,7 @@
 
 
                                                             <a class="text-muted" href="<%# String.Format("FormularioAlerta?anu={0}", Eval("NutrientesAlerta[0].Id")) %>"><i class="mdi  mdi-pencil icon-md ml-2 "></i></a>
-                                                            <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
+                                                            <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("NutrientesAlerta[0].Id") %>');" href="#">
                                                                 <i class="mdi mdi-delete text-black icon-md"></i>
                                                             </a>
                                                         </div>

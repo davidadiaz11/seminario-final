@@ -28,21 +28,18 @@ public class ServicePerfiles
         return items;
     }
 
-    //TODO-TESIS: RESOLVER
-    public static bool Eliminar(int idPerfil)
+    public static bool Eliminar(uint idPerfil)
     {
-        DataTable dt = MySQLRepositoryProducto.ObtenerProductos();
-        List<ModelProducto> items = new List<ModelProducto>();
-        foreach (DataRow dr in dt.Rows)
+        bool res = false;
+        try
         {
-            ModelProducto x = new ModelProducto()
-            {
-                Id = Convert.ToUInt16(dr["id"]),
-                Nombre = dr["nombre"].ToString()
-            };
-            items.Add(x);
+            res = MySQLRepositoryPerfil.EliminarPerfil(idPerfil, idUsuario);
         }
-        return true;
+        catch (Exception ex)
+        {
+            throw;
+        }
+        return res;
     }
     public static ModelPerfil ObtenerPerfil(uint idPerfil)
     {
