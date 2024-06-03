@@ -29,8 +29,17 @@ public class ServiceSesion
     }
     public static ushort ObtenerUsuario()
     {
-        string idString = HttpContext.Current.Session["usuID"].ToString();
-        return Convert.ToUInt16(idString);
+        ushort resultado = 0;
+        try
+        {
+            string idString = HttpContext.Current.Session["usuID"].ToString();
+            return Convert.ToUInt16(idString);
+        }
+        catch (Exception)
+        {
+            return resultado;
+            throw;
+        }
     }
 
 }

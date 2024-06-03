@@ -9,7 +9,7 @@ namespace seminario_final
         {
             if (!IsPostBack)
             {
-                if (!ValidarLogin())
+                if (ValidarLogin())
                 {
                     Response.Redirect("Login");
                 }
@@ -32,7 +32,7 @@ namespace seminario_final
         }
         private void ObtenerUltimosSellos()
         {
-            List<ModelAlerta> lista = ServiceSello.ObtenerUltimosSellos();
+            List<ModelNutriente> lista = ServiceSello.ObtenerUltimosSellos();
             rpt_ultimos_sellos.DataSource = lista;
             rpt_ultimos_sellos.DataBind();
         }

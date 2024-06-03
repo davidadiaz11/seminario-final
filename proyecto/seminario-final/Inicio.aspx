@@ -130,23 +130,22 @@
                                 <hr class="hr" />
                                 <asp:Repeater ID="rpt_ultimos_sellos" runat="server">
                                     <ItemTemplate>
-                                        <%--TODO-TESIS: hay que corregir el id enviado. porque estoy enviando el de la alerta--%>
-                                        <a class="text-black" href="<%# String.Format("FormularioAlerta?ale={0}", Eval("Id")) %>">
+                                        <a class="text-black" href="<%# String.Format("FormularioAlerta?anu={0}", Eval("NutrientesAlerta[0].Id")) %>">
                                             <div class="wrapper d-flex justify-content-between">
                                                 <div class="side-left">
                                                     <p class="display-5 mb-1 font-weight-light">
-                                                        <asp:Label Text='<%# Eval("Leyenda").ToString() %>' runat="server" />
+                                                        <asp:Label Text='<%# Eval("NutrientesAlerta[0].Alerta.Leyenda").ToString() %>' runat="server" />
                                                     </p>
                                                     <p class="mb-1">
-                                                        <asp:Label Text='<%# Eval("TipoAlerta.Forma.Nombre") %>' runat="server" />
-                                                        <span class="dot" style='<%# "background-color:#" + Eval("TipoAlerta.Color.CodigoHexadecimal") %>'></span>
+                                                        <asp:Label Text='<%# Eval("NutrientesAlerta[0].Alerta.TipoAlerta.Forma.Nombre") %>' runat="server" />
+                                                        <span class="dot" style='<%# "background-color:#" + Eval("NutrientesAlerta[0].Alerta.TipoAlerta.Color.CodigoHexadecimal") %>'></span>
                                                     </p>
                                                 </div>
                                                 <div class="side-right text-right">
                                                     <p class="mt-2 mb-1">
-                                                        <asp:Label Text='<%# "Creado el " + Eval("FechaCreacion", "{0:dd/MM/yy}") %>' runat="server" />
+                                                        <asp:Label Text='<%# "Creado el " + Eval("NutrientesAlerta[0].Alerta.FechaCreacion", "{0:dd/MM/yy}") %>' runat="server" />
                                                     </p>
-                                                    <small class="text-muted">Hace <%# Math.Floor((DateTime.UtcNow.AddHours(-3).Date).Subtract(Convert.ToDateTime(Eval("FechaCreacion")).Date).TotalDays).ToString() %> días</small>
+                                                    <small class="text-muted">Hace <%# Math.Floor((DateTime.UtcNow.AddHours(-3).Date).Subtract(Convert.ToDateTime(Eval("NutrientesAlerta[0].Alerta.FechaCreacion")).Date).TotalDays).ToString() %> días</small>
 
                                                 </div>
                                             </div>

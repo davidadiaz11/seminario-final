@@ -205,25 +205,48 @@ public class ServiceSello
         return nutrientes.First();
     }
 
-    public static List<ModelAlerta> ObtenerUltimosSellos()
+    public static List<ModelNutriente> ObtenerUltimosSellos()
     {
+        List<ModelNutriente> items = new List<ModelNutriente>();
         DataTable dt = MySQLRepositorySello.ObtenerUltimosSellos(idUsuario);
-        List<ModelAlerta> items = new List<ModelAlerta>();
-        foreach (DataRow dr in dt.Rows)
+        DataRow dr = dt.Rows[0];
+
+        ModelNutriente x = new ModelNutriente()
         {
-            items.Add(new ModelAlerta()
-            {
-                Id = Convert.ToUInt16(dr["ale_id"]),
-                Leyenda = dr["ale_leyenda"].ToString(),
-                FechaCreacion = Convert.ToDateTime(dr["ale_fecha_alta"]),
-                TipoAlerta = new ModelTipoAlerta()
+            Id = Convert.ToUInt16(dr["nut_id"]),
+            Nombre = dr["nut_nombre"].ToString(),
+            NutrientesAlerta = new List<ModelNutrienteAlerta>()
                 {
-                    Color = new ModelColorAlerta(dr["tal_color"].ToString()),
-                    Forma = ServiceShared.GetFormaAlerta(Convert.ToInt32(dr["tal_forma"])),
-                    EsGenerica = Convert.ToBoolean(dr["tal_es_generica"])
+                    new ModelNutrienteAlerta()
+                    {
+                        Id = Convert.ToUInt32(dr["anu_id"]),
+                        Operador = dr["anu_operador"].ToString(),
+                        TipoCalculo = new ModelTipoCalculo()
+                        {
+                            Id = Convert.ToUInt32(dr["anu_tca_id"])
+                        },
+                        ValorCritico = Convert.ToDouble(dr["anu_valor_critico"]),
+                        Alerta = new ModelAlerta()
+                        {
+                            Id = Convert.ToUInt32(dr["ale_id"]),
+                            Nombre = dr["ale_nombre"].ToString(),
+                            Leyenda = dr["ale_leyenda"].ToString(),
+                            FechaCreacion = Convert.ToDateTime(dr["ale_fecha_alta"]),
+                            TipoAlerta = new ModelTipoAlerta()
+                            {
+                                Id = Convert.ToUInt32(dr["tal_id"]),
+                                Forma = ServiceShared.GetFormaAlerta(Convert.ToInt32(dr["tal_forma"])),
+                                EsGenerica = Convert.ToBoolean(dr["tal_es_generica"]),
+                                Color = new ModelColorAlerta()
+                                {
+                                    CodigoHexadecimal = dr["tal_color"].ToString()
+                                }
+                            }
+                        }
+                    }
                 }
-            }); ;
-        }
+        };
+        items.Add(x);
         return items;
     }
     

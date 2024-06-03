@@ -360,9 +360,12 @@ public class MySQLRepositorySello
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT ale_id, ale_leyenda, ale_fecha_alta, tal_forma, tal_color, tal_es_generica
-                                FROM alertas JOIN tipos_alerta on ale_tal_id=tal_id
-                                where ale_usu_id_alta=@usu_id and ale_fecha_baja is null ORDER BY ale_id desc LIMIT 0,3";
+            cmd.CommandText = @"SELECT anu_id, nut_id, nut_nombre, anu_tca_id, anu_operador, anu_valor_critico, ale_id, ale_nombre, ale_leyenda, ale_fecha_alta, tal_id, tal_color, tal_forma, tal_es_generica
+                                FROM ALERTAS_X_NUTRIENTE 
+                                JOIN nutrientes on anu_nut_id=nut_id
+                                JOIN alertas on anu_ale_id=ale_id
+                                JOIN tipos_alerta on tal_id=ale_tal_id
+                                WHERE tal_fecha_baja is null and ale_usu_id_alta=@usu_id and anu_fecha_baja is null AND ale_fecha_baja IS NULL ORDER BY ale_id desc LIMIT 0,3;";
             cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
             dt.Load(cmd.ExecuteReader());
         }
