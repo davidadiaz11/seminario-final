@@ -77,7 +77,7 @@
 
                                             <div class="form-group">
                                                 <label for="txt_valor_critico">Valor crítico <small class="text-danger">*</small></label>
-                                                <asp:TextBox ID="txt_valor_critico" min="0" placeholder="De 0 a 100" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                                                <asp:TextBox ID="txt_valor_critico" min="0" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
                                                 <asp:RequiredFieldValidator Display="Dynamic" CssClass="p-0 text-danger small" ControlToValidate="txt_valor_critico" ID="rf_valor_critico" runat="server" ErrorMessage="Ingrese porcentaje crítico"></asp:RequiredFieldValidator>
                                             </div>
                                             

@@ -142,17 +142,30 @@ public class ServiceSello
                 return resultado;
             }
 
+            uint idTipoCalculoSeleccionado = nutriente.NutrientesAlerta.First().TipoCalculo.Id;
+            var tipoCalculo = ServiceTiposCalculo.ObtenerTiposCalculo(nutriente.Id);
+            nutriente.NutrientesAlerta.First().TipoCalculo = tipoCalculo.Find(x => x.Id == idTipoCalculoSeleccionado);
+
             var validator = new AlertaValidator();
             ValidationResult result = validator.Validate(nutriente.NutrientesAlerta.First().Alerta);
             if (!result.IsValid)
             {
-                throw new Exception(result.Errors.First().ErrorMessage);
+                resultado.ObtenerError(result.Errors.First().ErrorMessage);
+                return resultado;
+            }
+            var validatorNutrienteAlerta = new NutrienteAlertaValidator();
+            ValidationResult resultNutrienteAlerta = validatorNutrienteAlerta.Validate(nutriente.NutrientesAlerta.First());
+            if (!resultNutrienteAlerta.IsValid)
+            {
+                resultado.ObtenerError(resultNutrienteAlerta.Errors.First().ErrorMessage);
+                return resultado;
             }
 
             resultado.Data = MySQLRepositorySello.GuardarSello(idUsuario, nutriente, nutrientePersistido);
             if (!resultado.Ok)
             {
-                throw new Exception("Error al actualizar alerta.");
+                resultado.ObtenerError("Error al actualizar alerta.");
+                return resultado;
             }
         }
         catch (Exception ex)
