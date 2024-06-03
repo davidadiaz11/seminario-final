@@ -8,8 +8,7 @@ public class ServiceProducto
     public ServiceProducto()
     {
     }
-    //TODO-TESIS
-    private static ushort idUsuario = 2;
+    private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
 
     public static List<ModelProducto> ObtenerProductos()
     {

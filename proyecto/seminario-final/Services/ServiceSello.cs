@@ -11,8 +11,7 @@ public class ServiceSello
     {
     }
 
-    //TODO-TESIS: buscar los idUsuario
-    private static ushort idUsuario = 2;
+    private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
     public static List<ModelAlerta> ObtenerAlertas()
     {
         DataTable dt = MySQLRepositorySello.ObtenerSellos();

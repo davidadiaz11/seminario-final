@@ -10,7 +10,7 @@ public class ServiceAnalisis
     public ServiceAnalisis()
     {
     }
-    static ushort idUsuario = 2;
+    static ushort idUsuario = ServiceSesion.ObtenerUsuario();
     private static ModelProducto Mapper(ushort idUsuario, int idProducto)
     {
         DataSet ds = MySQLRepositoryAnalisis.ObtenerProductoPorId(idUsuario, idProducto);

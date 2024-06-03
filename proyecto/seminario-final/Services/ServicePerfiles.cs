@@ -8,9 +8,7 @@ public class ServicePerfiles
     public ServicePerfiles()
     {
     }
-
-    //TODO-TESIS: Cambiar
-    private static ushort idUsuario = 2;
+    private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
     public static List<ModelPerfil> ObtenerPerfiles()
     {
         DataTable dt = MySQLRepositoryPerfil.ObtenerPerfiles(idUsuario);

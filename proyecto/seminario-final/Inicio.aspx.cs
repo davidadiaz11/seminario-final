@@ -9,9 +9,19 @@ namespace seminario_final
         {
             if (!IsPostBack)
             {
+                if (!ValidarLogin())
+                {
+                    Response.Redirect("Login");
+                }
                 ObtenerUltimosAnalisis();
                 ObtenerUltimosSellos();
             }
+        }
+
+        private bool ValidarLogin()
+        {
+            ushort idUsuario = ServiceSesion.ObtenerUsuario();
+            return idUsuario == 0;
         }
 
         private void ObtenerUltimosAnalisis()

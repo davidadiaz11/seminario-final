@@ -6,7 +6,7 @@ public class ServiceUsuario
     public ServiceUsuario()
     {
     }
-    static ushort idUsuario = 2;
+    private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
     public static ModelUsuario ObtenerUsuario()
     {
         DataTable dt = MySQLRepositoryUsuario.ObtenerUsuario(idUsuario);

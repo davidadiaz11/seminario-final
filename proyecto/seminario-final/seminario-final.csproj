@@ -182,6 +182,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Inicio.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="ListadoPerfiles.aspx" />
     <Content Include="ListadoAlertas.aspx" />
     <Content Include="ListadoProductos.aspx" />
@@ -272,6 +273,13 @@
     <Compile Include="FormularioProducto.aspx.designer.cs">
       <DependentUpon>FormularioProducto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListadoPerfiles.aspx.cs">
       <DependentUpon>ListadoPerfiles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -322,6 +330,7 @@
     <Compile Include="Repositories\MySQLRepositoryTiposPorcion.cs" />
     <Compile Include="Repositories\MySQLRepositoryShared.cs" />
     <Compile Include="Services\Fabrics\CalculoAlertaFabric.cs" />
+    <Compile Include="Services\ServiceSesion.cs" />
     <Compile Include="Services\ServiceUsuario.cs" />
     <Compile Include="Services\ServiceAnalisis.cs" />
     <Compile Include="Services\ServicePerfiles.cs" />
