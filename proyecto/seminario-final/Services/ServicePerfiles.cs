@@ -10,7 +10,7 @@ public class ServicePerfiles
     }
 
     //TODO-TESIS: Cambiar
-    private static int idUsuario = 2;
+    private static ushort idUsuario = 2;
     public static List<ModelPerfil> ObtenerPerfiles()
     {
         DataTable dt = MySQLRepositoryPerfil.ObtenerPerfiles(idUsuario);
@@ -30,6 +30,22 @@ public class ServicePerfiles
         return items;
     }
 
+    //TODO-TESIS: RESOLVER
+    public static bool Eliminar(int idPerfil)
+    {
+        DataTable dt = MySQLRepositoryProducto.ObtenerProductos();
+        List<ModelProducto> items = new List<ModelProducto>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            ModelProducto x = new ModelProducto()
+            {
+                Id = Convert.ToUInt16(dr["id"]),
+                Nombre = dr["nombre"].ToString()
+            };
+            items.Add(x);
+        }
+        return true;
+    }
     public static ModelPerfil ObtenerPerfil(uint idPerfil)
     {
         return ObtenerPerfiles().First(x => x.Id == idPerfil);
@@ -60,9 +76,9 @@ public class ServicePerfiles
         return resultado;
     }
 
-    public static List<ModelPerfil> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, ushort usuario, bool eliminados)
+    public static List<ModelPerfil> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
     {
-        DataTable dt = MySQLRepositoryPerfil.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, usuario, eliminados);
+        DataTable dt = MySQLRepositoryPerfil.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, idUsuario, eliminados);
         List<ModelPerfil> items = new List<ModelPerfil>();
         List<ModelNutrienteProducto> nutrientes = new List<ModelNutrienteProducto>();
         foreach (DataRow dr in dt.Rows)

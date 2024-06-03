@@ -9,7 +9,6 @@ public class ServiceTiposCalculo
     }
     public static List<ModelTipoCalculo> ObtenerTiposCalculo(uint idNutriente)
     {
-        //TODO-TESIS: Determinar cómo obtener los tipos de cálculo.
         DataTable dt = MySQLRepositoryTiposCalculo.ObtenerTiposCalculo();
         List<ModelTipoCalculo> items = new List<ModelTipoCalculo>();
         foreach (DataRow dr in dt.Rows)

@@ -178,7 +178,7 @@ namespace seminario_final
             var master = Master as MasterPage;
             if (!resModificacion.Ok)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resModificacion.Errors), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resModificacion.Errores), true);
                 return;
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Modificado correctamente."), true);

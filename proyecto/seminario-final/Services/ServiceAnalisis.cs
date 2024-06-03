@@ -55,8 +55,6 @@ public class ServiceAnalisis
                             Operador = drNut["ANU_OPERADOR"].ToString(),
                             TipoCalculo = new ModelTipoCalculo()
                             {
-                                //TODO-TESIS: Dio un error la obtención del id.
-                                //Id = Convert.ToUInt32(drNut["TCA_ID"]),
                                 Nombre = drNut["TCA_NOMBRE"].ToString(),
                                 NombreEnum = drNut["TCA_NOMBRE_ENUM"].ToString()
                             },
@@ -83,7 +81,7 @@ public class ServiceAnalisis
         return item;
     }
 
-    public static ModelProducto ObtenerPorId(ushort idUsuario, int idProducto)
+    public static ModelProducto ObtenerPorId(int idProducto)
     {
         ModelProducto item = Mapper(idUsuario, idProducto);
         List<ModelNutrienteProducto> listaAlertas = new List<ModelNutrienteProducto>();
@@ -98,7 +96,6 @@ public class ServiceAnalisis
         }
         item.NutrienteAlertas = listaAlertas.Where(x => x.Nutriente.NutrientesAlerta != null).Select(x => x.Nutriente.NutrientesAlerta.First()).ToList();
 
-        //TODO-TESIS: NO funciona cuando busco los perfiles. el cn.Open() se queda pensando indefinidamente.
         item.IngredientesAlertas = new List<ModelAlerta>();
         List<ModelPerfil> perfiles = ObtenerPerfiles();
 
@@ -126,9 +123,9 @@ public class ServiceAnalisis
 
     }
 
-    public static List<ModelAnalisis> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, ushort usuario, bool eliminados)
+    public static List<ModelAnalisis> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
     {
-        DataTable dt = MySQLRepositoryAnalisis.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, usuario, eliminados);
+        DataTable dt = MySQLRepositoryAnalisis.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, idUsuario, eliminados);
         List<ModelAnalisis> items = new List<ModelAnalisis>();
         foreach (DataRow dr in dt.Rows)
         {
@@ -170,8 +167,6 @@ public class ServiceAnalisis
         var resultado = false;
         try
         {
-            //TODO-TESIS: validar que si a este producto ya lo guardé hoy, no lo guarde de nuevo
-
             DataTable dt = MySQLRepositoryAnalisis.VerificarProductoAnalizado(idUsuario, idProducto);
             resultado = Convert.ToInt32(dt.Rows[0]["cant"]) > 0;
         }
@@ -187,7 +182,6 @@ public class ServiceAnalisis
         var resultado = false;
         try
         {
-            //TODO-TESIS: validar que si a este producto ya lo guardé hoy, no lo guarde de nuevo
             if (VerificarProductoAnalizado(idProducto))
             {
                 resultado = true;

@@ -5,7 +5,6 @@ namespace seminario_final
 {
     public partial class AnalisisNuevo : System.Web.UI.Page
     {
-        static ushort idUsuario = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
         }
@@ -13,7 +12,8 @@ namespace seminario_final
         [WebMethod]
         public static ModelProducto ObtenerAlertasPorProducto(int idProducto)
         {
-            ModelProducto producto = ServiceAnalisis.ObtenerPorId(idUsuario, 1);
+            //TODO-TESIS: dejar de hardcodear
+            ModelProducto producto = ServiceAnalisis.ObtenerPorId(1);
             if (producto.Nombre == "")
             {
                 return null;

@@ -8,8 +8,6 @@ namespace seminario_final
     {
         List<ModelPerfil> perfiles = new List<ModelPerfil>();
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
-        //TODO-TESIS: el usuario debe obtenerse en otro lado.
-        private ushort idUsuario = 2;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -61,7 +59,7 @@ namespace seminario_final
         private void eliminar(int idAlerta)
         {
             var master = Master as MasterPage;
-            if (idAlerta > 0 && ServiceProducto.Eliminar(idAlerta, idUsuario))
+            if (idAlerta > 0 && ServicePerfiles.Eliminar(idAlerta))
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
             else
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
@@ -102,7 +100,7 @@ namespace seminario_final
             hfSortDir.Value = sortDir;
             //Fetch data from Server 
 
-            perfiles = ServicePerfiles.ObtenerTodosFiltrados(out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, idUsuario, ch_eliminados.Checked);
+            perfiles = ServicePerfiles.ObtenerTodosFiltrados(out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, ch_eliminados.Checked);
             cantPags = (encontrados / filasPorPag) + ((encontrados % filasPorPag) > 0 ? 1 : 0);
             vista_lista.DataSource = perfiles;
             vista_lista.DataBind();

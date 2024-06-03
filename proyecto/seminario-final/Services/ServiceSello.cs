@@ -30,7 +30,8 @@ public class ServiceSello
         return items;
     }
 
-    public static bool Eliminar(int idAlerta, int idUsuario)
+    //TODO-TESIS: RESOLVER
+    public static bool Eliminar(int idAlerta)
     {
         DataTable dt = MySQLRepositoryProducto.ObtenerProductos();
         List<ModelProducto> items = new List<ModelProducto>();
@@ -47,9 +48,9 @@ public class ServiceSello
         return true;
     }
 
-    public static List<ModelNutriente> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, ushort usuario, bool eliminados)
+    public static List<ModelNutriente> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
     {
-        DataTable dt = MySQLRepositorySello.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, usuario, eliminados);
+        DataTable dt = MySQLRepositorySello.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, idUsuario, eliminados);
         List<ModelNutriente> items = new List<ModelNutriente>();
         foreach (DataRow dr in dt.Rows)
         {

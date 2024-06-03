@@ -8,6 +8,8 @@ public class ServiceProducto
     public ServiceProducto()
     {
     }
+    //TODO-TESIS
+    private static ushort idUsuario = 2;
 
     public static List<ModelProducto> ObtenerProductos()
     {
@@ -26,26 +28,10 @@ public class ServiceProducto
         return items;
     }
 
-    public static bool Eliminar(int idProducto, int idUsuario)
-    {
-        DataTable dt = MySQLRepositoryProducto.ObtenerProductos();
-        List<ModelProducto> items = new List<ModelProducto>();
-        foreach (DataRow dr in dt.Rows)
-        {
-            ModelProducto x = new ModelProducto()
-            {
-                Id = Convert.ToUInt16(dr["id"]),
-                Nombre = dr["nombre"].ToString()
-            };
-            items.Add(x);
-        }
 
-        return true;
-    }
-
-    public static List<ModelProducto> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, ushort usuario, bool eliminados)
+    public static List<ModelProducto> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
     {
-        DataSet ds = MySQLRepositoryProducto.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, usuario, eliminados);
+        DataSet ds = MySQLRepositoryProducto.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, idUsuario, eliminados);
         DataTable dt = ds.Tables[0];
         DataTable dt_nutrientes = ds.Tables[1];
         List<ModelProducto> items = new List<ModelProducto>();

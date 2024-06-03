@@ -8,7 +8,6 @@ namespace seminario_final
     {
         List<ModelProducto> productos = new List<ModelProducto>();
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
-        private ushort idUsuario = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -18,10 +17,6 @@ namespace seminario_final
             else
             {
                 vista_lista.PageSize = Convert.ToInt16(ddl_cant_filas.SelectedValue);
-                if (Request["__EVENTTARGET"] == "eliminar")
-                {
-                    eliminar(Convert.ToInt32(Request["__EVENTARGUMENT"]));
-                }
             }
             buscar_filtros();
             populate(vista_lista.PageSize);
@@ -56,15 +51,6 @@ namespace seminario_final
         public void mensaje(string msj, string estilo)
         {
             span_mensaje.InnerText = msj;
-        }
-
-        private void eliminar(int idProducto)
-        {
-            var master = Master as MasterPage;
-            if (idProducto > 0 && ServiceProducto.Eliminar(idProducto, idUsuario))
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
-            else
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
         }
 
         private void Ver_tarjetas()
@@ -130,7 +116,7 @@ namespace seminario_final
             hfSortDir.Value = sortDir;
             //Fetch data from Server 
 
-            productos = ServiceProducto.ObtenerTodosFiltrados(out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, idUsuario, ch_eliminados.Checked);
+            productos = ServiceProducto.ObtenerTodosFiltrados(out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, ch_eliminados.Checked);
             cantPags = (encontrados / filasPorPag) + ((encontrados % filasPorPag) > 0 ? 1 : 0);
             vista_lista.DataSource = productos;
             vista_lista.DataBind();
