@@ -35,19 +35,20 @@ public class ServicePerfiles
         return ObtenerPerfiles().First(x => x.Id == idPerfil);
     }
 
-    public static bool GuardarPerfil(ModelPerfil perfil, uint idPerfilPersistido)
+    public static Resultado<bool> GuardarPerfil(ModelPerfil perfil, uint idPerfilPersistido)
     {
-        var resultado = false;
+        Resultado<bool> resultado = new Resultado<bool>(false);
         try
         {
             ModelPerfil perfilPersistido = ObtenerPerfil(idPerfilPersistido);
 
             if (perfil.Id > 0 && perfil.Nombre == perfilPersistido.Nombre && perfil.FechaNacimiento == perfilPersistido.FechaNacimiento || perfil.IngredientesProhibidos == perfilPersistido.IngredientesProhibidos)
             {
-                return true;
+                resultado.Mensaje = "No hay cambios para guardar.";
+                return resultado;
             }
-            resultado = MySQLRepositoryPerfil.GuardarPerfil(idUsuario, perfil);
-            if (!resultado)
+            resultado.Data = MySQLRepositoryPerfil.GuardarPerfil(idUsuario, perfil);
+            if (!resultado.Ok)
             {
                 throw new Exception("Error al actualizar alerta.");
             }

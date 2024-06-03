@@ -134,13 +134,14 @@ public class ServiceSello
         return x;
     }
 
-    public static bool GuardarAlerta(ModelNutriente nutriente, ModelNutriente nutrientePersistido)
+    public static Resultado<bool> GuardarAlerta(ModelNutriente nutriente, ModelNutriente nutrientePersistido)
     {
-        var resultado = false;
+        Resultado<bool> resultado = new Resultado<bool>(false);
         try
         {
-            if (nutrientePersistido != null && nutrientePersistido.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica && !ServiceShared.ValidarPermisos())
+            if (nutrientePersistido != null && nutrientePersistido.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica && !ServiceShared.ValidarPermisos().Data)
             {
+                resultado.ObtenerError("No posee los permisos para modificar. Comuníquese con el administrador del sistema.");
                 return resultado;
             }
 
@@ -151,8 +152,8 @@ public class ServiceSello
                 throw new Exception(result.Errors.First().ErrorMessage);
             }
 
-            resultado = MySQLRepositorySello.GuardarSello(idUsuario, nutriente, nutrientePersistido);
-            if (!resultado)
+            resultado.Data = MySQLRepositorySello.GuardarSello(idUsuario, nutriente, nutrientePersistido);
+            if (!resultado.Ok)
             {
                 throw new Exception("Error al actualizar alerta.");
             }

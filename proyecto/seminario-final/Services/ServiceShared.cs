@@ -171,9 +171,11 @@ public class ServiceShared
         return link;
     }
 
-    public static bool ValidarPermisos()
+    public static Resultado<bool> ValidarPermisos()
     {
+        Resultado<bool> resultado = new Resultado<bool>(false);
         ModelUsuario usuarioActual = ServiceUsuario.ObtenerUsuario();
-        return usuarioActual.Rol == RolesEnum.Administrador.ToString();
+        resultado.Data = usuarioActual.Rol == RolesEnum.Administrador.ToString();
+        return resultado;
     }
 }

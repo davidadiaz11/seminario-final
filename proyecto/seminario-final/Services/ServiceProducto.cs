@@ -90,18 +90,19 @@ public class ServiceProducto
         return items;
     }
 
-    public static bool ModificarProducto(ModelProducto nuevoProducto)
+    public static Resultado<bool> ModificarProducto(ModelProducto nuevoProducto)
     {
-        var resultado = false;
+        Resultado<bool> resultado = new Resultado<bool>(false);
         try
         {
-            if (!ServiceShared.ValidarPermisos())
+            if (!ServiceShared.ValidarPermisos().Data)
             {
+                resultado.ObtenerError("No posee los permisos para modificar. Comuníquese con el administrador del sistema.");
                 return resultado;
             }
 
-            resultado = MySQLRepositoryProducto.ModificarProducto(nuevoProducto);
-            if (!resultado)
+            resultado.Data = MySQLRepositoryProducto.ModificarProducto(nuevoProducto);
+            if (!resultado.Ok)
             {
                 throw new Exception("Error al actualizar producto.");
             }

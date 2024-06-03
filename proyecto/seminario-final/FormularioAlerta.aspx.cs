@@ -174,9 +174,9 @@ namespace seminario_final
 
             var resModificacion = ServiceSello.GuardarAlerta(nuevoElemento, nutrientePersistido);
             var master = Master as MasterPage;
-            if (!resModificacion)
+            if (!resModificacion.Ok)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al guardar"), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resModificacion.Errors), true);
                 return;
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Guardada correctamente."), true);

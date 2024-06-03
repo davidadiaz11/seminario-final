@@ -303,6 +303,7 @@
     <Compile Include="Models\ModelTipoPorcion.cs" />
     <Compile Include="Models\ModelNutriente.cs" />
     <Compile Include="Models\ModelPerfil.cs" />
+    <Compile Include="Models\ModelResultado.cs" />
     <Compile Include="Models\ModelUsuario.cs" />
     <Compile Include="Models\ModelProducto.cs" />
     <Compile Include="AnalisisNuevo.aspx.cs">

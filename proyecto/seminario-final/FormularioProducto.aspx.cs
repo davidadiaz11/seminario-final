@@ -176,9 +176,9 @@ namespace seminario_final
             ModelProducto nuevoProducto = crearObjetoProducto();
             var resModificacion = ServiceProducto.ModificarProducto(nuevoProducto);
             var master = Master as MasterPage;
-            if (!resModificacion)
+            if (!resModificacion.Ok)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al modificar"), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resModificacion.Errors), true);
                 return;
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Modificado correctamente."), true);

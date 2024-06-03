@@ -82,12 +82,19 @@ namespace seminario_final
 
             var resModificacion = ServicePerfiles.GuardarPerfil(nuevoElemento, idPerfil);
             var master = Master as MasterPage;
-            if (!resModificacion)
+            if (!resModificacion.Ok)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al guardar"), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resModificacion.Errores), true);
                 return;
             }
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Guardada correctamente."), true);
+            if (string.IsNullOrEmpty(resModificacion.Mensaje))
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Guardada correctamente."), true);
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito(resModificacion.Mensaje), true);
+            }
         }
     }
 }
