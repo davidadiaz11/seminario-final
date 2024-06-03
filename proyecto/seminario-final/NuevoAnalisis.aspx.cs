@@ -12,8 +12,7 @@ namespace seminario_final
         [WebMethod]
         public static ModelProducto ObtenerAlertasPorProducto(int idProducto)
         {
-            //TODO-TESIS: dejar de hardcodear
-            ModelProducto producto = ServiceAnalisis.ObtenerPorId(1);
+            ModelProducto producto = ServiceAnalisis.ObtenerPorId(idProducto);
             if (producto.Nombre == "")
             {
                 return null;
@@ -24,8 +23,6 @@ namespace seminario_final
         [WebMethod]
         public static bool GuardarAnalisis(uint idProducto)
         {
-            //TODO-TESIS: dejar de hardcodear
-            idProducto = 1;
             bool res = ServiceAnalisis.GuardarAnalisis(idProducto);
             return res;
         }
