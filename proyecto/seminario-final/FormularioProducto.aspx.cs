@@ -38,7 +38,7 @@ namespace seminario_final
 
         private void ObtenerProducto()
         {
-            producto = ServiceProducto.ObtenerPorId(1,Convert.ToInt32(idProducto));
+            producto = ServiceProducto.ObtenerPorId(Convert.ToInt32(idProducto));
         }
 
         private void CargarProducto()

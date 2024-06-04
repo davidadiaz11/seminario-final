@@ -99,16 +99,16 @@ public class ServiceProducto
         return resultado;
     }
 
-    public static ModelProducto ObtenerPorId(ushort usuario, int idProducto)
+    public static ModelProducto ObtenerPorId(int idProducto)
     {
-        DataSet ds = MySQLRepositoryProducto.ObtenerUno(usuario, idProducto);
+        DataSet ds = MySQLRepositoryProducto.ObtenerUno(idProducto);
         DataTable dt = ds.Tables[0];
         DataTable dt_nutrientes = ds.Tables[1];
         List<ModelNutrienteProducto> nutrientes = new List<ModelNutrienteProducto>();
 
         if (dt.Rows.Count != 1)
         {
-            //responder que no se encontró
+            //TODO-TESIS: responder que no se encontró
             return null;
         }
 

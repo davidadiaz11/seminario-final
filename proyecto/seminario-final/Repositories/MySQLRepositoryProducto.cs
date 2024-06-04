@@ -144,6 +144,7 @@ public class MySQLRepositoryProducto
 								LEFT JOIN alertas_x_nutriente on npr_nut_id=anu_nut_id
                                 where npr_pro_id in (@pro_id) AND 
                                 npr_fecha_baja is null AND anu_fecha_baja is null;";
+            cmd.Parameters.Add(new MySqlParameter("@pro_id", idsString));
 
             cmd.CommandText = terceraQuery;
 
@@ -166,7 +167,7 @@ public class MySQLRepositoryProducto
         return ds;
     }
 
-    public static DataSet ObtenerUno(ushort usuario, int idProducto)
+    public static DataSet ObtenerUno(int idProducto)
     {
         MySqlConnection cn = new MySqlConnection(cadena);
         DataSet ds = new DataSet();
