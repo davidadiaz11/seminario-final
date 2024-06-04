@@ -192,7 +192,6 @@
                     </div>
                 </div>
                 <a class="btn btn-primary mr-2 no-print" href="FormularioAlerta"><span class="menu-title">Crear Alerta</span> </a>
-                <button type="button" class="btn btn-success small no-print" onclick="print();">Imprimir</button>
             </form>
         </div>
     </div>

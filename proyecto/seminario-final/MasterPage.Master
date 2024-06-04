@@ -326,8 +326,7 @@ input {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <%--<a class="nav-link" runat="server" id="btn_nuevo" href="ar.html">--%>
-                    <a class="nav-link" runat="server" id="btn_nuevo" href="AnalisisNuevo">
+                    <a class="nav-link" runat="server" id="btn_nuevo" href="NuevoAnalisis">
                         <i class="menu-icon mdi mdi-check-circle"></i>
                         <span class="menu-title">Escanear productos</span>
                     </a>

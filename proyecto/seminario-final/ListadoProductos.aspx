@@ -229,8 +229,6 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-primary mr-2 no-print" href="FormularioProducto"><span class="menu-title">Crear Producto</span> </a>
-                <button type="button" class="btn btn-success small no-print" onclick="print();">Imprimir</button>
             </form>
         </div>
     </div>

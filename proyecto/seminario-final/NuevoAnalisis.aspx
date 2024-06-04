@@ -27,7 +27,7 @@
     </div>
     <nav class="super-menu">
         <div class="wrapper">
-            <div class="logo" style="align-content: start;"><a href="#" onclick="limpiarPantalla(null); return false;">Volver</a></div>
+            <div class="logo" style="align-content: start;"><a href="Inicio" onclick="limpiarPantalla(null); return false;">Volver</a></div>
 
             <input type="radio" name="slider" id="menu-btn">
             <input type="radio" name="slider" id="close-btn">
@@ -48,8 +48,21 @@
         embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
 
+        <a-marker markerhandler type='barcode' id='1' value='1'></a-marker>
+        <a-marker markerhandler type='barcode' id='2' value='2'></a-marker>
+        <a-marker markerhandler type='barcode' id='3' value='3'></a-marker>
+        <a-marker markerhandler type='barcode' id='4' value='4'></a-marker>
         <a-marker markerhandler type='barcode' id='5' value='5'></a-marker>
+        <a-marker markerhandler type='barcode' id='6' value='6'></a-marker>
         <a-marker markerhandler type='barcode' id='7' value='7'></a-marker>
+        <a-marker markerhandler type='barcode' id='8' value='8'></a-marker>
+        <a-marker markerhandler type='barcode' id='9' value='9'></a-marker>
+        <a-marker markerhandler type='barcode' id='10' value='10'></a-marker>
+        <a-marker markerhandler type='barcode' id='11' value='11'></a-marker>
+        <a-marker markerhandler type='barcode' id='12' value='12'></a-marker>
+        <a-marker markerhandler type='barcode' id='13' value='13'></a-marker>
+        <a-marker markerhandler type='barcode' id='14' value='14'></a-marker>
+        <a-marker markerhandler type='barcode' id='15' value='15'></a-marker>
 
         <a-assets>
             <img id="img_inicio" crossorigin="anonymous" src="./images/inicio.png" />

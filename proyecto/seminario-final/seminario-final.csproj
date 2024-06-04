@@ -188,7 +188,6 @@
     <Content Include="ListadoProductos.aspx" />
     <Content Include="ListadoAnalisis.aspx" />
     <Content Include="MasterPage.Master" />
-    <Content Include="AnalisisNuevo.aspx" />
     <Content Include="NuevoAnalisis.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -314,13 +313,6 @@
     <Compile Include="Models\ModelResultado.cs" />
     <Compile Include="Models\ModelUsuario.cs" />
     <Compile Include="Models\ModelProducto.cs" />
-    <Compile Include="AnalisisNuevo.aspx.cs">
-      <DependentUpon>AnalisisNuevo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AnalisisNuevo.aspx.designer.cs">
-      <DependentUpon>AnalisisNuevo.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Repositories\MySQLRepositoryNutriente.cs" />
     <Compile Include="Repositories\MySQLRepositoryAnalisis.cs" />
     <Compile Include="Repositories\MySQLRepositoryPerfil.cs" />
