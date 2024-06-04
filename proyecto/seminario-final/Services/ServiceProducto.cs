@@ -99,8 +99,9 @@ public class ServiceProducto
         return resultado;
     }
 
-    public static ModelProducto ObtenerPorId(int idProducto)
+    public static Resultado<ModelProducto> ObtenerPorId(int idProducto)
     {
+        Resultado<ModelProducto> resultado = new Resultado<ModelProducto>();
         DataSet ds = MySQLRepositoryProducto.ObtenerUno(idProducto);
         DataTable dt = ds.Tables[0];
         DataTable dt_nutrientes = ds.Tables[1];
@@ -108,8 +109,8 @@ public class ServiceProducto
 
         if (dt.Rows.Count != 1)
         {
-            //TODO-TESIS: responder que no se encontró
-            return null;
+            resultado.ObtenerError("No se encontró el producto");
+            return resultado;
         }
 
         DataRow dr = dt.Rows[0];
@@ -141,6 +142,7 @@ public class ServiceProducto
         }
         var dic_nutrientes = nutrientes.GroupBy(x => x.Id).ToDictionary(g => g.Key, g => g);
         item.NutrientesProducto = dic_nutrientes[item.Id].ToList();
-        return item;
+        resultado.Data = item;
+        return resultado;
     }
 }

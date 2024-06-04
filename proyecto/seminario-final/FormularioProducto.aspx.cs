@@ -38,7 +38,14 @@ namespace seminario_final
 
         private void ObtenerProducto()
         {
-            producto = ServiceProducto.ObtenerPorId(Convert.ToInt32(idProducto));
+            var resProducto = ServiceProducto.ObtenerPorId(Convert.ToInt32(idProducto));
+            if (!resProducto.Ok)
+            {
+                var master = Master as MasterPage;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resProducto.Errores), true);
+                return;
+            }
+            producto = resProducto.Data;
         }
 
         private void CargarProducto()
