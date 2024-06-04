@@ -6,8 +6,8 @@ VALUES ('Usuario consumidor');
 
 
 INSERT INTO usuarios (USU_NOMBRE, USU_USUARIOS, USU_CONTRASENA, USU_ROL_ID,
-USU_ID_ALTA)
-VALUES ('Admin', 1, 'Admin', 1, (select rol_id from roles where rol_nombre='Administrador'));
+USU_ID_ALTA, USU_ID_MODIFICACION)
+VALUES ('Admin', 'Admin', 'Demo123', (select rol_id from roles where rol_nombre='Administrador'), 1, 1);
 
 INSERT INTO tipos_porcion(TPO_NOMBRE, 
 TPO_USU_ID_ALTA,
@@ -112,7 +112,7 @@ VALUES ('Dulce de leche repostero Los quebrachitos', 20, 'Leche entera pasteuriz
 );
 
 INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
-NPR_USU_ID_ALTA
+NPR_USU_ID_ALTA,
 NPR_USU_ID_MODIFICACION)
 VALUES(
 (select PRO_ID from productos where PRO_NOMBRE='Dulce de leche repostero Los quebrachitos'),
@@ -388,10 +388,9 @@ values ((select ale_id from alertas where ale_nombre='Exceso en azúcares'), (se
 ---------------------
 -- ESTOS SCRIPTS SON EXCLUSIVAMENTE PARA SIMULAR EL USO DEL SISTEMA
 
-
 INSERT INTO usuarios (USU_NOMBRE, USU_USUARIOS, USU_CONTRASENA, USU_ROL_ID,
-USU_ID_ALTA)
-VALUES ('Demo', 2, 'Demo', 2, (select rol_id from roles where rol_nombre='Usuario consumidor'));
+USU_ID_ALTA, USU_ID_MODIFICACION)
+VALUES ('Demo', 'Demo', 'Admin123', (select rol_id from roles where rol_nombre='Usuario consumidor'), 2, 2);
 
 INSERT INTO PERFILES(PRF_NOMBRE, PRF_USU_ID, PRF_INGREDIENTES_PROHIBIDOS, PRF_FECHA_NACIMIENTO, PRF_ES_PRINCIPAL, 
 PRF_USU_ID_ALTA,
@@ -413,7 +412,7 @@ values ('Hijo menor', (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Demo'), 'la
 
 INSERT INTO tipos_alerta(tal_nombre, tal_color, tal_forma,
 tal_USU_ID_ALTA,
-tal_USU_ID_MODIFICACION,
+tal_USU_ID_MODIFICACION
 )
 values ('Rectángulo verde saludable', '7fe757', 2,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
