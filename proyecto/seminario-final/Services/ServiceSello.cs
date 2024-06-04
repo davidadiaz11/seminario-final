@@ -222,6 +222,10 @@ public class ServiceSello
     {
         List<ModelNutriente> items = new List<ModelNutriente>();
         DataTable dt = MySQLRepositorySello.ObtenerUltimosSellos(idUsuario);
+        if(dt.Rows.Count == 0)
+        {
+            return items;
+        }
         DataRow dr = dt.Rows[0];
 
         ModelNutriente x = new ModelNutriente()
