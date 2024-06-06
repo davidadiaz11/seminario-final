@@ -41,9 +41,17 @@ public class ServicePerfiles
         }
         return res;
     }
-    public static ModelPerfil ObtenerPerfil(uint idPerfil)
+    public static Resultado<ModelPerfil> ObtenerPerfil(uint idPerfil)
     {
-        return ObtenerPerfiles().First(x => x.Id == idPerfil);
+        var resultado = new Resultado<ModelPerfil>();
+        var resPerfil = ObtenerPerfiles().FirstOrDefault(x => x.Id == idPerfil);
+        if (resPerfil == null)
+        {
+            resultado.ObtenerError("No se encontró el perfil buscado");
+            return resultado;
+        }
+        resultado.Data = resPerfil;
+        return resultado;
     }
 
     public static Resultado<bool> GuardarPerfil(ModelPerfil perfil, uint idPerfilPersistido)
@@ -51,22 +59,27 @@ public class ServicePerfiles
         Resultado<bool> resultado = new Resultado<bool>(false);
         try
         {
-            ModelPerfil perfilPersistido = ObtenerPerfil(idPerfilPersistido);
-
-            if (perfil.Id > 0 && perfil.Nombre == perfilPersistido.Nombre && perfil.FechaNacimiento == perfilPersistido.FechaNacimiento || perfil.IngredientesProhibidos == perfilPersistido.IngredientesProhibidos)
+            if (idPerfilPersistido > 0)
             {
-                resultado.Mensaje = "No hay cambios para guardar.";
-                return resultado;
+                ModelPerfil perfilPersistido = ObtenerPerfil(idPerfilPersistido).Data;
+                if (perfil.Id > 0 && perfil.Nombre == perfilPersistido.Nombre && perfil.FechaNacimiento == perfilPersistido.FechaNacimiento || perfil.IngredientesProhibidos == perfilPersistido.IngredientesProhibidos)
+                {
+                    resultado.Mensaje = "No hay cambios para guardar.";
+                    return resultado;
+                }
             }
+            
             resultado.Data = MySQLRepositoryPerfil.GuardarPerfil(idUsuario, perfil);
             if (!resultado.Ok)
             {
-                throw new Exception("Error al actualizar alerta.");
+                resultado.ObtenerError("Error al actualizar alerta.");
+                return resultado;
             }
         }
         catch (Exception ex)
         {
-            throw;
+            resultado.ObtenerError(ex.Message);
+            return resultado;
         }
         return resultado;
     }

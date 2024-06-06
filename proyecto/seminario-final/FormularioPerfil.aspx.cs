@@ -13,14 +13,20 @@ namespace seminario_final
             idPerfilstring = Request.QueryString["prf"];
             if (!IsPostBack)
             {
-                
-                if (idPerfilstring != null)
+
+                if (idPerfilstring == null)
                 {
-                    idPerfil = Convert.ToUInt32(idPerfilstring);
-                    ObtenerPerfil();
+                    return;
                 }
-                ;
-                if (perfilPersistido != null)
+
+                var resValidacion = ServiceShared.ValidarQueryParam(idPerfilstring);
+                if (!resValidacion.Ok)
+                {
+                    var master = Master as MasterPage;
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resValidacion.Errores), true);
+                    return;
+                }
+                if (ObtenerPerfil())
                 {
                     CargarPerfil();
                 }
@@ -28,9 +34,17 @@ namespace seminario_final
             }
         }
 
-        private void ObtenerPerfil()
+        private bool ObtenerPerfil()
         {
-            perfilPersistido = ServicePerfiles.ObtenerPerfil(idPerfil);
+            var resPerfilPersistido = ServicePerfiles.ObtenerPerfil(idPerfil);
+            if (!resPerfilPersistido.Ok)
+            {
+                var master = Master as MasterPage;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resPerfilPersistido.Errores), true);
+                return false;
+            }
+            perfilPersistido = resPerfilPersistido.Data;
+            return true;
         }
 
         private void CargarPerfil()
