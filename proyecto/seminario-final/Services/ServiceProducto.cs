@@ -23,10 +23,8 @@ public class ServiceProducto
             };
             items.Add(x);
         }
-
         return items;
     }
-
 
     public static List<ModelProducto> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
     {

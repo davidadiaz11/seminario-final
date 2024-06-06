@@ -12,16 +12,12 @@ public class MySQLRepositoryProducto
     static string cadena = MySQLRepositoryShared.getConnectionString();
     public static DataTable ObtenerProductos()
     {
-
-
         MySqlConnection cn = new MySqlConnection(cadena);
         DataTable dt = new DataTable();
-
         try
         {
             cn.Open();
             MySqlCommand cmd = new MySqlCommand();
-
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
@@ -29,10 +25,7 @@ public class MySQLRepositoryProducto
                                 FROM productos 
                                 JOIN tipos_porcion on tpo_id=pro_tpo_id
                                 WHERE tpo_fecha_baja is null and pro_fecha_baja is null";
-
             dt.Load(cmd.ExecuteReader());
-
-
         }
         catch (Exception)
         {
@@ -47,7 +40,6 @@ public class MySQLRepositoryProducto
         return dt;
     }
 
-
     public static DataSet ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, ushort usuario, bool eliminados)
     {
         MySqlConnection cn = new MySqlConnection(cadena);
@@ -58,18 +50,14 @@ public class MySQLRepositoryProducto
         {
             cn.Open();
             MySqlCommand cmd = new MySqlCommand();
-
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-
             cmd.CommandText = @"SELECT COUNT(pro_id) cant 
                                 FROM productos 
                                 WHERE ";
-
             foreach (ModelFiltro filtro in filtros)
             {
-
                 switch (filtro.filtro)
                 {
                     case "nombre":
@@ -86,7 +74,6 @@ public class MySQLRepositoryProducto
                         break;
                     default: break;
                 }
-
             }
 
             if (!eliminados)
@@ -97,13 +84,10 @@ public class MySQLRepositoryProducto
             DataTable dtcan = new DataTable();
             dtcan.Load(cmd.ExecuteReader());
             encontrados = Convert.ToInt32(dtcan.Rows[0]["cant"]);
-
             cmd.CommandText = @"SELECT pro_id, pro_nombre, pro_porcion, tpo_nombre
                                 FROM productos 
                                 JOIN tipos_porcion on tpo_id=pro_tpo_id
-                                
                                 WHERE tpo_fecha_baja is null AND ";
-
             foreach (ModelFiltro filtro in filtros)
             {
                 switch (filtro.filtro)
@@ -188,14 +172,6 @@ public class MySQLRepositoryProducto
             cmd.Parameters.Add(new MySqlParameter("@pro_id", idProducto));
 
             dt.Load(cmd.ExecuteReader());
-            //string segundaQuery =
-            //@"SELECT ipr_pro_id , ing_nombre
-            //                        from  ingredientes_x_productos
-            //                    JOIN ingredientes on ing_id=ipr_ing_id
-            //                    where ipr_pro_id=@pro_id and ipr_fecha_Baja is null and ing_fecha_baja is null;";
-
-            //cmd.CommandText = segundaQuery;
-            //dt_detalles.Load(cmd.ExecuteReader());
             string terceraQuery = @"SELECT npr_pro_id, nut_nombre, NPR_CANTIDAD_POR_PORCION from
                                 nutrientes_x_productos
                                 join nutrientes on npr_nut_id=nut_id
@@ -217,7 +193,6 @@ public class MySQLRepositoryProducto
         }
 
         ds.Tables.Add(dt);
-        //ds.Tables.Add(dt_detalles);
         ds.Tables.Add(dt_nutrientes);
         return ds;
     }
@@ -227,7 +202,6 @@ public class MySQLRepositoryProducto
     public static bool ModificarProducto(ModelProducto nuevoProducto)
     {
         MySqlConnection cn = new MySqlConnection(cadena);
-       
         try
         {
             cn.Open();
@@ -242,22 +216,7 @@ public class MySQLRepositoryProducto
             cmd.Parameters.Add(new MySqlParameter("@pro_nombre", nuevoProducto.Nombre));
             cmd.Parameters.Add(new MySqlParameter("@pro_porcion", nuevoProducto.Porcion));
             cmd.Parameters.Add(new MySqlParameter("@pro_tpo_id", nuevoProducto.TipoPorcion.Id));
-
             cmd.ExecuteNonQuery();
-
-            //ACÁ HAY Q EVALUAR CUÁLES DAR DE BAJA Y CUÁLES DAR DE ALTA
-
-            //foreach (ModelIngredienteProducto ingredienteProducto in nuevoProducto.IngredientesProducto)
-            //{
-            //    var sssql = "update ingredientes_x_productos set NPR_CANTIDAD_POR_PORCION=@NPR_CANTIDAD_POR_PORCION where npr_id=@npr_id;";
-            //    cmd.Parameters.Add(new MySqlParameter("@NPR_CANTIDAD_POR_PORCION", nutriente.Nutriente.CantidadPorPorcion));
-            //    cmd.Parameters.Add(new MySqlParameter("@npr_id", nutriente.Id));
-            //    cmd.CommandText = sssql;
-            //    cmd.ExecuteNonQuery();
-            //    cmd.Parameters.Clear();
-            //}
-
-
             foreach (ModelNutrienteProducto nutriente in nuevoProducto.NutrientesProducto)
             {
                 var sssql = "update nutrientes_x_productos set NPR_CANTIDAD_POR_PORCION=@NPR_CANTIDAD_POR_PORCION where npr_id=@npr_id;";

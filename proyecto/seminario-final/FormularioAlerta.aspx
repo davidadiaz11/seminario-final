@@ -84,18 +84,6 @@
            
                                             <asp:Button CssClass="btn btn-primary col-3 col-md-2" ID="btn_guardar" runat="server" Text="Guardar" OnClick="btn_guardar_Click" />
                                             <button type="button" class="btn btn-light no-print" onclick="history.go(-1);">Cancelar</button>
-                                            <script type="text/javascript">
-                                                "use strict";
-                                           
-                                                document.getElementById("ctl00").addEventListener('keypress', function (event) {
-                                                    if (event.keyCode == 13)
-                                                        event.preventDefault();
-                                                })
-
-                                            </script>
-                                            <asp:HiddenField ID="hf_editar" runat="server" />
-
-
                                             <div>
                                                 <div>
                                                     <div>

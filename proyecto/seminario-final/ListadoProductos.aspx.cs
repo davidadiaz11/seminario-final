@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace seminario_final
 {
     public partial class ListadoProductos : System.Web.UI.Page
@@ -46,8 +45,6 @@ namespace seminario_final
             vista_lista.PageSize = Convert.ToInt32(Session["cant_resultados"]);
             ddl_cant_filas.SelectedValue = vista_lista.PageSize.ToString();
         }
-
-       
         public void mensaje(string msj, string estilo)
         {
             span_mensaje.InnerText = msj;
@@ -100,7 +97,7 @@ namespace seminario_final
         }
 
         private void populate(int filasPorPag)
-        { 
+        {
             int pageNo = 0;
             int cantPags = 0;
             int encontrados = 0;
@@ -136,7 +133,5 @@ namespace seminario_final
         {
             Session["cant_resultados"] = Convert.ToByte(ddl_cant_filas.SelectedValue);
         }
-
-
     }
 }

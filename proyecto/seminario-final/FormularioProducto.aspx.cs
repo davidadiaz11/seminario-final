@@ -141,7 +141,6 @@ namespace seminario_final
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Ingrese los ingredientes"), true);
                 return false;
             }
-
             return true;
         }
 
@@ -173,9 +172,6 @@ namespace seminario_final
                 nuevosNutrientesProductos.Add(mnp);
             }
             nuevoProducto.NutrientesProducto = nuevosNutrientesProductos;
-            
-            //buscar los ingredientes, ver cuáles dar de baja, cuáles mantener y cuáles dar de alta?
-            //o simplemente guardar los ingredientes como un string 
             return nuevoProducto;
         }
 
