@@ -128,14 +128,14 @@
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
-                                                    <ItemTemplate><%# Eval("Ingredientes") %></ItemTemplate>
+                                                    <ItemTemplate> <i class="mdi mdi-eye text-primary icon-md" title='<%# Eval("Ingredientes") %>'></i></ItemTemplate>
                                                     <HeaderTemplate>
                                                         <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ingredientes"? hfSortDir.Value.ToLower() : "" %>'
                                                             Text="Ingredientes" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("ingredientes")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
-                                                    <ItemTemplate><%#Eval("NutrientesText") %></ItemTemplate>
+                                                    <ItemTemplate> <i class="mdi mdi-atom text-primary icon-md" title='<%# Eval("NutrientesText") %>'></i></ItemTemplate>
                                                     <HeaderTemplate>
                                                         <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nutrientes"? hfSortDir.Value.ToLower() : "" %>'
                                                             Text="Nutrientes" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("nutrientes")) %>'></asp:HyperLink>
@@ -151,7 +151,7 @@
                                                         <a href="<%# String.Format("FormularioProducto?pro={0}", Eval("ID")) %>" class="mr-3">
                                                             <i class="mdi mdi-pencil text-muted icon-md"></i>
                                                         </a>
-                                                        <a style='<%# ch_eliminados.Checked ? "display:none": "display:block" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
+                                                        <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
                                                             <i class="mdi mdi-delete text-black icon-md"></i>
                                                         </a>
                                                     </ItemTemplate>
@@ -208,7 +208,7 @@
 
                                                             <a class="text-warning" href="<%# String.Format("ListadoProductos?pro={0}", Eval("ID")) %>"><i class="mdi  mdi-receipt icon-md "></i></a>
                                                             <a class="text-muted" href="<%# String.Format("FormularioProducto?pro={0}", Eval("ID")) %>"><i class="mdi  mdi-pencil icon-md ml-2 "></i></a>
-                                                            <a style='<%# ch_eliminados.Checked ? "display:none": "display:block" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
+                                                            <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
                                                                 <i class="mdi mdi-delete text-black icon-md"></i>
                                                             </a>
                                                         </div>

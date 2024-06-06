@@ -84,7 +84,7 @@ public class MySQLRepositoryProducto
             DataTable dtcan = new DataTable();
             dtcan.Load(cmd.ExecuteReader());
             encontrados = Convert.ToInt32(dtcan.Rows[0]["cant"]);
-            cmd.CommandText = @"SELECT pro_id, pro_nombre, pro_porcion, tpo_nombre
+            cmd.CommandText = @"SELECT pro_id, pro_nombre, pro_porcion, pro_ingredientes, tpo_nombre
                                 FROM productos 
                                 JOIN tipos_porcion on tpo_id=pro_tpo_id
                                 WHERE tpo_fecha_baja is null AND ";

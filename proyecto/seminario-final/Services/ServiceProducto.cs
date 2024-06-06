@@ -39,6 +39,7 @@ public class ServiceProducto
             {
                 Id = Convert.ToUInt16(dr["pro_id"]),
                 Nombre = dr["pro_nombre"].ToString(),
+                Ingredientes = dr["pro_ingredientes"].ToString(),
                 Porcion = Convert.ToUInt32(dr["pro_porcion"]),
                 TipoPorcion = new ModelTipoPorcion()
                 {
