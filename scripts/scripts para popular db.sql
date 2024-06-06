@@ -800,6 +800,122 @@ VALUES(
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
 ---------------------
+
+
+INSERT INTO productos(PRO_NOMBRE, PRO_PORCION, PRO_INGREDIENTES, PRO_TPO_ID,
+PRO_USU_ID_ALTA,
+PRO_USU_ID_MODIFICACION
+)
+VALUES ('Alfajor Milka Mousse', 42, 'azúcar; harina de trigo enriquecida; aceite vegetal; grasa vacuna refinada; leche entera en polvo; manteca de cacao; permeado de suero en polvo; cacao en polvo; pasta de cacao; jarabe de maíz de alta fructosa; leudantes químicos: bicarbonato de amoni bicarbonato de sodio; emulsionantes: mono y diglicéridos de ácidos grasos; lecitina de soja; polirricinoleato de poliglicerol; aromatizantes artificiales: vainilla, avellana; aromatizante idéntico al natural: vainillina', (select TPO_ID from TIPOS_PORCION where TPO_NOMBRE='gramos'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Carbohidratos'),
+26,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Proteínas'),
+2.6,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas totales'),
+12,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas saturadas'),
+6.2,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas trans'),
+0.3,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Fibra'),
+1,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Sodio'),
+26,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Calorías'),
+219,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Azúcares añadidos'),
+16,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+---------------------
 ---------------------
 
 
