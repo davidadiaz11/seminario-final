@@ -382,7 +382,7 @@ public class MySQLRepositorySello
         return dt;
     }
 
-    public static bool EliminarSello(int idNutrienteAlerta, ushort idUsuario)
+    public static bool EliminarSello(uint idNutrienteAlerta, ushort idUsuario)
     {
         MySqlConnection cn = new MySqlConnection(cadena);
         try

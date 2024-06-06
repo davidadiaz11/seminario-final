@@ -29,19 +29,35 @@ public class ServiceSello
         return items;
     }
 
-    public static bool Eliminar(int idNutrienteAlerta)
+    public static Resultado<bool> Eliminar(uint idNutrienteAlerta)
     {
-        bool res = false;
+        Resultado<bool> resultado = new Resultado<bool>(false);
         try
         {
+            var resNutrienteAlerta = ObtenerNutrienteAlertaPorId(idNutrienteAlerta);
+            ModelNutriente nut = resNutrienteAlerta.Data;
 
-            res = MySQLRepositorySello.EliminarSello(idNutrienteAlerta, idUsuario);
+            if (nut.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica)
+            {
+                if (!ServiceShared.ValidarPermisos().Data)
+                {
+                    resultado.ObtenerError("No posee los permisos para eliminar. Comuníquese con el administrador del software.");
+                    return resultado;
+                }
+            }
+
+            var resEliminar = MySQLRepositorySello.EliminarSello(nut.NutrientesAlerta.First().Id, idUsuario);
+            if (!resEliminar)
+            {
+                resultado.ObtenerError("Error al eliminar el sello.");
+                return resultado;
+            }
         }
         catch (Exception ex)
         {
             throw;
         }
-        return res;
+        return resultado;
     }
 
     public static List<ModelNutriente> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)

@@ -20,7 +20,7 @@ namespace seminario_final
                 vista_lista.PageSize = Convert.ToInt16(ddl_cant_filas.SelectedValue);
                 if (Request["__EVENTTARGET"] == "eliminar")
                 {
-                    eliminar(Convert.ToInt32(Request["__EVENTARGUMENT"]));
+                    Eliminar(Convert.ToUInt32(Request["__EVENTARGUMENT"]));
                 }
             }
             populate(vista_lista.PageSize);
@@ -57,13 +57,21 @@ namespace seminario_final
             span_mensaje.InnerText = msj;
         }
 
-        private void eliminar(int idNutrienteAlerta)
+        private void Eliminar(uint idNutrienteAlerta)
         {
             var master = Master as MasterPage;
-            if (idNutrienteAlerta > 0 && ServiceSello.Eliminar(idNutrienteAlerta))
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
-            else
+            if (idNutrienteAlerta <= 0)
+            {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
+                return;
+            }
+            var resEliminar = ServiceSello.Eliminar(idNutrienteAlerta);
+            if (!resEliminar.Ok)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
+                return;
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
         }
 
         private void Ver_tarjetas()

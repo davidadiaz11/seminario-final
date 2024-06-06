@@ -44,7 +44,7 @@ namespace seminario_final
         {
             if (Session["cant_resultados"] == null)
             {
-                Session["cant_resultados"] = 3;
+                Session["cant_resultados"] = 5;
             }
             vista_lista.PageSize = Convert.ToInt32(Session["cant_resultados"]);
             ddl_cant_filas.SelectedValue = vista_lista.PageSize.ToString();

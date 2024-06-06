@@ -92,10 +92,10 @@
                                                     <ItemTemplate>
 
                                                         <a href="<%# String.Format("FormularioPerfil?prf={0}", Eval("Id")) %>" class="mr-3">
-                                                            <i class="mdi mdi-pencil text-muted icon-md"></i>
+                                                            <i class="mdi mdi-pencil text-dark icon-md"></i>
                                                         </a>
                                                         <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
-                                                            <i class="mdi mdi-delete text-black icon-md"></i>
+                                                            <i class="mdi mdi-delete text-danger icon-md"></i>
                                                         </a>
                                                     </ItemTemplate>
 
@@ -151,9 +151,9 @@
                                                                 <asp:Label Text='<%# "Fecha Nac: " + Convert.ToDateTime(Eval("FechaNacimiento")).ToString("dd/MM/yyyy") %>' runat="server" />
                                                             </p>
                                                         
-                                                            <a class="text-muted" href="<%# String.Format("FormularioPerfil?prf={0}", Eval("ID")) %>"><i class="mdi  mdi-pencil icon-md ml-2 "></i></a>
+                                                            <a class="text-muted" href="<%# String.Format("FormularioPerfil?prf={0}", Eval("ID")) %>"><i class="mdi  mdi-pencil text-dark icon-md ml-2 "></i></a>
                                                             <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
-                                                                <i class="mdi mdi-delete text-black icon-md"></i>
+                                                                <i class="mdi mdi-delete text-danger icon-md"></i>
                                                             </a>
                                                         </div>
                                                         <div class="side-right text-right font-weight-light">

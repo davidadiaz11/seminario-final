@@ -16,8 +16,6 @@
                                         <div>
                                             <small>Cantidad de filas: </small>
                                             <asp:DropDownList OnSelectedIndexChanged="ddl_cant_filas_SelectedIndexChanged" AutoPostBack="true" ID="ddl_cant_filas" runat="server">
-                                                <asp:ListItem Value="3">3</asp:ListItem>
-                                                <asp:ListItem Value="4">4</asp:ListItem>
                                                 <asp:ListItem Value="5">5</asp:ListItem>
                                                 <asp:ListItem Value="10">10</asp:ListItem>
                                                 <asp:ListItem Value="15">15</asp:ListItem>
