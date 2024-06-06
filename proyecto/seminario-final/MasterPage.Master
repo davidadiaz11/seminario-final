@@ -327,19 +327,19 @@ input {
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" runat="server" id="btn_nuevo" href="NuevoAnalisis">
-                        <i class="menu-icon mdi mdi-check-circle"></i>
+                        <i class="menu-icon mdi mdi-qrcode-scan"></i>
                         <span class="menu-title">Escanear productos</span>
                     </a>
                 </li>
                  <li class="nav-item">
                     <a class="nav-link" runat="server" id="A2" href="ListadoProductos">
-                        <i class="menu-icon mdi mdi-check-circle"></i>
+                        <i class="menu-icon mdi mdi-food"></i>
                         <span class="menu-title">Productos</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#sub-sellos" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="menu-icon mdi  mdi-account-location"></i>
+                        <i class="menu-icon mdi  mdi-sticker"></i>
                         <span class="menu-title">Sellos</span>
                         <i class="menu-arrow"></i>
                     </a>

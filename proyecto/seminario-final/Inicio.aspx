@@ -19,7 +19,7 @@
                                 <div class="card-body">
                                     <div class="clearfix">
                                         <div class="float-left">
-                                            <i class="mdi mdi-check-circle text-success icon-lg"></i>
+                                            <i class="mdi mdi-qrcode-scan text-success icon-lg"></i>
                                         </div>
                                         <div class="float-right">
                                             <p class="mb-0 text-right text-dark">Nuevo</p>
@@ -38,7 +38,7 @@
                                 <div class="card-body">
                                     <div class="clearfix">
                                         <div class="float-left">
-                                            <i class="mdi mdi-receipt text-warning icon-lg"></i>
+                                            <i class="mdi mdi-poll-box text-warning icon-lg"></i>
                                         </div>
                                         <div class="float-right">
                                             <p class="mb-0 text-right text-dark">Ver todos</p>
@@ -76,7 +76,7 @@
                                 <div class="card-body">
                                     <div class="clearfix">
                                         <div class="float-left">
-                                            <i class="mdi mdi-poll-box text-info icon-lg"></i>
+                                            <i class="mdi mdi-sticker text-info icon-lg"></i>
                                         </div>
                                         <div class="float-right">
                                             <p class="mb-0 text-right text-dark">Ver todos</p>
@@ -102,15 +102,15 @@
                                         <a class="text-black" href="<%# String.Format("VerAnalisis?ahi={0}", Eval("Id")) %>">
                                             <div class="wrapper d-flex justify-content-between">
                                                 <div class="side-left">
-                                                    <p class="display-5 mb-1 font-weight-light">
+                                                    <p class="mb-1 font-weight-light">
                                                         <asp:Label Text='<%# Eval("Producto.Nombre").ToString() %>' runat="server" />
                                                     </p>
-                                                    <p class="mb-1">
-                                                        <asp:Label Text='<%# "Fecha: " + Eval("Fecha", "{0:dd/MM/yy}") %>' runat="server" />
-                                                    </p>
-                                                    <small class="text-muted">Hace <%# Math.Floor((DateTime.UtcNow.AddHours(-3).Date).Subtract(Convert.ToDateTime(Eval("Fecha")).Date).TotalDays).ToString() %> días</small>
                                                 </div>
                                                 <div class="side-right text-right">
+                                                    <p class="mt-2 mb-1">
+                                                        <asp:Label Text='<%# "Fecha " + Eval("Fecha", "{0:dd/MM/yy}")%>' runat="server" />
+                                                    </p>
+                                                    <small class="text-muted">Hace <%# Math.Floor((DateTime.UtcNow.AddHours(-3).Date).Subtract(Convert.ToDateTime(Eval("Fecha")).Date).TotalDays).ToString() %> días</small>
                                                 </div>
                                             </div>
                                         </a>
@@ -126,7 +126,7 @@
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h2 class="card-title text-primary text-center mb-2">Últimos sellos creados</h2>
+                                <h2 class="card-title text-primary text-center mb-2">Últimos sellos</h2>
                                 <hr class="hr" />
                                 <asp:Repeater ID="rpt_ultimos_sellos" runat="server">
                                     <ItemTemplate>
@@ -150,7 +150,6 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        <br />
                                         <br />
                                         <hr class="hr" />
                                     </ItemTemplate>
