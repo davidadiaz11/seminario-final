@@ -11,20 +11,25 @@ namespace seminario_final
         string idProducto = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            idProducto = Request.QueryString["pro"];
-            if (idProducto == null)
-            {
-                return;
-            }
             if (!IsPostBack)
             {
                 CargarTiposPorcion();
-                ObtenerProducto();
-                if (producto != null)
+                idProducto = Request.QueryString["pro"];
+                if (idProducto == null)
+                {
+                    return;
+                }
+                var resValidacion = ServiceShared.ValidarQueryParam(idProducto);
+                if (!resValidacion.Ok)
+                {
+                    var master = Master as MasterPage;
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resValidacion.Errores), true);
+                    return;
+                }
+                if (ObtenerProducto())
                 {
                     CargarProducto();
                 }
-                
             }
         }
 
@@ -36,16 +41,17 @@ namespace seminario_final
             ddl_tipo_porcion.DataBind();
         }
 
-        private void ObtenerProducto()
+        private bool ObtenerProducto()
         {
             var resProducto = ServiceProducto.ObtenerPorId(Convert.ToInt32(idProducto));
             if (!resProducto.Ok)
             {
                 var master = Master as MasterPage;
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resProducto.Errores), true);
-                return;
+                return false;
             }
             producto = resProducto.Data;
+            return true;
         }
 
         private void CargarProducto()
