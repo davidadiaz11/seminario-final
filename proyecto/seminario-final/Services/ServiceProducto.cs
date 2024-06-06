@@ -144,4 +144,29 @@ public class ServiceProducto
         resultado.Data = item;
         return resultado;
     }
+
+    public static Resultado<bool> Eliminar(int idProducto)
+    {
+        Resultado<bool> resultado = new Resultado<bool>(false);
+        try
+        {
+            if (!ServiceShared.ValidarPermisos().Data)
+            {
+                resultado.ObtenerError("No posee los permisos para modificar. Comuníquese con el administrador del sistema.");
+                return resultado;
+            }
+
+            resultado.Data = MySQLRepositoryProducto.Eliminar(idProducto, idUsuario);
+            if (!resultado.Data)
+            {
+                resultado.ObtenerError("Error al eliminar el producto. Reintente o comuníquese con el administrador del software.");
+                return resultado;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        return resultado;
+    }
 }

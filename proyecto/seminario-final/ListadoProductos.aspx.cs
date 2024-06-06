@@ -9,6 +9,7 @@ namespace seminario_final
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = "Productos";
             if (!IsPostBack)
             {
                 configurarPantalla();
@@ -16,10 +17,13 @@ namespace seminario_final
             else
             {
                 vista_lista.PageSize = Convert.ToInt16(ddl_cant_filas.SelectedValue);
+                if (Request["__EVENTTARGET"] == "eliminar")
+                {
+                    Eliminar(Convert.ToInt32(Request["__EVENTARGUMENT"]));
+                }
             }
             buscar_filtros();
             populate(vista_lista.PageSize);
-            Page.Title = "Productos";
         }
 
         private void configurarPantalla()
@@ -48,6 +52,23 @@ namespace seminario_final
         public void mensaje(string msj, string estilo)
         {
             span_mensaje.InnerText = msj;
+        }
+
+        private void Eliminar(int idProducto)
+        {
+            var master = Master as MasterPage;
+            if (idProducto<= 0)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
+                return;
+            }
+            var resEliminar = ServiceProducto.Eliminar(idProducto);
+            if (!resEliminar.Ok)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resEliminar.Errores), true);
+                return;
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
         }
 
         private void Ver_tarjetas()

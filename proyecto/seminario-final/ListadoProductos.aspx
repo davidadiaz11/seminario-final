@@ -144,15 +144,11 @@
 
                                                 <asp:TemplateField HeaderText="Acción">
                                                     <ItemTemplate>
-                                                        <a class="text-warning mr-3" href="<%# String.Format("ListadoProductos?pro={0}", Eval("ID")) %>">
-                                                            <i class="mdi  mdi-receipt icon-md "></i>
-                                                        </a>
-
                                                         <a href="<%# String.Format("FormularioProducto?pro={0}", Eval("ID")) %>" class="mr-3">
-                                                            <i class="mdi mdi-pencil text-muted icon-md"></i>
+                                                            <i class="mdi mdi-pencil text-dark icon-md"></i>
                                                         </a>
                                                         <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
-                                                            <i class="mdi mdi-delete text-black icon-md"></i>
+                                                            <i class="mdi mdi-delete text-danger icon-md"></i>
                                                         </a>
                                                     </ItemTemplate>
 

@@ -50,7 +50,6 @@ public class MySQLRepositoryProducto
         {
             cn.Open();
             MySqlCommand cmd = new MySqlCommand();
-            cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
             cmd.CommandText = @"SELECT COUNT(pro_id) cant 
@@ -230,6 +229,55 @@ public class MySQLRepositoryProducto
         catch (Exception ex)
         {
             throw;
+        }
+        finally
+        {
+            if (cn != null && cn.State == ConnectionState.Open)
+                cn.Close();
+        }
+        return true;
+    }
+
+    public static bool Eliminar(int idProducto, ushort idUsuario)
+    {
+        MySqlTransaction trans = null;
+        MySqlConnection cn = new MySqlConnection(cadena);
+        try
+        {
+            cn.Open();
+            trans = cn.BeginTransaction();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Parameters.Clear();
+            cmd.Connection = cn;
+            cmd.Transaction = trans;
+            cmd.CommandText = @"UPDATE PRODUCTOS set pro_usu_id_baja=@usu_id, pro_fecha_baja=now(),
+                            WHERE pro_id=@pro_id and pro_fecha_baja IS NULL;";
+            cmd.Parameters.Add(new MySqlParameter("@pro_id", idProducto));
+            cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
+            var res = cmd.ExecuteNonQuery();
+
+            if (res == 0)
+            {
+                trans.Rollback();
+                return false;
+            }
+
+            cmd.CommandText = @"UPDATE NUTRIENTES_X_PRODUCTOS set npr_usu_id_baja=@usu_id, npr_fecha_baja=now(),
+                            WHERE npr_pro_id=@pro_id and npr_fecha_baja IS NULL;";
+            var res2 = cmd.ExecuteNonQuery();
+            if (res2 == 0)
+            {
+                trans.Rollback();
+                return false;
+            }
+            trans.Commit();
+        }
+        catch (Exception ex)
+        {
+            if (trans != null)
+            {
+                trans.Rollback();
+            }
         }
         finally
         {
