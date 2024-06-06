@@ -106,6 +106,35 @@ public class ServiceShared
         return formas.First(x => x.Id == idForma);
     }
 
+    public static Resultado<bool> ValidarQueryParam(string idQueryParam)
+    {
+        Resultado<bool> resultado = new Resultado<bool>(false);
+        try
+        {
+            if (idQueryParam == null)
+            {
+                resultado.Data = true;
+                return resultado;
+            }
+            if (idQueryParam == "")
+            {
+                throw new Exception();
+            }
+            uint parametro = Convert.ToUInt32(idQueryParam);
+            if (parametro < 0)
+            {
+                throw new Exception();
+            }
+        }
+        catch (Exception ex)
+        {
+            resultado.ObtenerError("Parámetro incorrecto. Intente ingresar nuevamente desde el listado.");
+            return resultado;
+        }
+        resultado.Data = true;
+        return resultado;
+    }
+
     public static string GetSortLink(string dataField, HttpRequest Request)
     {
         string link = "";

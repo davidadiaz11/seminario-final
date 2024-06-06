@@ -89,9 +89,17 @@ public class ServiceSello
         return items;
     }
 
-    public static ModelNutriente ObtenerNutrienteAlertaPorId(uint idNutrienteAlerta)
+    public static Resultado<ModelNutriente> ObtenerNutrienteAlertaPorId(uint idNutrienteAlerta)
     {
+        Resultado<ModelNutriente> resultado = new Resultado<ModelNutriente>();
         DataTable dt = MySQLRepositorySello.ObtenerNutrienteAlertaPorId(idNutrienteAlerta);
+
+        if (dt.Rows.Count != 1)
+        {
+            resultado.ObtenerError("No se encontró el sello.");
+            return resultado;
+        }
+
         DataRow dr = dt.Rows[0];
 
         ModelNutriente x = new ModelNutriente()
@@ -128,7 +136,8 @@ public class ServiceSello
                     }
                 }
         };
-        return x;
+        resultado.Data = x;
+        return resultado;
     }
 
     public static Resultado<bool> GuardarAlerta(ModelNutriente nutriente, ModelNutriente nutrientePersistido)

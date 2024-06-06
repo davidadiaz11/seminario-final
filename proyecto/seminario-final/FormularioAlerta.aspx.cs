@@ -23,9 +23,21 @@ namespace seminario_final
                 CargarNutrientes();
                 CargarTiposCalculo();
                 CargarFormas();
-                if (idNutrienteAlerta != null)
+
+                if (idNutrienteAlerta == null)
                 {
-                    ObtenerNutrienteAlertaPorId();
+                    return;
+                }
+
+                var resValidacion = ServiceShared.ValidarQueryParam(idNutrienteAlerta);
+                if (!resValidacion.Ok)
+                {
+                    var master = Master as MasterPage;
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resValidacion.Errores), true);
+                    return;
+                }
+                if(ObtenerNutrienteAlertaPorId())
+                {
                     CargarAlerta();
                 }
             }
@@ -72,15 +84,18 @@ namespace seminario_final
             ddl_tipoCalculo.DataBind();
         }
 
-        private void ObtenerNutrienteAlertaPorId()
+        private bool ObtenerNutrienteAlertaPorId()
         {
-            if (string.IsNullOrEmpty(idNutrienteAlerta))
-            {
-                return;
-            }
             ddl_color.Enabled = false;
-            nutrientePersistido = ServiceSello.ObtenerNutrienteAlertaPorId(Convert.ToUInt32(idNutrienteAlerta));
-            alertaPersistida = nutrientePersistido.NutrientesAlerta.First().Alerta;
+            var resNutrientePersistido = ServiceSello.ObtenerNutrienteAlertaPorId(Convert.ToUInt32(idNutrienteAlerta));
+            if (!resNutrientePersistido.Ok)
+            {
+                var master = Master as MasterPage;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resNutrientePersistido.Errores), true);
+                return false;
+            }
+            alertaPersistida = resNutrientePersistido.Data.NutrientesAlerta.First().Alerta;
+            return true;
         }
 
         private void CargarAlerta()
