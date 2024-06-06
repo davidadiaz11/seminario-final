@@ -223,7 +223,7 @@ INSERT INTO productos(PRO_NOMBRE, PRO_PORCION, PRO_INGREDIENTES, PRO_TPO_ID,
 PRO_USU_ID_ALTA,
 PRO_USU_ID_MODIFICACION
 )
-VALUES ('Queso untable Finlandia Jamón y parmesano', 30, 'Queso (leche, proteínas lácteas, cloruro de calcio, regulador de acidez (ácido cítrico)); jamón cocido; sal; saborizantes; emulsionante (citrato de sodio); conservador (sorbato de potasio, nisina, natamicina); espesantes (goma xántica, garrofín y guar).', (select TPO_ID from TIPOS_PORCION where TPO_NOMBRE='gramos'),
+VALUES ('Queso untable Finlandia Jamón y parmesano', 30, 'Queso (leche, proteínas lácteas, cloruro de calcio, regulador de acidez (ácido cítrico)); jamón cocido; sal; saborizantes; emulsionante (citrato de sodio); conservador (sorbato de potasio, nisina, natamicina); espesantes (goma xántica, garrofín y guar)', (select TPO_ID from TIPOS_PORCION where TPO_NOMBRE='gramos'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -339,7 +339,7 @@ INSERT INTO productos(PRO_NOMBRE, PRO_PORCION, PRO_INGREDIENTES, PRO_TPO_ID,
 PRO_USU_ID_ALTA,
 PRO_USU_ID_MODIFICACION
 )
-VALUES ('Queso untable Finlandia light', 30, 'Queso (leche, proteínas lácteas, cloruro de calcio, regulador de acidez (ácido cítrico)); jamón cocido; sal; emulsionante (citrato de sodio); conservador (sorbato de potasio, nisina, natamicina); aromatizantes; espesantes (goma xántica, garrofín y guar).', (select TPO_ID from TIPOS_PORCION where TPO_NOMBRE='gramos'),
+VALUES ('Queso untable Finlandia light', 30, 'Queso (leche, proteínas lácteas, cloruro de calcio, regulador de acidez (ácido cítrico)); jamón cocido; sal; emulsionante (citrato de sodio); conservador (sorbato de potasio, nisina, natamicina); aromatizantes; espesantes (goma xántica, garrofín y guar)', (select TPO_ID from TIPOS_PORCION where TPO_NOMBRE='gramos'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -445,6 +445,357 @@ VALUES(
 (select PRO_ID from productos where PRO_NOMBRE='Queso untable Finlandia light'),
 (select NUT_ID from nutrientes where NUT_NOMBRE='Azúcares añadidos'),
 1.6,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+---------------------
+
+
+INSERT INTO productos(PRO_NOMBRE, PRO_PORCION, PRO_INGREDIENTES, PRO_TPO_ID,
+PRO_USU_ID_ALTA,
+PRO_USU_ID_MODIFICACION
+)
+VALUES ('Mayonesa Hellmanns Liviana', 12, 'agua; aceite vegetal; almidón modificado; huevo líquido; azúcar; vinagre de alcohol; sal; jugo concentrado de limón; estabilizante: goma xántica; acidulante: ácido fosfórico; conservador: ácido sórbico; aromatizantes: idénticos al natural y naturales; secuestrante: EDTA disódico cálcico; antioxidantes: BHA, BHT; colorante: betacaroteno', (select TPO_ID from TIPOS_PORCION where TPO_NOMBRE='gramos'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mayonesa Hellmanns Liviana'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Carbohidratos'),
+1.2,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mayonesa Hellmanns Liviana'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Proteínas'),
+0,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mayonesa Hellmanns Liviana'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas totales'),
+1.9,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mayonesa Hellmanns Liviana'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas saturadas'),
+0,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mayonesa Hellmanns Liviana'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas trans'),
+0,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mayonesa Hellmanns Liviana'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Fibra'),
+0,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mayonesa Hellmanns Liviana'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Sodio'),
+89,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mayonesa Hellmanns Liviana'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Calorías'),
+22,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mayonesa Hellmanns Liviana'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Azúcares añadidos'),
+0,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+---------------------
+
+
+INSERT INTO productos(PRO_NOMBRE, PRO_PORCION, PRO_INGREDIENTES, PRO_TPO_ID,
+PRO_USU_ID_ALTA,
+PRO_USU_ID_MODIFICACION
+)
+VALUES ('Mostaza dijon', 12, 'agua; granos de mostaza marrón; vinagre de vino blanco; vino fino blanco Chardonnay; sal marina; azúcar', (select TPO_ID from TIPOS_PORCION where TPO_NOMBRE='gramos'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mostaza dijon'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Carbohidratos'),
+0.6,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mostaza dijon'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Proteínas'),
+0.24,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mostaza dijon'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas totales'),
+0,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mostaza dijon'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas saturadas'),
+0,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mostaza dijon'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas trans'),
+0,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mostaza dijon'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Fibra'),
+0.6,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mostaza dijon'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Sodio'),
+90,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mostaza dijon'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Calorías'),
+7,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Mostaza dijon'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Azúcares añadidos'),
+0,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+---------------------
+
+
+
+INSERT INTO productos(PRO_NOMBRE, PRO_PORCION, PRO_INGREDIENTES, PRO_TPO_ID,
+PRO_USU_ID_ALTA,
+PRO_USU_ID_MODIFICACION
+)
+VALUES ('Alfajor Ceral', 45, 'harina de trigo 000 enriquecida según Ley 25630 (*); azúcar; aceite vegetal interesterificado; glucosa; maltodextrina; almidón de maíz; fibra de avena; leudante químico: Bicarbonato de amonio; cacao amargo en polvo; emulsionante: mono y diglicéridos de ácidos grasos; leudante químico: bicarbonato de sodio; sal; emulsionante: lecitina de soja fluida; conservantes: propionato de calcio y sorbato de potasio; aromatizantes: esencia artificial de vainilla; esencia artificial de chocolate; esencia artificial de limón; esencia artificial de manteca; stevia; leche fluida; jarabe de maíz; sorbitol; polidextrosa; aromatizante: esencia de vainilla; conservante: sorbato de potasio; neutralizante: bicarbonato de sodio; edulcorante: sucralosa); Baño de repostería semiamargo. CONTIENE GLUTEN, LÁCTEOS Y DERIVADOS DE SOJA', (select TPO_ID from TIPOS_PORCION where TPO_NOMBRE='gramos'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Ceral'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Carbohidratos'),
+17.3,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Ceral'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Proteínas'),
+2.4,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Ceral'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas totales'),
+2.3,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Ceral'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas saturadas'),
+0.8,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Ceral'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Grasas trans'),
+0,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Ceral'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Fibra'),
+2.1,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Ceral'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Sodio'),
+68,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Ceral'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Calorías'),
+100,
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
+(SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
+);
+
+
+INSERT INTO nutrientes_x_productos(NPR_PRO_ID, NPR_NUT_ID, NPR_CANTIDAD_POR_PORCION,
+NPR_USU_ID_ALTA,
+NPR_USU_ID_MODIFICACION)
+VALUES(
+(select PRO_ID from productos where PRO_NOMBRE='Alfajor Ceral'),
+(select NUT_ID from nutrientes where NUT_NOMBRE='Azúcares añadidos'),
+0,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
