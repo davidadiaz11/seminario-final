@@ -28,18 +28,32 @@ public class ServicePerfiles
         return items;
     }
 
-    public static bool Eliminar(uint idPerfil)
+    public static Resultado<bool> Eliminar(uint idPerfil)
     {
-        bool res = false;
+        Resultado<bool> resultado = new Resultado<bool>(false);
         try
         {
-            res = MySQLRepositoryPerfil.EliminarPerfil(idPerfil, idUsuario);
+            var resPerfil = ObtenerPerfil(idPerfil).Data;
+
+            if (resPerfil.EsPrincipal)
+            {
+                resultado.ObtenerError("No es posible eliminar el perfil principal");
+                return resultado;
+            }
+
+            resultado.Data = MySQLRepositoryPerfil.EliminarPerfil(idPerfil, idUsuario);
+            if (!resultado.Data)
+            {
+                resultado.ObtenerError("Error al eliminar perfil");
+                return resultado;
+            }
         }
         catch (Exception ex)
         {
-            throw;
+            resultado.ObtenerError(ex.Message);
+            return resultado;
         }
-        return res;
+        return resultado;
     }
     public static Resultado<ModelPerfil> ObtenerPerfil(uint idPerfil)
     {

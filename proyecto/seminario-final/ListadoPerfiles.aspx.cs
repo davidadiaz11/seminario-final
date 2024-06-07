@@ -59,10 +59,18 @@ namespace seminario_final
         private void eliminar(uint idAlerta)
         {
             var master = Master as MasterPage;
-            if (idAlerta > 0 && ServicePerfiles.Eliminar(idAlerta))
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
-            else
+            if(idAlerta <= 0)
+            {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
+                return;
+            }
+            var resEliminar = ServicePerfiles.Eliminar(idAlerta);
+            if (!resEliminar.Ok)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resEliminar.Errores), true);
+                return;
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
         }
 
         private void Ver_tarjetas()

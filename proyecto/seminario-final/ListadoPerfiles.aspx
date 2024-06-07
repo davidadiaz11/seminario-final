@@ -25,10 +25,6 @@
                                 </div>
                            
                                 <asp:CheckBox CssClass="form-group" ID="ch_eliminados" Text="Ver perfiles eliminadas" runat="server" />
-                         
-                                <div class="row">
-                                    <asp:Button CssClass="btn btn-primary btn-rounded  mt-2 mb-3 no-print" ID="btn_buscar" runat="server" Text="Buscar" />
-                                </div>
                                 <script type="text/javascript">
                                     "use strict";
 
