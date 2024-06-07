@@ -60,7 +60,7 @@ namespace seminario_final
             txt_nombre.Text = producto.Nombre;
             ddl_tipo_porcion.SelectedValue = producto.TipoPorcion.Id.ToString();
             txt_porcion.Text = producto.Porcion.ToString();
-            txt_azucares.Text = producto.NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Azúcares")?.Nutriente?.CantidadPorPorcion.ToString();
+            txt_azucares.Text = producto.NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Azúcares añadidos")?.Nutriente?.CantidadPorPorcion.ToString();
             txt_carbohidratos.Text = producto.NutrientesProducto.First(x => x.Nutriente.Nombre == "Carbohidratos").Nutriente.CantidadPorPorcion.ToString().Replace(",", ".");
             txt_fibra.Text = producto.NutrientesProducto.First(x => x.Nutriente.Nombre == "Fibra").Nutriente.CantidadPorPorcion.ToString().Replace(",", ".");
             txt_grasas_saturadas.Text = producto.NutrientesProducto.First(x => x.Nutriente.Nombre == "Grasas saturadas").Nutriente.CantidadPorPorcion.ToString().Replace(",", ".");
@@ -98,7 +98,7 @@ namespace seminario_final
             }
             if (string.IsNullOrEmpty(txt_azucares.Text))
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Ingrese cantidad de azúcares por porción"), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Ingrese cantidad de azúcares añadidos por porción"), true);
                 return false;
             }
             if (string.IsNullOrEmpty(txt_carbohidratos.Text))

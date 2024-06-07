@@ -69,15 +69,6 @@ namespace seminario_final
         protected global::System.Web.UI.WebControls.LinkButton lnk_doc;
 
         /// <summary>
-        /// Control lnk_sello.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnk_sello;
-
-        /// <summary>
         /// Control ch_eliminados.
         /// </summary>
         /// <remarks>
@@ -202,15 +193,6 @@ namespace seminario_final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink h_tipo_porcion;
-
-        /// <summary>
-        /// Control h_alertas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink h_alertas;
 
         /// <summary>
         /// Control h_ingredientes.

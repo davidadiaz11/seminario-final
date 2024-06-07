@@ -79,9 +79,15 @@ public class ServiceProducto
         Resultado<bool> resultado = new Resultado<bool>(false);
         try
         {
+            if (nuevoProducto.Id <= 0)
+            {
+                resultado.ObtenerError("No posee guardar nuevos productos. Comuníquese con el administrador del software.");
+                return resultado;
+            }
+
             if (!ServiceShared.ValidarPermisos().Data)
             {
-                resultado.ObtenerError("No posee los permisos para modificar. Comuníquese con el administrador del sistema.");
+                resultado.ObtenerError("No posee los permisos para modificar. Comuníquese con el administrador del software.");
                 return resultado;
             }
 
@@ -152,7 +158,7 @@ public class ServiceProducto
         {
             if (!ServiceShared.ValidarPermisos().Data)
             {
-                resultado.ObtenerError("No posee los permisos para modificar. Comuníquese con el administrador del sistema.");
+                resultado.ObtenerError("No posee los permisos para eliminar. Comuníquese con el administrador del sistema.");
                 return resultado;
             }
 

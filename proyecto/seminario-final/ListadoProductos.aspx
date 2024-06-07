@@ -33,10 +33,6 @@
                                 <span>Ingredientes</span>
                                     </asp:LinkButton>
 
-                                    <asp:LinkButton ID="lnk_sello" CssClass="nav-link-filtro small mr-2" runat="server" aria-expanded="false" aria-controls="sello" data-toggle="collapse" href="#sello">
-                                <span>Sello</span>
-                                    </asp:LinkButton>
-
                                 </div>
                                 <asp:CheckBox CssClass="form-group" ID="ch_eliminados" Text="Ver productos eliminados" runat="server" />
                                 <div class="collapse mt-1" id="fil_nombre">
@@ -72,7 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <asp:Button CssClass="btn btn-primary btn-rounded  mt-2 mb-3 no-print" ID="btn_buscar" runat="server" Text="Buscar" />
+                                    <asp:Button CssClass="btn btn-primary btn-rounded col-3 col-md-1 mt-2 mb-3" ID="btn_buscar" runat="server" Text="Buscar" />
                                 </div>
                                 <script type="text/javascript">
                                     "use strict";
@@ -177,8 +173,6 @@
                             Text="Nombre" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("nombre")) %>'></asp:HyperLink>
                         <asp:HyperLink ID="h_tipo_porcion" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "porcion"? hfSortDir.Value.ToLower() : "" %>'
                             Text="Porción" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("porcion")) %>'></asp:HyperLink>
-                        <asp:HyperLink ID="h_alertas" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "alertas"? hfSortDir.Value.ToLower() : "" %>'
-                            Text="Alertas" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("alertas")) %>'></asp:HyperLink>
                         <asp:HyperLink ID="h_ingredientes" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ingredientes"? hfSortDir.Value.ToLower() : "" %>'
                             Text="Ingredientes" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("ingredientes")) %>'></asp:HyperLink>
                         <asp:HyperLink ID="h_nutrientes" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nutrientes"? hfSortDir.Value.ToLower() : "" %>'
@@ -200,16 +194,15 @@
                                                                 <asp:Label Text='<%# Eval("PorcionText") %>' runat="server" />
                                                             </p>
 
-                                                            <a class="text-warning" href="<%# String.Format("ListadoProductos?pro={0}", Eval("ID")) %>"><i class="mdi  mdi-receipt icon-md "></i></a>
-                                                            <a class="text-muted" href="<%# String.Format("FormularioProducto?pro={0}", Eval("ID")) %>"><i class="mdi  mdi-pencil icon-md ml-2 "></i></a>
+                                                            <a class="text-dark" href="<%# String.Format("FormularioProducto?pro={0}", Eval("ID")) %>"><i class="mdi  mdi-pencil icon-md ml-2 "></i></a>
                                                             <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
-                                                                <i class="mdi mdi-delete text-black icon-md"></i>
+                                                                <i class="mdi mdi-delete text-danger icon-md"></i>
                                                             </a>
                                                         </div>
                                                         <div class="side-right text-right font-weight-light">
                                                             <p>
-                                                                <asp:Label Text='<%#Eval("Ingredientes") %>' runat="server" />
-                                                                <asp:Label Text='<%# Eval("NutrientesText") %>' runat="server" />
+                                                                <asp:Label Text='Ingredientes' title='<%# Eval("Ingredientes") %>' runat="server" />
+                                                                <i class="mdi mdi-atom text-primary icon-md" title='<%# Eval("NutrientesText") %>'></i>
                                                             </p>
                                                         </div>
                                                     </div>
