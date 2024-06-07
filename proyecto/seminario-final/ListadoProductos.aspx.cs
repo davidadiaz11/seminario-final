@@ -83,25 +83,17 @@ namespace seminario_final
         {
             filtros = new List<ModelFiltro>();
             ModelFiltro f;
-            if (ddl_sello.SelectedValue != "" && ddl_sello.SelectedValue != "")
+            if (txt_ingrediente.Text != "")
             {
                 f = new ModelFiltro();
-                f.filtro = "sello";
-                f.valor = Convert.ToInt32(ddl_sello.SelectedValue);
+                f.filtro = "pro_ingredientes";
+                f.fecha_inicio = txt_ingrediente.Text;
                 filtros.Add(f);
             }
-            if (ddl_ingrediente.SelectedValue != "" && ddl_ingrediente.SelectedValue != "")
-            {
-                f = new ModelFiltro();
-                f.filtro = "ingrediente";
-                f.valor = Convert.ToInt32(ddl_ingrediente.SelectedValue);
-                filtros.Add(f);
-            }
-
             if (txt_nombre.Text != "")
             {
                 f = new ModelFiltro();
-                f.filtro = "nombre";
+                f.filtro = "pro_nombre";
                 f.fecha_inicio = txt_nombre.Text;
                 filtros.Add(f);
             }

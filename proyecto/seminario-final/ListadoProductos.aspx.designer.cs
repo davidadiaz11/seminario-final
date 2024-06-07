@@ -60,13 +60,13 @@ namespace seminario_final
         protected global::System.Web.UI.WebControls.LinkButton lnk_nombre;
 
         /// <summary>
-        /// Control lnk_doc.
+        /// Control lnk_ingrediente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnk_doc;
+        protected global::System.Web.UI.WebControls.LinkButton lnk_ingrediente;
 
         /// <summary>
         /// Control ch_eliminados.
@@ -87,22 +87,13 @@ namespace seminario_final
         protected global::System.Web.UI.WebControls.TextBox txt_nombre;
 
         /// <summary>
-        /// Control ddl_ingrediente.
+        /// Control txt_ingrediente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_ingrediente;
-
-        /// <summary>
-        /// Control ddl_sello.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_sello;
+        protected global::System.Web.UI.WebControls.TextBox txt_ingrediente;
 
         /// <summary>
         /// Control btn_buscar.

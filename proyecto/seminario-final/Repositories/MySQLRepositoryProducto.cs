@@ -59,16 +59,12 @@ public class MySQLRepositoryProducto
             {
                 switch (filtro.filtro)
                 {
-                    case "nombre":
-                        cmd.CommandText += "c." + filtro.filtro + " LIKE '%" + filtro.fecha_inicio + "%' AND ";
+                    case "pro_nombre":
+                        cmd.CommandText += filtro.filtro + " LIKE '%" + filtro.fecha_inicio + "%' AND ";
                         cmd.Parameters.Add(new MySqlParameter("@" + filtro.filtro, filtro.fecha_inicio));
                         break;
-                    case "condicion":
-                        cmd.CommandText += "d." + filtro.filtro + " " + filtro.signo + filtro.filtro + " AND ";
-                        cmd.Parameters.Add(new MySqlParameter("@" + filtro.filtro, filtro.valor));
-                        break;
-                    case "doc":
-                        cmd.CommandText += "c." + filtro.filtro + " LIKE '%" + filtro.fecha_inicio + "%' AND ";
+                    case "pro_ingredientes":
+                        cmd.CommandText += filtro.filtro + " LIKE '%" + filtro.fecha_inicio + "%' AND ";
                         cmd.Parameters.Add(new MySqlParameter("@" + filtro.filtro, filtro.fecha_inicio));
                         break;
                     default: break;
@@ -91,14 +87,11 @@ public class MySQLRepositoryProducto
             {
                 switch (filtro.filtro)
                 {
-                    case "nombre":
-                        cmd.CommandText += "c." + filtro.filtro + " LIKE '%" + filtro.fecha_inicio + "%' AND ";
+                    case "pro_nombre":
+                        cmd.CommandText += filtro.filtro + " LIKE '%" + filtro.fecha_inicio + "%' AND ";
                         break;
-                    case "condicion":
-                        cmd.CommandText += "d." + filtro.filtro + " " + filtro.signo + filtro.filtro + " AND ";
-                        break;
-                    case "doc":
-                        cmd.CommandText += "c." + filtro.filtro + " LIKE '%" + filtro.fecha_inicio + "%' AND ";
+                    case "pro_ingredientes":
+                        cmd.CommandText += filtro.filtro + " LIKE '%" + filtro.fecha_inicio + "%' AND ";
                         break;
                     default: break;
                 }

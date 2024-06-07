@@ -28,11 +28,9 @@
                                     <asp:LinkButton ID="lnk_nombre" CssClass="nav-link-filtro small mr-2" runat="server" aria-expanded="false" aria-controls="fil_nombre" data-toggle="collapse" href="#fil_nombre">
                                 <span>Nombre</span>
                                     </asp:LinkButton>
-
-                                    <asp:LinkButton ID="lnk_doc" CssClass="nav-link-filtro small mr-2" runat="server" aria-expanded="false" aria-controls="doc" data-toggle="collapse" href="#doc">
+                                    <asp:LinkButton ID="lnk_ingrediente" CssClass="nav-link-filtro small mr-2" runat="server" aria-expanded="false" aria-controls="fil_ingrediente" data-toggle="collapse" href="#fil_ingrediente">
                                 <span>Ingredientes</span>
                                     </asp:LinkButton>
-
                                 </div>
                                 <asp:CheckBox CssClass="form-group" ID="ch_eliminados" Text="Ver productos eliminados" runat="server" />
                                 <div class="collapse mt-1" id="fil_nombre">
@@ -43,27 +41,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="collapse mt-1" id="doc">
+                                <div class="collapse mt-1" id="fil_ingrediente">
                                     <div class="col-12">
                                         <div class="row">
                                             <p class="mr-2 mt-1">Ingrediente</p>
-                                            <asp:DropDownList CssClass="form-control form-control-sm col-xl-2 col-lg-2 col-md-2 col-6" ID="ddl_ingrediente" runat="server">
-                                                <asp:ListItem></asp:ListItem>
-                                                <asp:ListItem Value="1"> Ingrediente 1 </asp:ListItem>
-                                                <asp:ListItem Value="2"> Ingrediente 2 </asp:ListItem>
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="collapse mt-1" id="sello">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            <p class="mr-2 mt-1">Sello</p>
-                                            <asp:DropDownList CssClass="form-control form-control-sm col-xl-2 col-lg-2 col-md-2 col-6" ID="ddl_sello" runat="server">
-                                                <asp:ListItem></asp:ListItem>
-                                                <asp:ListItem Value="1"> Sello 1 </asp:ListItem>
-                                                <asp:ListItem Value="2"> Sello 2 </asp:ListItem>
-                                            </asp:DropDownList>
+                                            <asp:TextBox ID="txt_ingrediente" AutoCompleteType="Disabled" CssClass="form-control form-control-sm col-xl-2 col-lg-2 col-md-2 col-9" runat="server"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
@@ -75,8 +57,8 @@
                                     window.onload = function () {
                                         if (document.getElementById("Cuerpo_txt_nombre").value != "")
                                             document.getElementById("Cuerpo_lnk_nombre").click();
-                                        if (document.getElementById("Cuerpo_txt_doc").value != "")
-                                            document.getElementById("Cuerpo_lnk_doc").click();
+                                        if (document.getElementById("Cuerpo_txt_ingrediente").value != "")
+                                            document.getElementById("Cuerpo_lnk_ingrediente").click();
                                     }
 
                                     function eliminar(id) {
@@ -100,9 +82,7 @@
                                         document.getElementById("Cuerpo_LinkButton2").attributes["class"].value = "text-muted  no-print";
                                         document.getElementById("Cuerpo_LinkButton3").attributes["class"].value = "text-primary  no-print";
                                     }
-
                                 </script>
-
                                 <div class="row">
                                     <div class="table-responsive">
                                         <asp:GridView ID="vista_lista" CssClass="table table-striped order" GridLines="None" runat="server" AllowSorting="true" AutoGenerateColumns="False" AllowPaging="True">
@@ -122,20 +102,19 @@
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
-                                                    <ItemTemplate> <i class="mdi mdi-eye text-primary icon-md" title='<%# Eval("Ingredientes") %>'></i></ItemTemplate>
+                                                    <ItemTemplate><i class="mdi mdi-eye text-primary icon-md" title='<%# Eval("Ingredientes") %>'></i></ItemTemplate>
                                                     <HeaderTemplate>
                                                         <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ingredientes"? hfSortDir.Value.ToLower() : "" %>'
                                                             Text="Ingredientes" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("ingredientes")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
-                                                    <ItemTemplate> <i class="mdi mdi-atom text-primary icon-md" title='<%# Eval("NutrientesText") %>'></i></ItemTemplate>
+                                                    <ItemTemplate><i class="mdi mdi-atom text-primary icon-md" title='<%# Eval("NutrientesText") %>'></i></ItemTemplate>
                                                     <HeaderTemplate>
                                                         <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nutrientes"? hfSortDir.Value.ToLower() : "" %>'
                                                             Text="Nutrientes" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("nutrientes")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
-
                                                 <asp:TemplateField HeaderText="Acción">
                                                     <ItemTemplate>
                                                         <a href="<%# String.Format("FormularioProducto?pro={0}", Eval("ID")) %>" class="mr-3">
