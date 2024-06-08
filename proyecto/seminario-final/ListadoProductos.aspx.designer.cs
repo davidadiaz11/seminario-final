@@ -186,24 +186,6 @@ namespace seminario_final
         protected global::System.Web.UI.WebControls.HyperLink h_tipo_porcion;
 
         /// <summary>
-        /// Control h_ingredientes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink h_ingredientes;
-
-        /// <summary>
-        /// Control h_nutrientes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink h_nutrientes;
-
-        /// <summary>
         /// Control rpt_viajes.
         /// </summary>
         /// <remarks>

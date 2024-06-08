@@ -48,6 +48,7 @@ public class MySQLRepositoryProducto
         DataTable dt_nutrientes = new DataTable();
         try
         {
+            string prefijoTabla = "pro_";
             cn.Open();
             MySqlCommand cmd = new MySqlCommand();
             cmd.Parameters.Clear();
@@ -101,7 +102,7 @@ public class MySQLRepositoryProducto
                 cmd.CommandText += "pro_fecha_baja IS NULL ";
             else
                 cmd.CommandText += "pro_fecha_baja IS NOT NULL ";
-            cmd.CommandText += @" ORDER BY " + columna + " " + sort + " LIMIT " + inicio + "," + cant;
+            cmd.CommandText += @" ORDER BY " + prefijoTabla + columna + " " + sort + " LIMIT " + inicio + "," + cant;
             dt.Load(cmd.ExecuteReader());
 
             List<int> ids = new List<int>();

@@ -104,15 +104,13 @@
                                                 <asp:TemplateField>
                                                     <ItemTemplate><i class="mdi mdi-eye text-primary icon-md" title='<%# Eval("Ingredientes") %>'></i></ItemTemplate>
                                                     <HeaderTemplate>
-                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ingredientes"? hfSortDir.Value.ToLower() : "" %>'
-                                                            Text="Ingredientes" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("ingredientes")) %>'></asp:HyperLink>
+                                                        Ingredientes
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
                                                     <ItemTemplate><i class="mdi mdi-atom text-primary icon-md" title='<%# Eval("NutrientesText") %>'></i></ItemTemplate>
                                                     <HeaderTemplate>
-                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nutrientes"? hfSortDir.Value.ToLower() : "" %>'
-                                                            Text="Nutrientes" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("nutrientes")) %>'></asp:HyperLink>
+                                                        Nutrientes
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Acción">
@@ -152,10 +150,6 @@
                             Text="Nombre" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("nombre")) %>'></asp:HyperLink>
                         <asp:HyperLink ID="h_tipo_porcion" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "porcion"? hfSortDir.Value.ToLower() : "" %>'
                             Text="Porción" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("porcion")) %>'></asp:HyperLink>
-                        <asp:HyperLink ID="h_ingredientes" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ingredientes"? hfSortDir.Value.ToLower() : "" %>'
-                            Text="Ingredientes" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("ingredientes")) %>'></asp:HyperLink>
-                        <asp:HyperLink ID="h_nutrientes" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nutrientes"? hfSortDir.Value.ToLower() : "" %>'
-                            Text="Nutrientes" NavigateUrl='<%#string.Format("/ListadoProductos?{0}",GetSortLink("nutrientes")) %>'></asp:HyperLink>
                         <div class="row mt-2">
                             <asp:Repeater ID="rpt_viajes" runat="server">
                                 <ItemTemplate>
