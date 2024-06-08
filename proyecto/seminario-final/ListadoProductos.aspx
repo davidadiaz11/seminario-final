@@ -1,6 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ListadoProductos.aspx.cs" Inherits="seminario_final.ListadoProductos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Cuerpo" runat="server">
+    <style>
+        .checkbox .btn,
+        .checkbox-inline .btn {
+            padding-left: 2em;
+            min-width: 8em;
+        }
+
+        .checkbox label,
+        .checkbox-inline label {
+            padding-top: 0.7em;
+            text-align: left;
+            padding-left: 1em;
+        }
+    </style>
     <div class="main-panel">
         <div class="content-wrapper">
             <form id="form1" runat="server">
@@ -32,7 +46,13 @@
                                 <span>Ingredientes</span>
                                     </asp:LinkButton>
                                 </div>
-                                <asp:CheckBox CssClass="form-group" OnCheckedChanged="ch_eliminados_CheckedChanged" AutoPostBack="true" ID="ch_eliminados" Text="Ver productos eliminados" runat="server" />
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label class="btn btn-default">
+                                            <asp:CheckBox CssClass="form-group" AutoPostBack="true" ID="ch_eliminados" OnCheckedChanged="ch_eliminados_CheckedChanged" Text="Ver productos eliminados" runat="server" />
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="collapse mt-1" id="fil_nombre">
                                     <div class="col-12">
                                         <div class="row">

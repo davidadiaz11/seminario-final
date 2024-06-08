@@ -1,6 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ListadoPerfiles.aspx.cs" Inherits="seminario_final.ListadoPerfiles" %>
 
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Cuerpo" runat="server">
+    <style>
+        .checkbox .btn,
+        .checkbox-inline .btn {
+            padding-left: 2em;
+            min-width: 8em;
+        }
+
+        .checkbox label,
+        .checkbox-inline label {
+            padding-top: 0.7em;
+            text-align: left;
+            padding-left: 1em;
+        }
+    </style>
     <div class="main-panel">
         <div class="content-wrapper">
             <form id="form1" runat="server">
@@ -23,8 +39,14 @@
                                         </div>
                                     </div>
                                 </div>
-                           
-                                <asp:CheckBox CssClass="form-group" ID="ch_eliminados" OnCheckedChanged="ch_eliminados_CheckedChanged" AutoPostBack="true" Text="Ver perfiles eliminadas" runat="server" />
+
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label class="btn btn-default">
+                                            <asp:CheckBox CssClass="form-group" AutoPostBack="true" ID="ch_eliminados" OnCheckedChanged="ch_eliminados_CheckedChanged" Text="Ver perfiles eliminados" runat="server" />
+                                        </label>
+                                    </div>
+                                </div>
                                 <script type="text/javascript">
                                     "use strict";
 
@@ -49,7 +71,7 @@
                                         document.getElementById("Cuerpo_LinkButton2").attributes["class"].value = "text-muted  no-print";
                                         document.getElementById("Cuerpo_LinkButton3").attributes["class"].value = "text-primary  no-print";
                                     }
-                                     
+
                                     function hacerpostbackRecuperar(id) {
                                         __doPostBack('recuperar', id);
                                     }
@@ -81,13 +103,13 @@
                                                             Text="Ingredientes prohibidos" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("ingredientes_prohibidos")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
-                                                  <asp:TemplateField>
-                                                      <ItemTemplate><%# Convert.ToBoolean(Eval("EsPrincipal")) ? "Sí" : "No" %></ItemTemplate>
-                                                      <HeaderTemplate>
-                                                          <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "es_principal"? hfSortDir.Value.ToLower() : "" %>'
-                                                              Text="Es principal" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("es_principal")) %>'></asp:HyperLink>
-                                                      </HeaderTemplate>
-                                                  </asp:TemplateField>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate><%# Convert.ToBoolean(Eval("EsPrincipal")) ? "Sí" : "No" %></ItemTemplate>
+                                                    <HeaderTemplate>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "es_principal"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Es principal" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("es_principal")) %>'></asp:HyperLink>
+                                                    </HeaderTemplate>
+                                                </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Acción">
                                                     <ItemTemplate>
 
@@ -144,19 +166,21 @@
                                                     <div class="wrapper d-flex justify-content-between">
                                                         <div class="side-left">
                                                             <p class="display-6 mb-1 font-weight-light">
-                                                                <b><asp:Label Text='<%# "Perfil: " +  Eval("Nombre") %>' runat="server" /></b>
-                                                            </p> 
-                                                            <p class="display-6 mb-1 font-weight-light">
-                                                                <small><asp:Label Text='<%# Convert.ToBoolean(Eval("EsPrincipal")) ? "(Es principal)" : "(No es principal)" %>' runat="server" /></small>
+                                                                <b>
+                                                                    <asp:Label Text='<%# "Perfil: " +  Eval("Nombre") %>' runat="server" /></b>
                                                             </p>
-                                                            
+                                                            <p class="display-6 mb-1 font-weight-light">
+                                                                <small>
+                                                                    <asp:Label Text='<%# Convert.ToBoolean(Eval("EsPrincipal")) ? "(Es principal)" : "(No es principal)" %>' runat="server" /></small>
+                                                            </p>
+
                                                             <p class="mb-1">
                                                                 <asp:Label Text='<%# "Fecha Nac: " + Convert.ToDateTime(Eval("FechaNacimiento")).ToString("dd/MM/yyyy") %>' runat="server" />
                                                             </p>
                                                             <p class="mb-1">
                                                                 <asp:Label Text='<%# "Ingredientes prohibidos: " + Eval("IngredientesProhibidos").ToString() %>' runat="server" />
                                                             </p>
-                                                        
+
                                                             <a title="Modificar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' href="<%# String.Format("FormularioPerfil?prf={0}", Eval("ID")) %>"><i class="mdi  mdi-pencil text-dark icon-md ml-2 "></i></a>
                                                             <a title="Eliminar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
                                                                 <i class="mdi mdi-delete text-danger icon-md"></i>

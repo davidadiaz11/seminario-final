@@ -9,6 +9,19 @@
             border-radius: 50%;
             display: inline-block;
         }
+
+        .checkbox .btn,
+        .checkbox-inline .btn {
+            padding-left: 2em;
+            min-width: 8em;
+        }
+
+        .checkbox label,
+        .checkbox-inline label {
+            padding-top: 0.7em;
+            text-align: left;
+            padding-left: 1em;
+        }
     </style>
 
     <div class="main-panel">
@@ -33,8 +46,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <asp:CheckBox CssClass="form-group" AutoPostBack="true" ID="ch_eliminados" OnCheckedChanged="ch_eliminados_CheckedChanged" Text="Ver alertas eliminadas" runat="server" />
-
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label class="btn btn-default">
+                                            <asp:CheckBox CssClass="form-group" AutoPostBack="true" ID="ch_eliminados" OnCheckedChanged="ch_eliminados_CheckedChanged" Text="Ver alertas eliminadas" runat="server" />
+                                        </label>
+                                    </div>
+                                </div>
                                 <script type="text/javascript">
                                     "use strict";
                                     window.onload = function () {
@@ -52,7 +70,7 @@
                                         __doPostBack('eliminar', id);
                                     }
 
-                                    
+
                                     function hacerpostbackRecuperar(id) {
                                         __doPostBack('recuperar', id);
                                     }
@@ -183,8 +201,8 @@
                                                             <p class="mb-1">
                                                                 <asp:Label Text='<%# "Nutriente: " + Eval("Nombre") + " " + Eval("NutrientesAlerta[0].Operador") + "= " + Eval("NutrientesAlerta[0].ValorCritico") %>' runat="server" />
                                                             </p>
-                                                            <a title="Modificar"  style='<%# ch_eliminados.Checked ? "display:none": "" %>' href="<%# String.Format("FormularioAlerta?anu={0}", Eval("NutrientesAlerta[0].Id")) %>"><i class="mdi  mdi-pencil text-danger icon-md ml-2 "></i></a>
-                                                            <a title="Eliminar"  style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("NutrientesAlerta[0].Id") %>');" href="#">
+                                                            <a title="Modificar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' href="<%# String.Format("FormularioAlerta?anu={0}", Eval("NutrientesAlerta[0].Id")) %>"><i class="mdi  mdi-pencil text-danger icon-md ml-2 "></i></a>
+                                                            <a title="Eliminar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("NutrientesAlerta[0].Id") %>');" href="#">
                                                                 <i class="mdi mdi-delete text-danger icon-md"></i>
                                                             </a>
                                                             <a title="Recuperar" style='<%# ch_eliminados.Checked ? "": "display:none" %>' onclick="hacerpostbackRecuperar('<%# Eval("NutrientesAlerta[0].Id") %>');" href="#">
