@@ -75,12 +75,6 @@ public class MySQLRepositorySello
             dtcan.Load(cmd.ExecuteReader());
             encontrados = Convert.ToInt32(dtcan.Rows[0]["cant"]);
 
-            //cmd.CommandText = @"SELECT ale_id, ale_nombre, ale_leyenda, tal_id, tal_nombre, tal_forma, tal_color
-            //                    FROM alertas 
-            //                    JOIN tipos_alerta on tal_id=ale_tal_id
-                                
-            //                    WHERE tal_fecha_baja is null AND ";
-
             cmd.CommandText = @"SELECT anu_id, nut_id, nut_nombre, anu_tca_id, anu_operador, anu_valor_critico, ale_id, ale_nombre, ale_leyenda, tal_id, tal_forma, tal_color, tal_es_generica
                                 FROM ALERTAS_X_NUTRIENTE 
                                 JOIN nutrientes on anu_nut_id=nut_id
@@ -92,7 +86,7 @@ public class MySQLRepositorySello
                 cmd.CommandText += "ale_fecha_baja IS NULL ";
             else
                 cmd.CommandText += "ale_fecha_baja IS NOT NULL ";
-            cmd.CommandText += @" ORDER BY " + columna + " " + sort + " LIMIT " + inicio + "," + cant;
+            cmd.CommandText += @" ORDER BY " +  columna + " " + sort + " LIMIT " + inicio + "," + cant;
             dt.Load(cmd.ExecuteReader());
         }
         catch (Exception ex)

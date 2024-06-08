@@ -75,36 +75,36 @@
                                                 <asp:TemplateField>
                                                     <ItemTemplate><%#Eval("NutrientesAlerta[0].Alerta.Nombre") %></ItemTemplate>
                                                     <HeaderTemplate>
-                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nombre"? hfSortDir.Value.ToLower() : "" %>'
-                                                            Text="Nombre" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("nombre")) %>'></asp:HyperLink>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ale_nombre"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Nombre" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("ale_nombre")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
                                                     <ItemTemplate><%# Eval("NutrientesAlerta[0].Alerta.Leyenda") %></ItemTemplate>
                                                     <HeaderTemplate>
-                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "leyenda"? hfSortDir.Value.ToLower() : "" %>'
-                                                            Text="Leyenda" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("leyenda")) %>'></asp:HyperLink>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ale_leyenda"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Leyenda" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("ale_leyenda")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
                                                     <ItemTemplate><%# Eval("Nombre") %></ItemTemplate>
                                                     <HeaderTemplate>
-                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nutriente"? hfSortDir.Value.ToLower() : "" %>'
-                                                            Text="Nutriente" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("nutriente")) %>'></asp:HyperLink>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nut_nombre"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Nutriente" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("nut_nombre")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
                                                     <ItemTemplate><%# Eval("NutrientesAlerta[0].Operador").ToString() == ">" ? "Mayor o igual" : "Menor o igual" %></ItemTemplate>
                                                     <HeaderTemplate>
-                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "operador"? hfSortDir.Value.ToLower() : "" %>'
-                                                            Text="Operador" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("operador")) %>'></asp:HyperLink>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "anu_operador"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Operador" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("anu_operador")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
                                                     <ItemTemplate><%# Eval("NutrientesAlerta[0].ValorCritico") %></ItemTemplate>
                                                     <HeaderTemplate>
-                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "valorcritico"? hfSortDir.Value.ToLower() : "" %>'
-                                                            Text="Valor Crítico" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("valorcritico")) %>'></asp:HyperLink>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "anu_valor_critico"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Valor Crítico" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("anu_valor_critico")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
@@ -136,7 +136,6 @@
                                     <div class="btn-group-sm" role="group">
                                         <asp:Literal ID="l1Pagger" runat="server"></asp:Literal>
                                     </div>
-                                    <%-- Hidden fileds --%>
                                     <asp:HiddenField ID="hfCurrentPage" runat="server" Value="0" />
                                     <asp:HiddenField ID="hfSortName" runat="server" Value="" />
                                     <asp:HiddenField ID="hfSortDir" runat="server" Value="" />
@@ -148,6 +147,16 @@
 
                 <div class="row order small" id="vista_repeater" style="display: none" runat="server">
                     <div class="col-12">
+                        <asp:HyperLink ID="h_nombre" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ale_nombre"? hfSortDir.Value.ToLower() : "" %>'
+                            Text="Nombre" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("ale_nombre")) %>'></asp:HyperLink>
+                        <asp:HyperLink ID="h_leyenda" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ale_leyenda"? hfSortDir.Value.ToLower() : "" %>'
+                            Text="Leyenda" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("ale_leyenda")) %>'></asp:HyperLink>
+                        <asp:HyperLink ID="h_nutrientes" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nut_nombre"? hfSortDir.Value.ToLower() : "" %>'
+                            Text="Nutrientes" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("nut_nombre")) %>'></asp:HyperLink>
+                        <asp:HyperLink ID="h_valor_critico" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "anu_valor_critico"? hfSortDir.Value.ToLower() : "" %>'
+                            Text="Valor crítico" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("anu_valor_critico")) %>'></asp:HyperLink>
+                        <asp:HyperLink ID="h_operador" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "anu_operador"? hfSortDir.Value.ToLower() : "" %>'
+                            Text="Operador" NavigateUrl='<%#string.Format("/ListadoAlertas?{0}",GetSortLink("anu_operador")) %>'></asp:HyperLink>
                         <div class="row mt-2">
                             <asp:Repeater ID="rpt_viajes" runat="server">
                                 <ItemTemplate>
@@ -155,7 +164,6 @@
                                         <div class="card card-statistics">
                                             <div class="card-body">
                                                 <a class="text-black" href="<%# String.Format("FormularioAlerta?anu={0}", Eval("NutrientesAlerta[0].Id")) %>">
-
                                                     <div class="wrapper d-flex justify-content-between">
                                                         <div class="side-left">
                                                             <p class="display-6 mb-1 font-weight-light">
@@ -164,9 +172,9 @@
                                                             <p class="mb-1">
                                                                 <asp:Label Text='<%# "Leyenda: " + Eval("NutrientesAlerta[0].Alerta.Leyenda") %>' runat="server" />
                                                             </p>
-
-
-
+                                                            <p class="mb-1">
+                                                                <asp:Label Text='<%# "Nutriente: " + Eval("Nombre") + " " + Eval("NutrientesAlerta[0].Operador") + "= " + Eval("NutrientesAlerta[0].ValorCritico") %>' runat="server" />
+                                                            </p>
                                                             <a class="text-dark" href="<%# String.Format("FormularioAlerta?anu={0}", Eval("NutrientesAlerta[0].Id")) %>"><i class="mdi  mdi-pencil  icon-md ml-2 "></i></a>
                                                             <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("NutrientesAlerta[0].Id") %>');" href="#">
                                                                 <i class="mdi mdi-delete text-danger icon-md"></i>

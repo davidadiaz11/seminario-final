@@ -97,7 +97,7 @@ namespace seminario_final
             int cantPags = 0;
             int encontrados = 0;
             //Fetch data from URL
-            string sortName = string.IsNullOrEmpty(Request.QueryString["sortname"]) ? "prf_nombre" : Request.QueryString["sortname"];
+            string sortName = string.IsNullOrEmpty(Request.QueryString["sortname"]) ? "nombre" : Request.QueryString["sortname"];
             string sortDir = string.IsNullOrEmpty(Request.QueryString["sortdir"]) ? "asc" : Request.QueryString["sortdir"];
             int.TryParse(Request.QueryString["page"], out pageNo);
 

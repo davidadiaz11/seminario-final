@@ -66,22 +66,22 @@
                                                 <asp:TemplateField>
                                                     <ItemTemplate><%# Convert.ToDateTime(Eval("FechaNacimiento")).ToString("dd/MM/yyyy") %></ItemTemplate>
                                                     <HeaderTemplate>
-                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "fechanacimiento"? hfSortDir.Value.ToLower() : "" %>'
-                                                            Text="Fecha Nacimiento" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("fechanacimiento")) %>'></asp:HyperLink>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "fecha_nacimiento"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Fecha Nacimiento" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("fecha_nacimiento")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
                                                     <ItemTemplate><%# Eval("IngredientesProhibidos") %></ItemTemplate>
                                                     <HeaderTemplate>
-                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ingredientesprohibidos"? hfSortDir.Value.ToLower() : "" %>'
-                                                            Text="Ingredientes prohibidos" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("ingredientesprohibidos")) %>'></asp:HyperLink>
+                                                        <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ingredientes_prohibidos"? hfSortDir.Value.ToLower() : "" %>'
+                                                            Text="Ingredientes prohibidos" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("ingredientes_prohibidos")) %>'></asp:HyperLink>
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                   <asp:TemplateField>
                                                       <ItemTemplate><%# Convert.ToBoolean(Eval("EsPrincipal")) ? "Sí" : "No" %></ItemTemplate>
                                                       <HeaderTemplate>
-                                                          <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "esprincipal"? hfSortDir.Value.ToLower() : "" %>'
-                                                              Text="Es principal" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("esprincipal")) %>'></asp:HyperLink>
+                                                          <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "es_principal"? hfSortDir.Value.ToLower() : "" %>'
+                                                              Text="Es principal" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("es_principal")) %>'></asp:HyperLink>
                                                       </HeaderTemplate>
                                                   </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Acción">
@@ -120,12 +120,12 @@
 
                         <asp:HyperLink ID="h_nombre" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "nombre"? hfSortDir.Value.ToLower() : "" %>'
                             Text="Nombre" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("nombre")) %>'></asp:HyperLink>
-                        <asp:HyperLink ID="h_fecha_nacimiento" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "fechanacimiento"? hfSortDir.Value.ToLower() : "" %>'
-                            Text="Fecha nacimiento" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("fechanacimiento")) %>'></asp:HyperLink>
-                        <asp:HyperLink ID="h_ingredientes_prohibidos" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ingredientesprohibidos"? hfSortDir.Value.ToLower() : "" %>'
-                            Text="Ingredientes Prohibidos" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("ingredientesprohibidos")) %>'></asp:HyperLink>
-                        <asp:HyperLink ID="h_es_principal" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "esprincipal"? hfSortDir.Value.ToLower() : "" %>'
-                            Text="Es Principal" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("esprincipal")) %>'></asp:HyperLink>
+                        <asp:HyperLink ID="h_fecha_nacimiento" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "fecha_nacimiento"? hfSortDir.Value.ToLower() : "" %>'
+                            Text="Fecha nacimiento" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("fecha_nacimiento")) %>'></asp:HyperLink>
+                        <asp:HyperLink ID="h_ingredientes_prohibidos" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "ingredientes_prohibidos"? hfSortDir.Value.ToLower() : "" %>'
+                            Text="Ingredientes Prohibidos" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("ingredientes_prohibidos")) %>'></asp:HyperLink>
+                        <asp:HyperLink ID="h_es_principal" runat="server" CssClass='<%#hfSortName.Value.ToLower() == "es_principal"? hfSortDir.Value.ToLower() : "" %>'
+                            Text="Es Principal" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("es_principal")) %>'></asp:HyperLink>
                         <div class="row mt-2">
                             <asp:Repeater ID="rpt_viajes" runat="server">
                                 <ItemTemplate>
@@ -142,9 +142,12 @@
                                                             <p class="display-6 mb-1 font-weight-light">
                                                                 <small><asp:Label Text='<%# Convert.ToBoolean(Eval("EsPrincipal")) ? "(Es principal)" : "(No es principal)" %>' runat="server" /></small>
                                                             </p>
-                                                            <br />
+                                                            
                                                             <p class="mb-1">
                                                                 <asp:Label Text='<%# "Fecha Nac: " + Convert.ToDateTime(Eval("FechaNacimiento")).ToString("dd/MM/yyyy") %>' runat="server" />
+                                                            </p>
+                                                            <p class="mb-1">
+                                                                <asp:Label Text='<%# "Ingredientes prohibidos: " + Eval("IngredientesProhibidos").ToString() %>' runat="server" />
                                                             </p>
                                                         
                                                             <a class="text-muted" href="<%# String.Format("FormularioPerfil?prf={0}", Eval("ID")) %>"><i class="mdi  mdi-pencil text-dark icon-md ml-2 "></i></a>

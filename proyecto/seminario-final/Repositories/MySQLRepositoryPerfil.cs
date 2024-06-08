@@ -125,6 +125,7 @@ public class MySQLRepositoryPerfil
         DataTable dt = new DataTable();
         try
         {
+            string prefijoTabla = "prf_";
             cn.Open();
             MySqlCommand cmd = new MySqlCommand();
 
@@ -155,7 +156,7 @@ public class MySQLRepositoryPerfil
                 cmd.CommandText += "prf_fecha_baja IS NULL ";
             else
                 cmd.CommandText += "prf_fecha_baja IS NOT NULL ";
-            cmd.CommandText += @" ORDER BY " + columna + " " + sort + " LIMIT " + inicio + "," + cant;
+            cmd.CommandText += @" ORDER BY " + prefijoTabla + columna + " " + sort + " LIMIT " + inicio + "," + cant;
             dt.Load(cmd.ExecuteReader());
         }
         catch (Exception ex)

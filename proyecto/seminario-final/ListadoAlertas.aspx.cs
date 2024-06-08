@@ -117,6 +117,13 @@ namespace seminario_final
             rpt_viajes.DataSource = nutrientes;
             rpt_viajes.DataBind();
 
+
+            h_nombre.DataBind();
+            h_leyenda.DataBind();
+            h_nutrientes.DataBind();
+            h_operador.DataBind();
+            h_valor_critico.DataBind();
+
             mensaje(encontrados + " alertas encontrados", "text-success");
             l1Pagger.Text = GetPageLink(cantPags);
         }
