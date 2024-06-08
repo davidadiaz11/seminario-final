@@ -22,6 +22,10 @@ namespace seminario_final
                 {
                     Eliminar(Convert.ToUInt32(Request["__EVENTARGUMENT"]));
                 }
+                if (Request["__EVENTTARGET"] == "recuperar")
+                {
+                    Recuperar(Convert.ToUInt32(Request["__EVENTARGUMENT"]));
+                }
             }
             populate(vista_lista.PageSize);
             Page.Title = "Alertas";
@@ -73,6 +77,22 @@ namespace seminario_final
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
         }
+        private void Recuperar(uint idNutrienteAlerta)
+        {
+            var master = Master as MasterPage;
+            if (idNutrienteAlerta <= 0)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al recuperar"), true);
+                return;
+            }
+            var resRecuperar = ServiceSello.Recuperar(idNutrienteAlerta);
+            if (!resRecuperar.Ok)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al recuperar"), true);
+                return;
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Recuperado correctamente"), true);
+        }
 
         private void Ver_tarjetas()
         {
@@ -93,7 +113,7 @@ namespace seminario_final
         }
 
         private void populate(int filasPorPag)
-        { 
+        {
             int pageNo = 0;
             int cantPags = 0;
             int encontrados = 0;
@@ -132,6 +152,9 @@ namespace seminario_final
             Session["cant_resultados"] = Convert.ToByte(ddl_cant_filas.SelectedValue);
         }
 
-
+        protected void ch_eliminados_CheckedChanged(object sender, EventArgs e)
+        {
+            populate(vista_lista.PageSize);
+        }
     }
 }

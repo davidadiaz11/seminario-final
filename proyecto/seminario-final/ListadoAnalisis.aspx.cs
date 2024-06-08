@@ -46,7 +46,6 @@ namespace seminario_final
             ddl_cant_filas.SelectedValue = vista_lista.PageSize.ToString();
         }
 
-
         public void mensaje(string msj, string estilo)
         {
             span_mensaje.InnerText = msj;

@@ -100,8 +100,38 @@ public class MySQLRepositoryPerfil
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-            cmd.CommandText = @"UPDATE PERFILES set prf_usu_id_baja=@usu_id, prf_fecha_baja=now(),
+            cmd.CommandText = @"UPDATE PERFILES set prf_usu_id_baja=@usu_id, prf_fecha_baja=now()
                             WHERE prf_id=@prf_id and prf_fecha_baja IS NULL;";
+            cmd.Parameters.Add(new MySqlParameter("@prf_id", idPerfil));
+            cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
+            var res = cmd.ExecuteNonQuery();
+            return res == 1;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        finally
+        {
+            if (cn != null && cn.State == ConnectionState.Open)
+                cn.Close();
+        }
+        return true;
+    }
+
+
+    public static bool RecuperarPerfil(uint idPerfil, ushort idUsuario)
+    {
+        MySqlConnection cn = new MySqlConnection(cadena);
+        try
+        {
+            cn.Open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = cn;
+            cmd.Parameters.Clear();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE PERFILES set prf_usu_id_baja=null, prf_fecha_baja=null, prf_fecha_baja=now(), prf_usu_id_modificacion=@usu_id
+                            WHERE prf_id=@prf_id and prf_fecha_baja IS NOT NULL;";
             cmd.Parameters.Add(new MySqlParameter("@prf_id", idPerfil));
             cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
             var res = cmd.ExecuteNonQuery();
@@ -142,7 +172,6 @@ public class MySQLRepositoryPerfil
                 cmd.CommandText += "prf_fecha_baja IS NULL ";
             else
                 cmd.CommandText += "prf_fecha_baja IS NOT NULL ";
-            cmd.Parameters.Add(new MySqlParameter("@eliminado", eliminados));
             cmd.Parameters.Add(new MySqlParameter("@usu_id", usuario));
             DataTable dtcan = new DataTable();
             dtcan.Load(cmd.ExecuteReader());

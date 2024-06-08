@@ -70,7 +70,6 @@ public class MySQLRepositorySello
                 cmd.CommandText += "ale_fecha_baja IS NULL ";
             else
                 cmd.CommandText += "ale_fecha_baja IS NOT NULL ";
-            cmd.Parameters.Add(new MySqlParameter("@eliminado", eliminados));
             DataTable dtcan = new DataTable();
             dtcan.Load(cmd.ExecuteReader());
             encontrados = Convert.ToInt32(dtcan.Rows[0]["cant"]);
@@ -80,12 +79,12 @@ public class MySQLRepositorySello
                                 JOIN nutrientes on anu_nut_id=nut_id
                                 JOIN alertas on anu_ale_id=ale_id
                                 JOIN tipos_alerta on tal_id=ale_tal_id
-                                WHERE tal_fecha_baja is null and anu_fecha_baja is null AND ";
+                                WHERE tal_fecha_baja is null AND ";
 
             if (!eliminados)
-                cmd.CommandText += "ale_fecha_baja IS NULL ";
+                cmd.CommandText += "ale_fecha_baja IS NULL AND anu_fecha_baja is null ";
             else
-                cmd.CommandText += "ale_fecha_baja IS NOT NULL ";
+                cmd.CommandText += "ale_fecha_baja IS NOT NULL AND anu_fecha_baja is NOT NULL ";
             cmd.CommandText += @" ORDER BY " +  columna + " " + sort + " LIMIT " + inicio + "," + cant;
             dt.Load(cmd.ExecuteReader());
         }
@@ -376,22 +375,86 @@ public class MySQLRepositorySello
         return dt;
     }
 
-    public static bool EliminarSello(uint idNutrienteAlerta, ushort idUsuario)
+    public static bool EliminarSello(uint idNutrienteAlerta, uint idAlerta, ushort idUsuario)
     {
+        MySqlTransaction trans = null;
         MySqlConnection cn = new MySqlConnection(cadena);
         try
         {
             cn.Open();
+            trans = cn.BeginTransaction();
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = cn;
+            cmd.Transaction = trans;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-            cmd.CommandText = @"UPDATE ALERTAS_X_NUTRIENTE set anu_usu_id_baja=@usu_id, anu_fecha_baja=now(),
+            cmd.CommandText = @"UPDATE ALERTAS_X_NUTRIENTE set anu_usu_id_baja=@usu_id, anu_fecha_baja=now()
                             WHERE anu_id=@anu_id and anu_fecha_baja IS NULL;";
             cmd.Parameters.Add(new MySqlParameter("@anu_id", idNutrienteAlerta));
             cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
             var res = cmd.ExecuteNonQuery();
-            return res == 1;
+            if (res == 0)
+            {
+                trans.Rollback();
+                return false;
+            }
+            cmd.CommandText = @"UPDATE ALERTAS set ale_usu_id_baja=@usu_id, ale_fecha_baja=now()
+                            WHERE ale_id=@ale_id and ale_fecha_baja IS NULL;";
+            cmd.Parameters.Add(new MySqlParameter("@ale_id", idAlerta));
+            var res2 = cmd.ExecuteNonQuery();
+            if (res2 == 0)
+            {
+                trans.Rollback();
+                return false;
+            }
+            trans.Commit();
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        finally
+        {
+            if (cn != null && cn.State == ConnectionState.Open)
+                cn.Close();
+        }
+        return true;
+    }
+
+
+    public static bool RecuperarSello(uint idNutrienteAlerta, uint idAlerta, ushort idUsuario)
+    {
+        MySqlTransaction trans = null;
+        MySqlConnection cn = new MySqlConnection(cadena);
+        try
+        {
+            cn.Open();
+            trans = cn.BeginTransaction();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = cn;
+            cmd.Transaction = trans;
+            cmd.Parameters.Clear();
+            cmd.Connection = cn;
+            cmd.CommandText = @"UPDATE ALERTAS_X_NUTRIENTE set anu_usu_id_baja=null, anu_usu_id_modificacion=@usu_id, anu_fecha_baja=null, anu_fecha_modificacion=now()
+                            WHERE anu_id=@anu_id and anu_fecha_baja IS NOT NULL;";
+            cmd.Parameters.Add(new MySqlParameter("@anu_id", idNutrienteAlerta));
+            cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
+            var res = cmd.ExecuteNonQuery();
+            if (res == 0)
+            {
+                trans.Rollback();
+                return false;
+            }
+            cmd.CommandText = @"UPDATE ALERTAS set ale_usu_id_baja=null, ale_usu_id_modificacion=@usu_id, ale_fecha_baja=null, ale_fecha_modificacion=now()
+                            WHERE ale_id=@ale_id and ale_fecha_baja IS NOT NULL;";
+            cmd.Parameters.Add(new MySqlParameter("@ale_id", idAlerta));
+            var res2 = cmd.ExecuteNonQuery();
+            if (res2 == 0)
+            {
+                trans.Rollback();
+                return false;
+            }
+            trans.Commit();
         }
         catch (Exception ex)
         {

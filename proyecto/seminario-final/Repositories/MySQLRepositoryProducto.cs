@@ -76,7 +76,6 @@ public class MySQLRepositoryProducto
                 cmd.CommandText += "pro_fecha_baja IS NULL ";
             else
                 cmd.CommandText += "pro_fecha_baja IS NOT NULL ";
-            cmd.Parameters.Add(new MySqlParameter("@eliminado", eliminados));
             DataTable dtcan = new DataTable();
             dtcan.Load(cmd.ExecuteReader());
             encontrados = Convert.ToInt32(dtcan.Rows[0]["cant"]);
@@ -113,6 +112,12 @@ public class MySQLRepositoryProducto
                 ids.Add(Convert.ToInt32(item["pro_id"]));
                 idsString = idsString + "," + item["pro_id"].ToString();
             }
+
+            if (idsString == "")
+            {
+                return ds;
+            }
+
             idsString = idsString.Substring(1, idsString.Length - 1);
 
             string terceraQuery = @"SELECT npr_pro_id, nut_nombre, NPR_CANTIDAD_POR_PORCION from
@@ -244,7 +249,7 @@ public class MySQLRepositoryProducto
             cmd.Parameters.Clear();
             cmd.Connection = cn;
             cmd.Transaction = trans;
-            cmd.CommandText = @"UPDATE PRODUCTOS set pro_usu_id_baja=@usu_id, pro_fecha_baja=now(),
+            cmd.CommandText = @"UPDATE PRODUCTOS set pro_usu_id_baja=@usu_id, pro_fecha_baja=now()
                             WHERE pro_id=@pro_id and pro_fecha_baja IS NULL;";
             cmd.Parameters.Add(new MySqlParameter("@pro_id", idProducto));
             cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
@@ -256,8 +261,57 @@ public class MySQLRepositoryProducto
                 return false;
             }
 
-            cmd.CommandText = @"UPDATE NUTRIENTES_X_PRODUCTOS set npr_usu_id_baja=@usu_id, npr_fecha_baja=now(),
+            cmd.CommandText = @"UPDATE NUTRIENTES_X_PRODUCTOS set npr_usu_id_baja=@usu_id, npr_fecha_baja=now()
                             WHERE npr_pro_id=@pro_id and npr_fecha_baja IS NULL;";
+            var res2 = cmd.ExecuteNonQuery();
+            if (res2 == 0)
+            {
+                trans.Rollback();
+                return false;
+            }
+            trans.Commit();
+        }
+        catch (Exception ex)
+        {
+            if (trans != null)
+            {
+                trans.Rollback();
+            }
+        }
+        finally
+        {
+            if (cn != null && cn.State == ConnectionState.Open)
+                cn.Close();
+        }
+        return true;
+    }
+
+    public static bool Recuperar(int idProducto, ushort idUsuario)
+    {
+        MySqlTransaction trans = null;
+        MySqlConnection cn = new MySqlConnection(cadena);
+        try
+        {
+            cn.Open();
+            trans = cn.BeginTransaction();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Parameters.Clear();
+            cmd.Connection = cn;
+            cmd.Transaction = trans;
+            cmd.CommandText = @"UPDATE PRODUCTOS set pro_usu_id_baja=null, pro_fecha_baja=null, pro_fecha_modificacion=now(), pro_usu_id_modificacion=@usu_id
+                            WHERE pro_id=@pro_id and pro_fecha_baja IS NOT NULL;";
+            cmd.Parameters.Add(new MySqlParameter("@pro_id", idProducto));
+            cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
+            var res = cmd.ExecuteNonQuery();
+
+            if (res == 0)
+            {
+                trans.Rollback();
+                return false;
+            }
+
+            cmd.CommandText = @"UPDATE NUTRIENTES_X_PRODUCTOS set npr_usu_id_baja=null, npr_fecha_baja=null, npr_fecha_modificacion=now(), npr_usu_id_modificacion=@usu_id
+                            WHERE npr_pro_id=@pro_id and npr_fecha_baja IS NOT NULL;";
             var res2 = cmd.ExecuteNonQuery();
             if (res2 == 0)
             {

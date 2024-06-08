@@ -46,10 +46,42 @@ public class ServiceSello
                 }
             }
 
-            var resEliminar = MySQLRepositorySello.EliminarSello(nut.NutrientesAlerta.First().Id, idUsuario);
+            var resEliminar = MySQLRepositorySello.EliminarSello(nut.NutrientesAlerta.First().Id, nut.NutrientesAlerta.First().Alerta.Id, idUsuario);
             if (!resEliminar)
             {
                 resultado.ObtenerError("Error al eliminar el sello.");
+                return resultado;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        return resultado;
+    }
+
+    public static Resultado<bool> Recuperar(uint idNutrienteAlerta)
+    {
+        Resultado<bool> resultado = new Resultado<bool>(false);
+        try
+        {
+            //TODO-TESIS: se debe poder obtener tmb los q están eliminados.
+            var resNutrienteAlerta = ObtenerNutrienteAlertaPorId(idNutrienteAlerta);
+            ModelNutriente nut = resNutrienteAlerta.Data;
+
+            if (nut.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica)
+            {
+                if (!ServiceShared.ValidarPermisos().Data)
+                {
+                    resultado.ObtenerError("No posee los permisos para recuperar. Comuníquese con el administrador del software.");
+                    return resultado;
+                }
+            }
+
+            var resEliminar = MySQLRepositorySello.RecuperarSello(nut.NutrientesAlerta.First().Id, nut.NutrientesAlerta.First().Alerta.Id, idUsuario);
+            if (!resEliminar)
+            {
+                resultado.ObtenerError("Error al recuperar el sello.");
                 return resultado;
             }
         }

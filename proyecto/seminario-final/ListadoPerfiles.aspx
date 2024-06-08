@@ -24,7 +24,7 @@
                                     </div>
                                 </div>
                            
-                                <asp:CheckBox CssClass="form-group" ID="ch_eliminados" Text="Ver perfiles eliminadas" runat="server" />
+                                <asp:CheckBox CssClass="form-group" ID="ch_eliminados" OnCheckedChanged="ch_eliminados_CheckedChanged" AutoPostBack="true" Text="Ver perfiles eliminadas" runat="server" />
                                 <script type="text/javascript">
                                     "use strict";
 
@@ -48,6 +48,10 @@
                                         document.getElementById("Cuerpo_vista_repeater").style = "display:block";
                                         document.getElementById("Cuerpo_LinkButton2").attributes["class"].value = "text-muted  no-print";
                                         document.getElementById("Cuerpo_LinkButton3").attributes["class"].value = "text-primary  no-print";
+                                    }
+                                     
+                                    function hacerpostbackRecuperar(id) {
+                                        __doPostBack('recuperar', id);
                                     }
 
                                 </script>
@@ -87,11 +91,14 @@
                                                 <asp:TemplateField HeaderText="Acción">
                                                     <ItemTemplate>
 
-                                                        <a href="<%# String.Format("FormularioPerfil?prf={0}", Eval("Id")) %>" class="mr-3">
+                                                        <a title="Modificar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' href="<%# String.Format("FormularioPerfil?prf={0}", Eval("Id")) %>" class="mr-3">
                                                             <i class="mdi mdi-pencil text-dark icon-md"></i>
                                                         </a>
-                                                        <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
+                                                        <a title="Eliminar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
                                                             <i class="mdi mdi-delete text-danger icon-md"></i>
+                                                        </a>
+                                                        <a title="Recuperar" style='<%# ch_eliminados.Checked ? "": "display:none" %>' onclick="hacerpostbackRecuperar('<%# Eval("Id") %>');" href="#">
+                                                            <i class="mdi mdi-undo-variant text-dark icon-md"></i>
                                                         </a>
                                                     </ItemTemplate>
 
@@ -150,9 +157,12 @@
                                                                 <asp:Label Text='<%# "Ingredientes prohibidos: " + Eval("IngredientesProhibidos").ToString() %>' runat="server" />
                                                             </p>
                                                         
-                                                            <a class="text-muted" href="<%# String.Format("FormularioPerfil?prf={0}", Eval("ID")) %>"><i class="mdi  mdi-pencil text-dark icon-md ml-2 "></i></a>
-                                                            <a style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
+                                                            <a title="Modificar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' href="<%# String.Format("FormularioPerfil?prf={0}", Eval("ID")) %>"><i class="mdi  mdi-pencil text-dark icon-md ml-2 "></i></a>
+                                                            <a title="Eliminar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
                                                                 <i class="mdi mdi-delete text-danger icon-md"></i>
+                                                            </a>
+                                                            <a title="Recuperar" style='<%# ch_eliminados.Checked ? "": "display:none" %>' onclick="hacerpostbackRecuperar('<%# Eval("Id") %>');" href="#">
+                                                                <i class="mdi mdi-undo-variant text-dark icon-md"></i>
                                                             </a>
                                                         </div>
                                                         <div class="side-right text-right font-weight-light">

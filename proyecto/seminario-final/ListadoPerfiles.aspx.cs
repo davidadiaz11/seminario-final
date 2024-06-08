@@ -19,7 +19,11 @@ namespace seminario_final
                 vista_lista.PageSize = Convert.ToInt16(ddl_cant_filas.SelectedValue);
                 if (Request["__EVENTTARGET"] == "eliminar")
                 {
-                    eliminar(Convert.ToUInt32(Request["__EVENTARGUMENT"]));
+                    Eliminar(Convert.ToUInt32(Request["__EVENTARGUMENT"]));
+                }
+                if (Request["__EVENTTARGET"] == "recuperar")
+                {
+                    Recuperar(Convert.ToUInt32(Request["__EVENTARGUMENT"]));
                 }
             }
             populate(vista_lista.PageSize);
@@ -56,7 +60,7 @@ namespace seminario_final
             span_mensaje.InnerText = msj;
         }
 
-        private void eliminar(uint idAlerta)
+        private void Eliminar(uint idAlerta)
         {
             var master = Master as MasterPage;
             if(idAlerta <= 0)
@@ -71,6 +75,23 @@ namespace seminario_final
                 return;
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
+        }
+
+        private void Recuperar(uint idAlerta)
+        {
+            var master = Master as MasterPage;
+            if (idAlerta <= 0)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al recuperar"), true);
+                return;
+            }
+            var resRecuperar = ServicePerfiles.Recuperar(idAlerta);
+            if (!resRecuperar.Ok)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resRecuperar.Errores), true);
+                return;
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Recuperado correctamente"), true);
         }
 
         private void Ver_tarjetas()
@@ -129,6 +150,9 @@ namespace seminario_final
             Session["cant_resultados"] = Convert.ToByte(ddl_cant_filas.SelectedValue);
         }
 
-
+        protected void ch_eliminados_CheckedChanged(object sender, EventArgs e)
+        {
+            populate(vista_lista.PageSize);
+        }
     }
 }

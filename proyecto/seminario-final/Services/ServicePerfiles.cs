@@ -55,6 +55,26 @@ public class ServicePerfiles
         }
         return resultado;
     }
+    
+    public static Resultado<bool> Recuperar(uint idPerfil)
+    {
+        Resultado<bool> resultado = new Resultado<bool>(false);
+        try
+        {
+            resultado.Data = MySQLRepositoryPerfil.RecuperarPerfil(idPerfil, idUsuario);
+            if (!resultado.Data)
+            {
+                resultado.ObtenerError("Error al recuperar perfil");
+                return resultado;
+            }
+        }
+        catch (Exception ex)
+        {
+            resultado.ObtenerError(ex.Message);
+            return resultado;
+        }
+        return resultado;
+    }
     public static Resultado<ModelPerfil> ObtenerPerfil(uint idPerfil)
     {
         var resultado = new Resultado<ModelPerfil>();

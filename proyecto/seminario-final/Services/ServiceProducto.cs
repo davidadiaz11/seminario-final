@@ -28,10 +28,14 @@ public class ServiceProducto
 
     public static List<ModelProducto> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
     {
+        List<ModelProducto> items = new List<ModelProducto>();
         DataSet ds = MySQLRepositoryProducto.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, idUsuario, eliminados);
+        if (ds.Tables.Count < 2)
+        {
+            return items;
+        }
         DataTable dt = ds.Tables[0];
         DataTable dt_nutrientes = ds.Tables[1];
-        List<ModelProducto> items = new List<ModelProducto>();
         List<ModelNutrienteProducto> nutrientes = new List<ModelNutrienteProducto>();
         foreach (DataRow dr in dt.Rows)
         {
@@ -166,6 +170,30 @@ public class ServiceProducto
             if (!resultado.Data)
             {
                 resultado.ObtenerError("Error al eliminar el producto. Reintente o comuníquese con el administrador del software.");
+                return resultado;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        return resultado;
+    }
+    public static Resultado<bool> Recuperar(int idProducto)
+    {
+        Resultado<bool> resultado = new Resultado<bool>(false);
+        try
+        {
+            if (!ServiceShared.ValidarPermisos().Data)
+            {
+                resultado.ObtenerError("No posee los permisos para recuperar. Comuníquese con el administrador del sistema.");
+                return resultado;
+            }
+
+            resultado.Data = MySQLRepositoryProducto.Recuperar(idProducto, idUsuario);
+            if (!resultado.Data)
+            {
+                resultado.ObtenerError("Error al recuperar el producto. Reintente o comuníquese con el administrador del software.");
                 return resultado;
             }
         }

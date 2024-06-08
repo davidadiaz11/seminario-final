@@ -10,6 +10,7 @@ namespace seminario_final
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Title = "Productos";
+            MostrarCheckEliminados();
             if (!IsPostBack)
             {
                 configurarPantalla();
@@ -21,9 +22,24 @@ namespace seminario_final
                 {
                     Eliminar(Convert.ToInt32(Request["__EVENTARGUMENT"]));
                 }
+                if (Request["__EVENTTARGET"] == "recuperar")
+                {
+                    Recuperar(Convert.ToInt32(Request["__EVENTARGUMENT"]));
+                }
             }
             buscar_filtros();
             populate(vista_lista.PageSize);
+        }
+
+        private void MostrarCheckEliminados()
+        {
+            var resValidacion = ServiceShared.ValidarPermisos();
+            if (!resValidacion.Ok || !resValidacion.Data)
+            {
+                ch_eliminados.Visible = false;
+                return;
+            }
+            ch_eliminados.Visible = true;
         }
 
         private void configurarPantalla()
@@ -69,6 +85,23 @@ namespace seminario_final
                 return;
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
+        }
+        
+        private void Recuperar(int idProducto)
+        {
+            var master = Master as MasterPage;
+            if (idProducto<= 0)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al recuperar"), true);
+                return;
+            }
+            var resRecuperar = ServiceProducto.Recuperar(idProducto);
+            if (!resRecuperar.Ok)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resRecuperar.Errores), true);
+                return;
+            }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Recuperado correctamente"), true);
         }
 
         private void Ver_tarjetas()
@@ -143,6 +176,11 @@ namespace seminario_final
         protected void ddl_cant_filas_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session["cant_resultados"] = Convert.ToByte(ddl_cant_filas.SelectedValue);
+        }
+
+        protected void ch_eliminados_CheckedChanged(object sender, EventArgs e)
+        {
+            populate(vista_lista.PageSize);
         }
     }
 }
