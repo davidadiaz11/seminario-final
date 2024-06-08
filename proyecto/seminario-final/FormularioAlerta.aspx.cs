@@ -87,7 +87,7 @@ namespace seminario_final
         private bool ObtenerNutrienteAlertaPorId()
         {
             ddl_color.Enabled = false;
-            var resNutrientePersistido = ServiceSello.ObtenerNutrienteAlertaPorId(Convert.ToUInt32(idNutrienteAlerta));
+            var resNutrientePersistido = ServiceSello.ObtenerNutrienteAlertaPorId(Convert.ToUInt32(idNutrienteAlerta), false);
             if (!resNutrientePersistido.Ok)
             {
                 var master = Master as MasterPage;

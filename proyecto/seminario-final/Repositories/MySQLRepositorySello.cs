@@ -148,7 +148,7 @@ public class MySQLRepositorySello
         return ds;
     }
 
-    public static DataTable ObtenerNutrienteAlertaPorId(uint idNutrienteAlerta)
+    public static DataTable ObtenerNutrienteAlertaPorId(uint idNutrienteAlerta, bool eliminado)
     {
         DataTable dt = new DataTable();
         MySqlConnection cn = new MySqlConnection(cadena);
@@ -164,7 +164,16 @@ public class MySQLRepositorySello
                                 JOIN nutrientes on anu_nut_id=nut_id
                                 JOIN alertas on anu_ale_id=ale_id
                                 JOIN tipos_alerta on tal_id=ale_tal_id
-                                WHERE tal_fecha_baja is null and anu_fecha_baja is null AND anu_id=@anu_id and ale_fecha_baja IS NULL;";
+                                WHERE tal_fecha_baja is null AND anu_id=@anu_id ";
+
+            if (!eliminado)
+            {
+                cmd.CommandText = cmd.CommandText + "and ale_fecha_baja IS NULL AND anu_fecha_baja is null";
+            }
+            else
+            {
+                cmd.CommandText = cmd.CommandText + "and ale_fecha_baja IS NOT NULL AND anu_fecha_baja is NOT null";
+            }
             cmd.Parameters.Add(new MySqlParameter("@anu_id", idNutrienteAlerta));
 
             dt.Load(cmd.ExecuteReader());

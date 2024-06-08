@@ -34,7 +34,7 @@ public class ServiceSello
         Resultado<bool> resultado = new Resultado<bool>(false);
         try
         {
-            var resNutrienteAlerta = ObtenerNutrienteAlertaPorId(idNutrienteAlerta);
+            var resNutrienteAlerta = ObtenerNutrienteAlertaPorId(idNutrienteAlerta, false);
             ModelNutriente nut = resNutrienteAlerta.Data;
 
             if (nut.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica)
@@ -65,8 +65,7 @@ public class ServiceSello
         Resultado<bool> resultado = new Resultado<bool>(false);
         try
         {
-            //TODO-TESIS: se debe poder obtener tmb los q están eliminados.
-            var resNutrienteAlerta = ObtenerNutrienteAlertaPorId(idNutrienteAlerta);
+            var resNutrienteAlerta = ObtenerNutrienteAlertaPorId(idNutrienteAlerta, true);
             ModelNutriente nut = resNutrienteAlerta.Data;
 
             if (nut.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica)
@@ -137,10 +136,10 @@ public class ServiceSello
         return items;
     }
 
-    public static Resultado<ModelNutriente> ObtenerNutrienteAlertaPorId(uint idNutrienteAlerta)
+    public static Resultado<ModelNutriente> ObtenerNutrienteAlertaPorId(uint idNutrienteAlerta, bool eliminado)
     {
         Resultado<ModelNutriente> resultado = new Resultado<ModelNutriente>();
-        DataTable dt = MySQLRepositorySello.ObtenerNutrienteAlertaPorId(idNutrienteAlerta);
+        DataTable dt = MySQLRepositorySello.ObtenerNutrienteAlertaPorId(idNutrienteAlerta, eliminado);
 
         if (dt.Rows.Count != 1)
         {
