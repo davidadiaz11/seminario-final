@@ -124,8 +124,12 @@ public class MySQLRepositoryProducto
                                 nutrientes_x_productos
                                 join nutrientes on npr_nut_id=nut_id
 								LEFT JOIN alertas_x_nutriente on npr_nut_id=anu_nut_id
-                                where FIND_IN_SET(npr_pro_id, @pro_id) AND 
-                                npr_fecha_baja is null AND anu_fecha_baja is null;";
+                                where FIND_IN_SET(npr_pro_id, @pro_id) AND anu_fecha_baja is null ";
+
+            if (!eliminados)
+                cmd.CommandText += "AND npr_fecha_baja IS NULL ";
+            else
+                cmd.CommandText += "AND npr_fecha_baja IS NOT NULL ";
             cmd.Parameters.Add(new MySqlParameter("@pro_id", idsString));
 
             cmd.CommandText = terceraQuery;
