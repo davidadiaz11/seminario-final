@@ -13,12 +13,10 @@ namespace seminario_final
             idPerfilstring = Request.QueryString["prf"];
             if (!IsPostBack)
             {
-
                 if (idPerfilstring == null)
                 {
                     return;
                 }
-
                 var resValidacion = ServiceShared.ValidarQueryParam(idPerfilstring);
                 if (!resValidacion.Ok)
                 {
@@ -26,11 +24,11 @@ namespace seminario_final
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resValidacion.Errores), true);
                     return;
                 }
+                idPerfil = Convert.ToUInt32(idPerfilstring);
                 if (ObtenerPerfil())
                 {
                     CargarPerfil();
                 }
-
             }
         }
 
@@ -57,7 +55,6 @@ namespace seminario_final
         private bool ValidarFormulario()
         {
             var master = Master as MasterPage;
-
             if (string.IsNullOrEmpty(txt_nombre.Text))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Ingrese un nombre"), true);
@@ -71,13 +68,13 @@ namespace seminario_final
             return true;
         }
 
-
         private ModelPerfil crearObjeto()
         {
             ModelPerfil prof = new ModelPerfil()
             {
-               Nombre = txt_nombre.Text,
-               FechaNacimiento = Convert.ToDateTime(txt_fecha_nacimiento.Text)
+                Nombre = txt_nombre.Text,
+                FechaNacimiento = Convert.ToDateTime(txt_fecha_nacimiento.Text),
+                IngredientesProhibidos = txt_ingredientes_prohibidos.Text
             };
             return prof;
         }
@@ -89,14 +86,12 @@ namespace seminario_final
             {
                 return;
             }
-
             ModelPerfil nuevoElemento = crearObjeto();
-
-            var resModificacion = ServicePerfiles.GuardarPerfil(nuevoElemento, idPerfil);
+            var resModificacion = ServicePerfiles.GuardarPerfil(nuevoElemento, Convert.ToUInt32(idPerfilstring));
             var master = Master as MasterPage;
             if (!resModificacion.Ok)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resModificacion.Errores), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message_err", master.generar_js_error(resModificacion.Errores), true);
                 return;
             }
             if (string.IsNullOrEmpty(resModificacion.Mensaje))

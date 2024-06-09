@@ -96,11 +96,12 @@ public class ServicePerfiles
             if (idPerfilPersistido > 0)
             {
                 ModelPerfil perfilPersistido = ObtenerPerfil(idPerfilPersistido).Data;
-                if (perfil.Id > 0 && perfil.Nombre == perfilPersistido.Nombre && perfil.FechaNacimiento == perfilPersistido.FechaNacimiento || perfil.IngredientesProhibidos == perfilPersistido.IngredientesProhibidos)
+                if (perfil.Id > 0 && perfil.Nombre == perfilPersistido.Nombre && perfil.FechaNacimiento == perfilPersistido.FechaNacimiento && perfil.IngredientesProhibidos == perfilPersistido.IngredientesProhibidos)
                 {
                     resultado.Mensaje = "No hay cambios para guardar.";
                     return resultado;
                 }
+                perfil.Id = idPerfilPersistido;
             }
             
             resultado.Data = MySQLRepositoryPerfil.GuardarPerfil(idUsuario, perfil);
@@ -115,6 +116,7 @@ public class ServicePerfiles
             resultado.ObtenerError(ex.Message);
             return resultado;
         }
+        resultado.Data = true;
         return resultado;
     }
 

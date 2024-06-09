@@ -109,7 +109,7 @@ namespace seminario_final
 
         protected string GetPageLink(int noOfPage)
         {
-            return ServiceShared.GetPageLink(noOfPage, Request, "perfiles");
+            return ServiceShared.GetPageLink(noOfPage, Request, "listadoperfiles");
         }
 
         private void populate(int filasPorPag)

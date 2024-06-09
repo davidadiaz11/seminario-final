@@ -69,7 +69,6 @@ namespace seminario_final
             ddl_nutriente.DataBind();
         }
 
-
         private void CargarTiposCalculo()
         {
             if (string.IsNullOrEmpty(ddl_nutriente.SelectedValue))
@@ -94,6 +93,7 @@ namespace seminario_final
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resNutrientePersistido.Errores), true);
                 return false;
             }
+            nutrientePersistido = resNutrientePersistido.Data;
             alertaPersistida = resNutrientePersistido.Data.NutrientesAlerta.First().Alerta;
             return true;
         }
@@ -136,7 +136,6 @@ namespace seminario_final
             }
             return true;
         }
-
 
         private ModelNutriente crearObjetoDesdeFormulario()
         {
@@ -183,7 +182,10 @@ namespace seminario_final
             {
                 return;
             }
-            ObtenerNutrienteAlertaPorId();
+            if (idNutrienteAlerta != null)
+            {
+                ObtenerNutrienteAlertaPorId();
+            }
 
             ModelNutriente nuevoElemento = crearObjetoDesdeFormulario();
 

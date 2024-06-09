@@ -9,7 +9,7 @@ public class ModelPerfil
     {
     }
 
-    public ushort Id { get; set; }
+    public uint Id { get; set; }
     public string Nombre { get; set; }
     public DateTime FechaNacimiento { get; set; }
     public int Edad { get { return (int.Parse(DateTime.UtcNow.AddHours(-3).ToString("yyyyMMdd")) - int.Parse(FechaNacimiento.ToString("yyyyMMdd"))) / 10000; } }

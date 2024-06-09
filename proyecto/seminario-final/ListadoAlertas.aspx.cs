@@ -109,7 +109,7 @@ namespace seminario_final
 
         protected string GetPageLink(int noOfPage)
         {
-            return ServiceShared.GetPageLink(noOfPage, Request, "nutrientes");
+            return ServiceShared.GetPageLink(noOfPage, Request, "listadoalertas");
         }
 
         private void populate(int filasPorPag)

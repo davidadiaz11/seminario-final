@@ -62,9 +62,12 @@ public class MySQLRepositorySello
             cmd.Parameters.Clear();
             cmd.Connection = cn;
 
-            cmd.CommandText = @"SELECT COUNT(ale_id) cant 
-                                FROM alertas 
-                                WHERE ";
+            cmd.CommandText = @"SELECT COUNT(anu_id) cant 
+                                FROM ALERTAS_X_NUTRIENTE 
+                                JOIN nutrientes on anu_nut_id=nut_id
+                                JOIN alertas on anu_ale_id=ale_id
+                                JOIN tipos_alerta on tal_id=ale_tal_id
+                                WHERE tal_fecha_baja is null AND ";
 
             if (!eliminados)
                 cmd.CommandText += "ale_fecha_baja IS NULL ";

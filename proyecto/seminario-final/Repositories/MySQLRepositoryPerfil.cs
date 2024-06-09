@@ -53,28 +53,23 @@ public class MySQLRepositoryPerfil
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
+            cmd.Parameters.Add(new MySqlParameter("@prf_nombre", perfil.Nombre));
+            cmd.Parameters.Add(new MySqlParameter("@prf_fecha_nacimiento", perfil.FechaNacimiento));
+            cmd.Parameters.Add(new MySqlParameter("@prf_ingredientes_prohibidos", perfil.IngredientesProhibidos));
+            cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
             if (!esEdicion)
             {
-                string cmdPerfilNuevo = @"INSERT INTO PERFILES (prf_nombre, prf_usu_id, prf_fecha_nacimiento, prf_ingredientes_prohibidos, tal_usu_id_modificacion) values (
+                string cmdPerfilNuevo = @"INSERT INTO PERFILES (prf_nombre, prf_usu_id, prf_fecha_nacimiento, prf_ingredientes_prohibidos, prf_usu_id_alta, prf_usu_id_modificacion) values (
                                 @prf_nombre, @usu_id, @prf_fecha_nacimiento, @prf_ingredientes_prohibidos, @usu_id, @usu_id);";
-                cmd.Parameters.Add(new MySqlParameter("@prf_nombre", perfil.Nombre));
-                cmd.Parameters.Add(new MySqlParameter("@prf_fecha_nacimiento", perfil.FechaNacimiento));
-                cmd.Parameters.Add(new MySqlParameter("@prf_ingredientes_prohibidos", perfil.IngredientesProhibidos));
-                cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
-
                 cmd.CommandText = cmdPerfilNuevo;
                 cmd.ExecuteNonQuery();
             }
             else
             {
                 
-                cmd.CommandText = @"UPDATE PERFILES set prf_nombre=@prf_nombre, prf_fecha_nacimiento=@prf_fecha_nacimiento, prf_usu_id_modificacion=@usu_id 
+                cmd.CommandText = @"UPDATE PERFILES set prf_nombre=@prf_nombre, prf_fecha_nacimiento=@prf_fecha_nacimiento, prf_ingredientes_prohibidos=@prf_ingredientes_prohibidos, prf_usu_id_modificacion=@usu_id 
                                 WHERE prf_id=@prf_id and prf_fecha_baja IS NULL;";
                 cmd.Parameters.Add(new MySqlParameter("@prf_id", perfil.Id));
-                cmd.Parameters.Add(new MySqlParameter("@prf_nombre", perfil.Nombre));
-                cmd.Parameters.Add(new MySqlParameter("@prf_fecha_nacimiento", perfil.FechaNacimiento));
-                cmd.Parameters.Add(new MySqlParameter("@prf_ingredientes_prohibidos", perfil.IngredientesProhibidos));
-                cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
                 cmd.ExecuteNonQuery();
             }
         }
@@ -130,7 +125,7 @@ public class MySQLRepositoryPerfil
             cmd.Connection = cn;
             cmd.Parameters.Clear();
             cmd.Connection = cn;
-            cmd.CommandText = @"UPDATE PERFILES set prf_usu_id_baja=null, prf_fecha_baja=null, prf_fecha_baja=now(), prf_usu_id_modificacion=@usu_id
+            cmd.CommandText = @"UPDATE PERFILES set prf_usu_id_baja=null, prf_fecha_baja=null, prf_fecha_modificacion=now(), prf_usu_id_modificacion=@usu_id
                             WHERE prf_id=@prf_id and prf_fecha_baja IS NOT NULL;";
             cmd.Parameters.Add(new MySqlParameter("@prf_id", idPerfil));
             cmd.Parameters.Add(new MySqlParameter("@usu_id", idUsuario));
