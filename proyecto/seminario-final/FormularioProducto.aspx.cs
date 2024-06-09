@@ -11,10 +11,10 @@ namespace seminario_final
         string idProducto = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            idProducto = Request.QueryString["pro"];
             if (!IsPostBack)
             {
                 CargarTiposPorcion();
-                idProducto = Request.QueryString["pro"];
                 if (idProducto == null)
                 {
                     return;
@@ -67,7 +67,7 @@ namespace seminario_final
             txt_grasas_totales.Text = producto.NutrientesProducto.First(x => x.Nutriente.Nombre == "Grasas totales").Nutriente.CantidadPorPorcion.ToString().Replace(",", ".");
             txt_grasas_trans.Text = producto.NutrientesProducto.First(x => x.Nutriente.Nombre == "Grasas trans").Nutriente.CantidadPorPorcion.ToString().Replace(",", ".");
             txt_proteinas.Text = producto.NutrientesProducto.First(x => x.Nutriente.Nombre == "Proteínas").Nutriente.CantidadPorPorcion.ToString().Replace(",", ".");
-            txt_sodio.Text = producto.NutrientesProducto.First(x => x.Nutriente.Nombre == "Sodio").Nutriente.CantidadPorPorcion.ToString().Replace(",",".");
+            txt_sodio.Text = producto.NutrientesProducto.First(x => x.Nutriente.Nombre == "Sodio").Nutriente.CantidadPorPorcion.ToString().Replace(",", ".");
             txt_valor_energetico.Text = producto.ValorEnergetico.ToString().Replace(",", ".");
             txt_ingredientes.Text = producto.Ingredientes;
         }
@@ -125,12 +125,12 @@ namespace seminario_final
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Ingrese cantidad de grasas trans por porción"), true);
                 return false;
-            }                      
+            }
             if (string.IsNullOrEmpty(txt_proteinas.Text))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Ingrese cantidad de proteínas por porción"), true);
                 return false;
-            }      
+            }
             if (string.IsNullOrEmpty(txt_sodio.Text))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Ingrese cantidad de sodio por porción"), true);
@@ -144,7 +144,7 @@ namespace seminario_final
             return true;
         }
 
-        private  ModelProducto crearObjetoProducto()
+        private ModelProducto crearObjetoProducto()
         {
             ObtenerProducto();
             ModelProducto nuevoProducto = new ModelProducto();
