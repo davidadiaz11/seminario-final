@@ -43,6 +43,10 @@ namespace seminario_final
 
         private bool ObtenerProducto()
         {
+            if(idProducto == null)
+            {
+                return false;
+            }
             var resProducto = ServiceProducto.ObtenerPorId(Convert.ToInt32(idProducto));
             if (!resProducto.Ok)
             {
@@ -147,6 +151,10 @@ namespace seminario_final
         private ModelProducto crearObjetoProducto()
         {
             ObtenerProducto();
+            if (producto == null)
+            {
+                return null;
+            }
             ModelProducto nuevoProducto = new ModelProducto();
             nuevoProducto.Id = producto.Id;
             nuevoProducto.Nombre = txt_nombre.Text;
@@ -182,9 +190,16 @@ namespace seminario_final
             {
                 return;
             }
-            ModelProducto nuevoProducto = crearObjetoProducto();
-            var resModificacion = ServiceProducto.ModificarProducto(nuevoProducto);
             var master = Master as MasterPage;
+
+            ModelProducto nuevoProducto = crearObjetoProducto();
+            if (nuevoProducto == null)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("No es posible generar nuevos productos."), true);
+                return;
+            }
+
+            var resModificacion = ServiceProducto.ModificarProducto(nuevoProducto);
             if (!resModificacion.Ok)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resModificacion.Errores), true);
