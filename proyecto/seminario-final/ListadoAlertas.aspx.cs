@@ -72,7 +72,7 @@ namespace seminario_final
             var resEliminar = ServiceSello.Eliminar(idNutrienteAlerta);
             if (!resEliminar.Ok)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resEliminar.Errores), true);
                 return;
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
@@ -136,7 +136,6 @@ namespace seminario_final
 
             rpt_viajes.DataSource = nutrientes;
             rpt_viajes.DataBind();
-
 
             h_nombre.DataBind();
             h_leyenda.DataBind();

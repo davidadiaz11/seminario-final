@@ -65,6 +65,23 @@ namespace seminario_final
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Seleccione fecha de nacimiento"), true);
                 return false;
             }
+
+            try
+            {
+                DateTime fechaNac = Convert.ToDateTime(txt_fecha_nacimiento.Text);
+
+                if (fechaNac.Date > DateTime.UtcNow.AddHours(-3).Date)
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("No es posible seleccionar una fecha posterior a la actual."), true);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Formato de fecha incorrecto. Seleccione la fecha de nacimiento."), true);
+                return false;
+            }
+
             return true;
         }
 
