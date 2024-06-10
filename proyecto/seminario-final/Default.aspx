@@ -340,7 +340,7 @@
                                 <h3 class="  text-center">Sumate para conocer de qué están hechos los alimentos, es fácil y rápido!</h3>
                                 <br>
                                 <br>
-                                <a class="btn btn-lg btn-primary col-6 col-xl-1" rel="noopener noreferrer" href="Inicio">Iniciar Sesión</a>
+                                <a class="btn btn-lg btn-primary col-6 col-xl-1" rel="noopener noreferrer" href="Login">Iniciar Sesión</a>
                                 <br>
                                 <br>
                                 <a class="btn btn-lg btn-success col-6 col-xl-1" rel="noopener noreferrer" href="nueva-cuenta.html">Registrarme</a>
