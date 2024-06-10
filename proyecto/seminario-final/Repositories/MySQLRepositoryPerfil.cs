@@ -1,7 +1,6 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using System.Data;
-using System.Linq;
 using System.Collections.Generic;
 
 public class MySQLRepositoryPerfil
@@ -66,7 +65,7 @@ public class MySQLRepositoryPerfil
             }
             else
             {
-                
+
                 cmd.CommandText = @"UPDATE PERFILES set prf_nombre=@prf_nombre, prf_fecha_nacimiento=@prf_fecha_nacimiento, prf_ingredientes_prohibidos=@prf_ingredientes_prohibidos, prf_usu_id_modificacion=@usu_id 
                                 WHERE prf_id=@prf_id and prf_fecha_baja IS NULL;";
                 cmd.Parameters.Add(new MySqlParameter("@prf_id", perfil.Id));
@@ -162,7 +161,7 @@ public class MySQLRepositoryPerfil
                                 FROM perfiles 
                                 WHERE prf_usu_id=@usu_id AND ";
 
-           
+
             if (!eliminados)
                 cmd.CommandText += "prf_fecha_baja IS NULL ";
             else

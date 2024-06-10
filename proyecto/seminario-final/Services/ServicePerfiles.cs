@@ -55,7 +55,7 @@ public class ServicePerfiles
         }
         return resultado;
     }
-    
+
     public static Resultado<bool> Recuperar(uint idPerfil)
     {
         Resultado<bool> resultado = new Resultado<bool>(false);
@@ -103,7 +103,7 @@ public class ServicePerfiles
                 }
                 perfil.Id = idPerfilPersistido;
             }
-            
+
             resultado.Data = MySQLRepositoryPerfil.GuardarPerfil(idUsuario, perfil);
             if (!resultado.Ok)
             {

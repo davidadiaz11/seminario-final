@@ -24,7 +24,7 @@ public class ServiceSesion
         {
             resultado = false;
         }
-        
+
         return resultado;
     }
     public static ushort ObtenerUsuario()

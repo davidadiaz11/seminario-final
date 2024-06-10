@@ -40,29 +40,31 @@
     <link rel="stylesheet" type="text/css" href="css/slick.css" />
     <style>
         body {
-/*            width: 100%;*/
-/*            overflow-x: hidden;*/
-/*            overscroll-behavior: contain;*/
+            /*            width: 100%;*/
+            /*            overflow-x: hidden;*/
+            /*            overscroll-behavior: contain;*/
         }
 
         html {
             overscroll-behavior: contain;
         }
 
-                html, body {
-            height:100%;
+        html, body {
+            height: 100%;
         }
+
         .header {
-            height:100%;
+            height: 100%;
         }
 
         html {
-    overflow: hidden;
-}
-body {
-    overflow-y: scroll;
-    -webkit-overflow-scrolling:touch;
-}
+            overflow: hidden;
+        }
+
+        body {
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
 
 
 
@@ -72,9 +74,9 @@ body {
             align-content: center;
         }
 
-          .iziToast-buttons, .iziToast-texts {
-      padding-left: 3rem;
-  }
+        .iziToast-buttons, .iziToast-texts {
+            padding-left: 3rem;
+        }
 
         .spinner {
             width: 80px;
@@ -148,30 +150,30 @@ body {
             height: auto;
         }
 
-        
+
         .img2 {
             width: 50px;
         }
 
         .img {
-            width:100%;
+            width: 100%;
         }
 
         /*PC*/
         @media (min-width:900px) {
 
             .img-1 {
-                content:url("images/flyermalena1200x450.png");
+                content: url("images/flyermalena1200x450.png");
             }
 
-            .img-2{
-                content:url("images/flyermalena1200x450.png");
+            .img-2 {
+                content: url("images/flyermalena1200x450.png");
             }
 
-            .img-3{
-                content:url("images/flyermalena1200x450.png");
+            .img-3 {
+                content: url("images/flyermalena1200x450.png");
             }
-            
+
             .imagen {
                 width: 50%;
             }
@@ -181,51 +183,49 @@ body {
             }
 
             .apreton {
-
-                height:200px; 
-                background: url(images/cta1.png) no-repeat center center fixed; 
-                -webkit-background-size: cover; 
-                -moz-background-size: cover; 
+                height: 200px;
+                background: url(images/cta1.png) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
                 background-size: cover;
-
             }
 
             .cta-btn {
-                padding:50px 0;
+                padding: 50px 0;
             }
 
             .botones {
                 font-size: .995rem;
-                color:#363636;
+                color: #363636;
             }
 
             .suconsulta {
                 font-size: 1.8rem;
-                color:#363636;
+                color: #363636;
             }
 
             .comentarios {
                 /*margin-left: 33.33333333333333%;*/
                 margin-left: 20%;
-                width:60%;
+                width: 60%;
             }
 
             .texto-comentario {
-                padding:15px 15px 5px 200px;
-                font-size:2rem;
+                padding: 15px 15px 5px 200px;
+                font-size: 2rem;
             }
 
-            .altura-comentario{
-                height:200px;
+            .altura-comentario {
+                height: 200px;
             }
 
-            .text-envios{
+            .text-envios {
                 font-size: 20px;
             }
         }
 
 
-        
+
 
 
 
@@ -234,61 +234,61 @@ body {
         @media (max-width:700px) {
 
             .img-1 {
-                content:url("images/flyermalena.png");
+                content: url("images/flyermalena.png");
             }
 
-            .img-2{
-                content:url("images/flyermalena.png");
+            .img-2 {
+                content: url("images/flyermalena.png");
             }
 
-            .img-3{
-                content:url("images/flyermalena.png");
+            .img-3 {
+                content: url("images/flyermalena.png");
             }
 
             .imagen {
                 width: 100%;
             }
+
             .logo {
                 width: 50%;
             }
 
             .comentarios {
-                width:100%;
+                width: 100%;
             }
 
             .texto-comentario {
-                padding:15px 15px 5px 120px;
+                padding: 15px 15px 5px 120px;
                 font-size: 0.7rem;
             }
 
-            .altura-comentario{
+            .altura-comentario {
             }
 
             .apreton {
-
-                height:130px; 
-                background: url(images/9009.png) no-repeat center center fixed; 
-                -webkit-background-size: cover; 
-                -moz-background-size: cover; 
+                height: 130px;
+                background: url(images/9009.png) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
                 background-size: cover;
                 background-attachment: fixed;
             }
 
             .cta-btn {
-                padding:40px 0;
+                padding: 40px 0;
             }
 
-            .text-envios{
+            .text-envios {
                 font-size: 13px;
             }
         }
 
 
-input {
-  height: 2em;
-  width: 2em;
-  vertical-align: middle;
-}
+        input {
+            height: 2em;
+            width: 2em;
+            vertical-align: middle;
+        }
     </style>
 </head>
 
@@ -300,13 +300,13 @@ input {
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row no-print">
             <div class="text-center col-10 navbar-brand-wrapper d-flex align-items-top justify-content-center" style="background-color: #404041">
-                <a class="navbar-brand brand-logo" style="padding-left:20%" href="#">
+                <a class="navbar-brand brand-logo" style="padding-left: 20%" href="#">
                     <img src="./images/logo.svg" alt="logo" />
                 </a>
-                <a class="navbar-brand brand-logo-mini" style="padding-left:20%" id="acceso" runat="server" href="#">
+                <a class="navbar-brand brand-logo-mini" style="padding-left: 20%" id="acceso" runat="server" href="#">
                     <img src="./images/logo.svg" alt="logo" />
                 </a>
-                
+
             </div>
         </nav>
 
@@ -316,98 +316,98 @@ input {
             <!-- partial:partials/_sidebar.html -->
 
             <nav class="sidebar sidebar-offcanvas no-print" id="sidebar">
-            <ul class="nav">
-                <li>
-                    <p class="text-center display-6 mb-0" id="nombre" runat="server"></p>
-                    <p class="text-center"><small runat="server" id="sm_u"></small></p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Inicio">
-                        <i class="menu-icon mdi mdi-home"></i>
-                        <span class="menu-title">Inicio</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" runat="server" id="btn_nuevo" href="NuevoAnalisis">
-                        <i class="menu-icon mdi mdi-qrcode-scan"></i>
-                        <span class="menu-title">Escanear productos</span>
-                    </a>
-                </li>
-                 <li class="nav-item">
-                    <a class="nav-link" runat="server" id="A2" href="ListadoProductos">
-                        <i class="menu-icon mdi mdi-food"></i>
-                        <span class="menu-title">Productos</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#sub-sellos" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="menu-icon mdi  mdi-sticker"></i>
-                        <span class="menu-title">Sellos</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="sub-sellos">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="ListadoAlertas">Ver todos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="FormularioAlerta">Crear Sello</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-               
-                <li class="nav-item">
-                    <a class="nav-link" href="ListadoAnalisis">
-                        <i class="menu-icon mdi mdi-poll-box"></i>
-                        <span class="menu-title">Análisis históricos</span>
-                    </a>
-                </li>
+                <ul class="nav">
+                    <li>
+                        <p class="text-center display-6 mb-0" id="nombre" runat="server"></p>
+                        <p class="text-center"><small runat="server" id="sm_u"></small></p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Inicio">
+                            <i class="menu-icon mdi mdi-home"></i>
+                            <span class="menu-title">Inicio</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" runat="server" id="btn_nuevo" href="NuevoAnalisis">
+                            <i class="menu-icon mdi mdi-qrcode-scan"></i>
+                            <span class="menu-title">Escanear productos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" runat="server" id="A2" href="ListadoProductos">
+                            <i class="menu-icon mdi mdi-food"></i>
+                            <span class="menu-title">Productos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#sub-sellos" aria-expanded="false" aria-controls="ui-basic">
+                            <i class="menu-icon mdi  mdi-sticker"></i>
+                            <span class="menu-title">Sellos</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="sub-sellos">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="ListadoAlertas">Ver todos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="FormularioAlerta">Crear Sello</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="Ayuda">
-                        <i class="menu-icon mdi mdi-help-circle"></i>
-                        <span class="menu-title">Ayuda</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#sub-perfiles" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="menu-icon mdi  mdi-account-location"></i>
-                        <span class="menu-title">Perfiles</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="sub-perfiles">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="ListadoPerfiles">Ver todos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="FormularioPerfil">Crear Perfil</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="/">
-                        <i class="menu-icon mdi mdi-power"></i>
-                        <span class="menu-title">Cerrar sesión</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <LogoutDisplay />
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ListadoAnalisis">
+                            <i class="menu-icon mdi mdi-poll-box"></i>
+                            <span class="menu-title">Análisis históricos</span>
+                        </a>
+                    </li>
 
-            </ul>
-        </nav>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Ayuda">
+                            <i class="menu-icon mdi mdi-help-circle"></i>
+                            <span class="menu-title">Ayuda</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#sub-perfiles" aria-expanded="false" aria-controls="ui-basic">
+                            <i class="menu-icon mdi  mdi-account-location"></i>
+                            <span class="menu-title">Perfiles</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="sub-perfiles">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="ListadoPerfiles">Ver todos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="FormularioPerfil">Crear Perfil</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="menu-icon mdi mdi-power"></i>
+                            <span class="menu-title">Cerrar sesión</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <logoutdisplay />
+                    </li>
+
+                </ul>
+            </nav>
 
             <div class="main-panel print" id="content">
                 <div class="content-wrapper">
 
-                    
-            <asp:ContentPlaceHolder ID="Cuerpo" runat="server">
-            </asp:ContentPlaceHolder>
+
+                    <asp:ContentPlaceHolder ID="Cuerpo" runat="server">
+                    </asp:ContentPlaceHolder>
                 </div>
-                 
+
             </div>
 
         </div>
@@ -472,9 +472,9 @@ input {
         });
     </script>
 
-<div class="text-right" style="background-color: #363636">
-                            <label class="text-white mr-2">Seminario Final de Ingeniería en Software - David Díaz</label>
-                        </div>
+    <div class="text-right" style="background-color: #363636">
+        <label class="text-white mr-2">Seminario Final de Ingeniería en Software - David Díaz</label>
+    </div>
 </body>
 </html>
 

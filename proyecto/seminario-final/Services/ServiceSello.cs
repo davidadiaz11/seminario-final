@@ -278,7 +278,7 @@ public class ServiceSello
     {
         List<ModelNutriente> items = new List<ModelNutriente>();
         DataTable dt = MySQLRepositorySello.ObtenerUltimosSellos(idUsuario);
-        if(dt.Rows.Count == 0)
+        if (dt.Rows.Count == 0)
         {
             return items;
         }
@@ -322,5 +322,5 @@ public class ServiceSello
         items.Add(x);
         return items;
     }
-    
+
 }

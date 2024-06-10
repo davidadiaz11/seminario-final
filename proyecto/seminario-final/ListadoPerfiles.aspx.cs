@@ -63,7 +63,7 @@ namespace seminario_final
         private void Eliminar(uint idAlerta)
         {
             var master = Master as MasterPage;
-            if(idAlerta <= 0)
+            if (idAlerta <= 0)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
                 return;
@@ -113,7 +113,7 @@ namespace seminario_final
         }
 
         private void populate(int filasPorPag)
-        { 
+        {
             int pageNo = 0;
             int cantPags = 0;
             int encontrados = 0;

@@ -160,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ayuda.aspx" />
-    <Content Include="ConfiguracionPerfiiles.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -231,13 +230,6 @@
     </Compile>
     <Compile Include="Ayuda.aspx.designer.cs">
       <DependentUpon>Ayuda.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ConfiguracionPerfiiles.aspx.cs">
-      <DependentUpon>ConfiguracionPerfiiles.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ConfiguracionPerfiiles.aspx.designer.cs">
-      <DependentUpon>ConfiguracionPerfiiles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

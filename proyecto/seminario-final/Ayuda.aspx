@@ -9,7 +9,6 @@
                     <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-
                                 <p style="font-size: 1.5rem;">
                                     Este proyecto de demostración consiste en una versión que permite presentar las distintas pantallas que forman parte de un sistema.
     <br>

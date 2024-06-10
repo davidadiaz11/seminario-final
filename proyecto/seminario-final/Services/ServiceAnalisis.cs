@@ -163,7 +163,8 @@ public class ServiceAnalisis
         return items;
     }
 
-    public static bool VerificarProductoAnalizado(uint idProducto) {
+    public static bool VerificarProductoAnalizado(uint idProducto)
+    {
         var resultado = false;
         try
         {

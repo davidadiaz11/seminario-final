@@ -32,7 +32,7 @@ public class MySQLRepositoryAnalisis
             cmd.Parameters.Add(new MySqlParameter("@pro_id", idProducto));
 
             dt.Load(cmd.ExecuteReader());
-           
+
             string terceraQuery = @"SELECT npr_pro_id, nut_nombre, NUT_TIPO_NUTRIENTE, NPR_CANTIDAD_POR_PORCION, ale_leyenda, ANU_VALOR_CRITICO, ANU_OPERADOR, TCA_NOMBRE, TCA_NOMBRE_ENUM, TAL_ES_GENERICA, TAL_COLOR, TAL_FORMA
                                 from nutrientes_x_productos
                                 join nutrientes on npr_nut_id=nut_id
@@ -77,7 +77,7 @@ public class MySQLRepositoryAnalisis
             cmd.CommandText = @"SELECT COUNT(ahi_id) cant 
                                 FROM analisis_historicos where ahi_usu_id_alta=@usu_id";
 
-            
+
             cmd.Parameters.Add(new MySqlParameter("@usu_id", usuario));
             DataTable dtcan = new DataTable();
             dtcan.Load(cmd.ExecuteReader());

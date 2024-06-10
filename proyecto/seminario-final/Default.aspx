@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="seminario_final._Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="seminario_final._Default" %>
 
 <!DOCTYPE html>
 
@@ -31,29 +31,31 @@
     <link rel="stylesheet" type="text/css" href="css/slick.css" />
     <style>
         body {
-/*            width: 100%;*/
-/*            overflow-x: hidden;*/
-/*            overscroll-behavior: contain;*/
+            /*            width: 100%;*/
+            /*            overflow-x: hidden;*/
+            /*            overscroll-behavior: contain;*/
         }
 
         html {
             overscroll-behavior: contain;
         }
 
-                html, body {
-            height:100%;
+        html, body {
+            height: 100%;
         }
+
         .header {
-            height:100%;
+            height: 100%;
         }
 
         html {
-    overflow: hidden;
-}
-body {
-    overflow-y: scroll;
-    -webkit-overflow-scrolling:touch;
-}
+            overflow: hidden;
+        }
+
+        body {
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
 
         .spinner {
             width: 80px;
@@ -127,30 +129,30 @@ body {
             height: auto;
         }
 
-        
+
         .img2 {
             width: 50px;
         }
 
         .img {
-            width:100%;
+            width: 100%;
         }
 
         /*PC*/
         @media (min-width:900px) {
 
             .img-1 {
-                content:url("images/flyer1200x450.png");
+                content: url("images/flyer1200x450.png");
             }
 
-            .img-2{
-                content:url("images/flyer1200x450.png");
+            .img-2 {
+                content: url("images/flyer1200x450.png");
             }
 
-            .img-3{
-                content:url("images/flyer1200x450.png");
+            .img-3 {
+                content: url("images/flyer1200x450.png");
             }
-            
+
             .imagen {
                 width: 50%;
             }
@@ -160,51 +162,49 @@ body {
             }
 
             .apreton {
-
-                height:260px; 
-                background: url(images/cta1.png) no-repeat center center fixed; 
-                -webkit-background-size: cover; 
-                -moz-background-size: cover; 
+                height: 260px;
+                background: url(images/cta1.png) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
                 background-size: cover;
-
             }
 
             .cta-btn {
-                padding:50px 0;
+                padding: 50px 0;
             }
 
             .botones {
                 font-size: .995rem;
-                color:#363636;
+                color: #363636;
             }
 
             .suconsulta {
                 font-size: 1.8rem;
-                color:#363636;
+                color: #363636;
             }
 
             .comentarios {
                 /*margin-left: 33.33333333333333%;*/
                 margin-left: 20%;
-                width:60%;
+                width: 60%;
             }
 
             .texto-comentario {
-                padding:15px 15px 5px 200px;
-                font-size:2rem;
+                padding: 15px 15px 5px 200px;
+                font-size: 2rem;
             }
 
-            .altura-comentario{
-                height:200px;
+            .altura-comentario {
+                height: 200px;
             }
 
-            .text-envios{
+            .text-envios {
                 font-size: 20px;
             }
         }
 
 
-        
+
 
 
 
@@ -213,86 +213,80 @@ body {
         @media (max-width:700px) {
 
             .img-1 {
-                content:url("images/flyer-mobile.png");
+                content: url("images/flyer-mobile.png");
             }
 
-            .img-2{
-                content:url("images/flyer-mobile.png");
+            .img-2 {
+                content: url("images/flyer-mobile.png");
             }
 
-            .img-3{
-                content:url("images/flyer-mobile.png");
+            .img-3 {
+                content: url("images/flyer-mobile.png");
             }
 
             .imagen {
                 width: 100%;
             }
+
             .logo {
                 width: 50%;
             }
 
             .comentarios {
-                width:100%;
+                width: 100%;
             }
 
             .texto-comentario {
-                padding:15px 15px 5px 120px;
+                padding: 15px 15px 5px 120px;
                 font-size: 0.7rem;
             }
 
-            .altura-comentario{
+            .altura-comentario {
             }
 
             .apreton {
-
-                height:310px; 
-                background: url(images/cta1-mobile.png) no-repeat center center fixed; 
-                -webkit-background-size: cover; 
-                -moz-background-size: cover; 
+                height: 310px;
+                background: url(images/cta1-mobile.png) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
                 background-size: cover;
                 background-attachment: fixed;
             }
 
             .cta-btn {
-                padding:40px 0;
+                padding: 40px 0;
             }
 
-            .text-envios{
+            .text-envios {
                 font-size: 13px;
             }
         }
 
 
 
-.slick-slide {
-/*  background: #000;*/
-  color: white;
-/*  padding: 40px 20px;*/
-  font-size: 30px;
-  font-family: "Arial", "Helvetica";
-  text-align: center;
-}
+        .slick-slide {
+            /*  background: #000;*/
+            color: white;
+            /*  padding: 40px 20px;*/
+            font-size: 30px;
+            font-family: "Arial", "Helvetica";
+            text-align: center;
+        }
 
 
-.slider {
-/* margin: 0 30px;*/
-}
+        .slider {
+            /* margin: 0 30px;*/
+        }
 
-.slick-slide .img3 {
-/*  text-align: center;*/
-/*  padding: 40px 0;*/
-
-}
-
-
-
-.slider-comentario {
-
-}
+        .slick-slide .img3 {
+            /*  text-align: center;*/
+            /*  padding: 40px 0;*/
+        }
 
 
 
-
+        .slider-comentario {
+        }
     </style>
 </head>
 
@@ -304,15 +298,15 @@ body {
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row no-print">
             <div class="text-center col-10 navbar-brand-wrapper d-flex align-items-top justify-content-center" style="background-color: #404041">
-                <a class="navbar-brand brand-logo" style="padding-left:20%" href="#">
+                <a class="navbar-brand brand-logo" style="padding-left: 20%" href="#">
                     <img src="images/logo.svg" alt="logo" />
                 </a>
-                <a class="navbar-brand brand-logo-mini" style="padding-left:20%" id="acceso" runat="server" href="#">
+                <a class="navbar-brand brand-logo-mini" style="padding-left: 20%" id="acceso" runat="server" href="#">
                     <img src="images/logo.svg" alt="logo" />
                 </a>
-                
+
             </div>
-         
+
             <br />
             <br />
         </nav>
@@ -321,81 +315,84 @@ body {
             <!-- partial:partials/_sidebar.html -->
 
             <div class="main-panel print" id="content">
-                <div class="content-wrapper" style="padding:0;">
+                <div class="content-wrapper" style="padding: 0;">
 
                     <div class="slider">
                         <div class="slider__item" data-time="4800">
-                            <img class="img img-1"  />
+                            <img class="img img-1" />
                         </div>
                         <div class="slider__item" data-time="5200">
-                            <img class="img img-2"/>
+                            <img class="img img-2" />
                         </div>
 
                         <div class="slider__item" data-time="4500">
                             <img class="img img-3" />
                         </div>
-                       
-                    </div>
-                    <div style="background-color:#404041">
 
+                    </div>
+                    <div style="background-color: #404041">
                     </div>
                     <form class="forms-sample" runat="server">
                         <div class="apreton">
                             <div class="col-12 text-center">
-                                
                             </div>
                             <div class="col-12 align-items-stretch grid-margin text-center cta-btn">
-                            <h3 class="  text-center">Sumate para conocer de qué están hechos los alimentos, es fácil y rápido!</h3>
-                            <br>
-                            <br>
-                                <a class="btn btn-lg btn-primary col-6 col-xl-1" rel="noopener noreferrer" href="Inicio"> Iniciar Sesión</a>
-                                <br><br>
-                                <a class="btn btn-lg btn-success col-6 col-xl-1" rel="noopener noreferrer"  href="nueva-cuenta.html"> Registrarme</a>
+                                <h3 class="  text-center">Sumate para conocer de qué están hechos los alimentos, es fácil y rápido!</h3>
+                                <br>
+                                <br>
+                                <a class="btn btn-lg btn-primary col-6 col-xl-1" rel="noopener noreferrer" href="Inicio">Iniciar Sesión</a>
+                                <br>
+                                <br>
+                                <a class="btn btn-lg btn-success col-6 col-xl-1" rel="noopener noreferrer" href="nueva-cuenta.html">Registrarme</a>
                             </div>
                         </div>
-                        
+
 
                         <br />
                         <div class="row">
                             <div class="col-12 align-items-stretch grid-margin">
 
-                                        <h2 class="text-center">Analiza los productos para conocer qué comemos!</h2>
-                                        <div class="row">
-                                        <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
-                                            <i class="mdi mdi-glasses icon-lg"></i>
-                                            <br /> <span class="text-envios">Gráficos con Realidad Aumentada</span>
-                                        </div> 
-                                        <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
-                                            <i class="mdi mdi-food text-primary icon-lg"></i>
-                                            <br /> <span class="text-envios">Nutrientes e Ingredientes</span>
-                                        </div> 
-                                        <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
-                                            <i class="mdi mdi-cart text-warning icon-lg"></i>
-                                            <br /> <span class="text-envios">Analizá tu carrito de compras</span>
-                                        </div> 
-                                        <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
-                                            <i class="mdi mdi-bell text-success icon-lg">
-                                                <br /> </i> <span class="text-envios">Alertas personalizadas</span>
-                                        </div> 
+                                <h2 class="text-center">Analiza los productos para conocer qué comemos!</h2>
+                                <div class="row">
+                                    <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
+                                        <i class="mdi mdi-glasses icon-lg"></i>
+                                        <br />
+                                        <span class="text-envios">Gráficos con Realidad Aumentada</span>
                                     </div>
+                                    <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
+                                        <i class="mdi mdi-food text-primary icon-lg"></i>
+                                        <br />
+                                        <span class="text-envios">Nutrientes e Ingredientes</span>
+                                    </div>
+                                    <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
+                                        <i class="mdi mdi-cart text-warning icon-lg"></i>
+                                        <br />
+                                        <span class="text-envios">Analizá tu carrito de compras</span>
+                                    </div>
+                                    <div class="card-body col-3 text-center" style="padding: 1.88rem 0.4rem">
+                                        <i class="mdi mdi-bell text-success icon-lg">
+                                            <br />
+                                        </i><span class="text-envios">Alertas personalizadas</span>
+                                    </div>
+                                </div>
                             </div>
 
-                          
+
                         </div>
-                     
-                        <div class="col-12 align-items-stretch" style="background-color:#fdf9c4">
+
+                        <div class="col-12 align-items-stretch" style="background-color: #fdf9c4">
                             <br />
                             <br />
-                        
+
                             <br />
                             <h3 class="text-light mb-3 text-center text-dark">¿Cómo funciona?</h3>
                             <div class="slider col-lg-8 offset-lg-2 ">
                                 <a rel="noopenefer noreferrer" target="_blank" href="#">
-                                <h2 style="color:#000">1º Registrate para acceder al sitio.</h2>
-                                <!-- <img class="text-center" width="100px" src="images/logo.svg" alt="logo" /> -->
+                                    <h2 style="color: #000">1º Registrate para acceder al sitio.</h2>
+                                    <!-- <img class="text-center" width="100px" src="images/logo.svg" alt="logo" /> -->
                                 </a>
                                 <a rel="noopenefer noreferrer" target="_blank" href="#">
-                                <h2 style="color:#000">2º Escaneá un producto para ver su información nutricional.</h2>
+                                    <h2 style="color: #000">2º Escaneá un producto para ver su información nutricional.</h2>
                                 </a>
                             </div>
                             <div class="text-center">
@@ -404,7 +401,7 @@ body {
                             <br />
                             <br />
                         </div>
-                        
+
                         <div style="background-color: #c5c6c8">
                             <br />
                             <div class="col-12 align-items-stretch text-center">

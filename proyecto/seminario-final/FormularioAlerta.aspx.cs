@@ -13,10 +13,6 @@ namespace seminario_final
         protected void Page_Load(object sender, EventArgs e)
         {
             idNutrienteAlerta = Request.QueryString["anu"];
-            //if (idAlerta == null)
-            //{
-            //    return;
-            //}
             if (!IsPostBack)
             {
                 CargarColores();
@@ -36,7 +32,7 @@ namespace seminario_final
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resValidacion.Errores), true);
                     return;
                 }
-                if(ObtenerNutrienteAlertaPorId())
+                if (ObtenerNutrienteAlertaPorId())
                 {
                     CargarAlerta();
                 }

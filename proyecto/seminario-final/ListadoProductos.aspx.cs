@@ -73,7 +73,7 @@ namespace seminario_final
         private void Eliminar(int idProducto)
         {
             var master = Master as MasterPage;
-            if (idProducto<= 0)
+            if (idProducto <= 0)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
                 return;
@@ -86,11 +86,11 @@ namespace seminario_final
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Eliminado correctamente"), true);
         }
-        
+
         private void Recuperar(int idProducto)
         {
             var master = Master as MasterPage;
-            if (idProducto<= 0)
+            if (idProducto <= 0)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al recuperar"), true);
                 return;

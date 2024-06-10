@@ -88,7 +88,7 @@ public class MySQLRepositorySello
                 cmd.CommandText += "ale_fecha_baja IS NULL AND anu_fecha_baja is null ";
             else
                 cmd.CommandText += "ale_fecha_baja IS NOT NULL AND anu_fecha_baja is NOT NULL ";
-            cmd.CommandText += @" ORDER BY " +  columna + " " + sort + " LIMIT " + inicio + "," + cant;
+            cmd.CommandText += @" ORDER BY " + columna + " " + sort + " LIMIT " + inicio + "," + cant;
             dt.Load(cmd.ExecuteReader());
         }
         catch (Exception ex)
