@@ -85,7 +85,7 @@ namespace seminario_final
             return true;
         }
 
-        private ModelPerfil crearObjeto()
+        private ModelPerfil CrearObjeto()
         {
             ModelPerfil prof = new ModelPerfil()
             {
@@ -103,7 +103,7 @@ namespace seminario_final
             {
                 return;
             }
-            ModelPerfil nuevoElemento = crearObjeto();
+            ModelPerfil nuevoElemento = CrearObjeto();
             var resModificacion = ServicePerfiles.GuardarPerfil(nuevoElemento, Convert.ToUInt32(idPerfilstring));
             var master = Master as MasterPage;
             if (!resModificacion.Ok)
