@@ -5,9 +5,9 @@ INSERT INTO ROLES(ROL_NOMBRE)
 VALUES ('Usuario consumidor');
 
 
-INSERT INTO usuarios (USU_NOMBRE, USU_USUARIOS, USU_CONTRASENA, USU_ROL_ID,
+INSERT INTO usuarios (USU_NOMBRE, USU_EMAIL, USU_CONTRASENA, USU_ROL_ID,
 USU_ID_ALTA, USU_ID_MODIFICACION)
-VALUES ('Admin', 'Admin', 'Demo123', (select rol_id from roles where rol_nombre='Administrador'), 1, 1);
+VALUES ('Admin', 'admin@alimentateconciencia.com.ar', 'Demo123', (select rol_id from roles where rol_nombre='Administrador'), 1, 1);
 
 INSERT INTO tipos_porcion(TPO_NOMBRE, 
 TPO_USU_ID_ALTA,
@@ -970,9 +970,9 @@ values ((select ale_id from alertas where ale_nombre='Exceso en azúcares'), (se
 ---------------------
 -- ESTOS SCRIPTS SON EXCLUSIVAMENTE PARA SIMULAR EL USO DEL SISTEMA
 
-INSERT INTO usuarios (USU_NOMBRE, USU_USUARIOS, USU_CONTRASENA, USU_ROL_ID,
+INSERT INTO usuarios (USU_NOMBRE, USU_EMAIL, USU_CONTRASENA, USU_ROL_ID,
 USU_ID_ALTA, USU_ID_MODIFICACION)
-VALUES ('Demo', 'Demo', 'Admin123', (select rol_id from roles where rol_nombre='Usuario consumidor'), 2, 2);
+VALUES ('Demo', 'demo@alimentateconciencia.com.ar', 'Admin123', (select rol_id from roles where rol_nombre='Usuario consumidor'), 2, 2);
 
 INSERT INTO PERFILES(PRF_NOMBRE, PRF_USU_ID, PRF_INGREDIENTES_PROHIBIDOS, PRF_FECHA_NACIMIENTO, PRF_ES_PRINCIPAL, 
 PRF_USU_ID_ALTA,
