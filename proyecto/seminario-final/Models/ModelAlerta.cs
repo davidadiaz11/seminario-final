@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.Collections.Generic;
 
 /// <summary>
 /// Descripción breve de ModelIngrediente
