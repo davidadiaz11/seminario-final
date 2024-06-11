@@ -107,7 +107,7 @@ public class ServicePerfiles
             resultado.Data = MySQLRepositoryPerfil.GuardarPerfil(idUsuario, perfil);
             if (!resultado.Ok)
             {
-                resultado.ObtenerError("Error al actualizar alerta.");
+                resultado.ObtenerError("Error al actualizar perfil.");
                 return resultado;
             }
         }
