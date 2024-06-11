@@ -6,7 +6,6 @@ namespace seminario_final
 {
     public partial class ListadoAlertas : System.Web.UI.Page
     {
-        List<ModelAlerta> alertas = new List<ModelAlerta>();
         List<ModelNutriente> nutrientes = new List<ModelNutriente>();
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
         protected void Page_Load(object sender, EventArgs e)
