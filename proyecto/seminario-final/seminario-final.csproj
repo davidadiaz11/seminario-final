@@ -309,10 +309,10 @@
     <Compile Include="Repositories\MySQLRepositoryAnalisis.cs" />
     <Compile Include="Repositories\MySQLRepositoryPerfil.cs" />
     <Compile Include="Repositories\MySQLRepositorySello.cs" />
+    <Compile Include="Repositories\MySQLRepositoryShared.cs" />
     <Compile Include="Repositories\MySQLRepositoryTiposCalculo.cs" />
     <Compile Include="Repositories\MySQLRepositoryUsuario.cs" />
     <Compile Include="Repositories\MySQLRepositoryTiposPorcion.cs" />
-    <Compile Include="Repositories\MySQLRepositoryShared.cs" />
     <Compile Include="Services\Fabrics\CalculoAlertaFabric.cs" />
     <Compile Include="Services\ServiceSesion.cs" />
     <Compile Include="Services\ServiceUsuario.cs" />
