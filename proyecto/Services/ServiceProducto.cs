@@ -11,7 +11,6 @@ namespace Services
         public ServiceProducto()
         {
         }
-        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
 
         public static List<ModelProducto> ObtenerProductos()
         {
@@ -29,7 +28,7 @@ namespace Services
             return items;
         }
 
-        public static List<ModelProducto> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
+        public static List<ModelProducto> ObtenerTodosFiltrados(ushort idUsuario, out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
         {
             List<ModelProducto> items = new List<ModelProducto>();
             DataSet ds = MySQLRepositoryProducto.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, idUsuario, eliminados);
@@ -81,7 +80,7 @@ namespace Services
             return items;
         }
 
-        public static Resultado<bool> ModificarProducto(ModelProducto nuevoProducto)
+        public static Resultado<bool> ModificarProducto(ushort idUsuario, ModelProducto nuevoProducto)
         {
             Resultado<bool> resultado = new Resultado<bool>(false);
             try
@@ -92,7 +91,7 @@ namespace Services
                     return resultado;
                 }
 
-                if (!ServiceShared.ValidarPermisos().Data)
+                if (!ServiceShared.ValidarPermisos(idUsuario).Data)
                 {
                     resultado.ObtenerError("No posee los permisos para modificar. Comuníquese con el administrador del software.");
                     return resultado;
@@ -158,12 +157,12 @@ namespace Services
             return resultado;
         }
 
-        public static Resultado<bool> Eliminar(int idProducto)
+        public static Resultado<bool> Eliminar(ushort idUsuario, int idProducto)
         {
             Resultado<bool> resultado = new Resultado<bool>(false);
             try
             {
-                if (!ServiceShared.ValidarPermisos().Data)
+                if (!ServiceShared.ValidarPermisos(idUsuario).Data)
                 {
                     resultado.ObtenerError("No posee los permisos para eliminar. Comuníquese con el administrador del sistema.");
                     return resultado;
@@ -182,12 +181,12 @@ namespace Services
             }
             return resultado;
         }
-        public static Resultado<bool> Recuperar(int idProducto)
+        public static Resultado<bool> Recuperar(ushort idUsuario, int idProducto)
         {
             Resultado<bool> resultado = new Resultado<bool>(false);
             try
             {
-                if (!ServiceShared.ValidarPermisos().Data)
+                if (!ServiceShared.ValidarPermisos(idUsuario).Data)
                 {
                     resultado.ObtenerError("No posee los permisos para recuperar. Comuníquese con el administrador del sistema.");
                     return resultado;

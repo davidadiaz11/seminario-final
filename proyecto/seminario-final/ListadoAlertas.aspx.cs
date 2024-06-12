@@ -9,6 +9,8 @@ namespace seminario_final
     {
         List<ModelNutriente> nutrientes = new List<ModelNutriente>();
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
+        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -69,7 +71,7 @@ namespace seminario_final
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
                 return;
             }
-            var resEliminar = ServiceSello.Eliminar(idNutrienteAlerta);
+            var resEliminar = ServiceSello.Eliminar(idUsuario, idNutrienteAlerta);
             if (!resEliminar.Ok)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resEliminar.Errores), true);
@@ -85,7 +87,7 @@ namespace seminario_final
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al recuperar"), true);
                 return;
             }
-            var resRecuperar = ServiceSello.Recuperar(idNutrienteAlerta);
+            var resRecuperar = ServiceSello.Recuperar(idUsuario, idNutrienteAlerta);
             if (!resRecuperar.Ok)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al recuperar"), true);
@@ -129,7 +131,7 @@ namespace seminario_final
             hfSortDir.Value = sortDir;
             //Fetch data from Server 
 
-            nutrientes = ServiceSello.ObtenerTodosFiltrados(out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, ch_eliminados.Checked);
+            nutrientes = ServiceSello.ObtenerTodosFiltrados(idUsuario, out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, ch_eliminados.Checked);
             cantPags = (encontrados / filasPorPag) + ((encontrados % filasPorPag) > 0 ? 1 : 0);
             vista_lista.DataSource = nutrientes;
             vista_lista.DataBind();

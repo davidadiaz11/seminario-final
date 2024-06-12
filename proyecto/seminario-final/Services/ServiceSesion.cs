@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Web;
-namespace Services
+namespace seminario_final
 {
     public class ServiceSesion
     {
         public ServiceSesion()
         {
         }
-
-        //TODO-TESIS: resolver el guardado y obtención del usuario
 
         public static bool GuardarUsuario(string idString)
         {
@@ -20,7 +18,7 @@ namespace Services
                     return resultado;
                 }
 
-                //HttpContext.Current.Session["usuID"] = idString;
+                HttpContext.Current.Session["usuID"] = idString;
                 resultado = true;
             }
             catch (Exception ex)
@@ -35,7 +33,7 @@ namespace Services
             ushort resultado = 0;
             try
             {
-                string idString = "2";
+                string idString = HttpContext.Current.Session["usuID"].ToString();
                 return Convert.ToUInt16(idString);
             }
             catch (Exception)

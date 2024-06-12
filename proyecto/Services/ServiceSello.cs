@@ -13,7 +13,6 @@ namespace Services
         {
         }
 
-        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
         public static List<ModelAlerta> ObtenerAlertas()
         {
             DataTable dt = MySQLRepositorySello.ObtenerSellos();
@@ -31,7 +30,7 @@ namespace Services
             return items;
         }
 
-        public static Resultado<bool> Eliminar(uint idNutrienteAlerta)
+        public static Resultado<bool> Eliminar(ushort idUsuario, uint idNutrienteAlerta)
         {
             Resultado<bool> resultado = new Resultado<bool>(false);
             try
@@ -41,7 +40,7 @@ namespace Services
 
                 if (nut.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica)
                 {
-                    if (!ServiceShared.ValidarPermisos().Data)
+                    if (!ServiceShared.ValidarPermisos(idUsuario).Data)
                     {
                         resultado.ObtenerError("No posee los permisos para eliminar. Comuníquese con el administrador del software.");
                         return resultado;
@@ -62,7 +61,7 @@ namespace Services
             return resultado;
         }
 
-        public static Resultado<bool> Recuperar(uint idNutrienteAlerta)
+        public static Resultado<bool> Recuperar(ushort idUsuario, uint idNutrienteAlerta)
         {
             Resultado<bool> resultado = new Resultado<bool>(false);
             try
@@ -72,7 +71,7 @@ namespace Services
 
                 if (nut.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica)
                 {
-                    if (!ServiceShared.ValidarPermisos().Data)
+                    if (!ServiceShared.ValidarPermisos(idUsuario).Data)
                     {
                         resultado.ObtenerError("No posee los permisos para recuperar. Comuníquese con el administrador del software.");
                         return resultado;
@@ -93,7 +92,7 @@ namespace Services
             return resultado;
         }
 
-        public static List<ModelNutriente> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
+        public static List<ModelNutriente> ObtenerTodosFiltrados(ushort idUsuario, out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
         {
             DataTable dt = MySQLRepositorySello.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, idUsuario, eliminados);
             List<ModelNutriente> items = new List<ModelNutriente>();
@@ -189,12 +188,12 @@ namespace Services
             return resultado;
         }
 
-        public static Resultado<bool> GuardarAlerta(ModelNutriente nutriente, ModelNutriente nutrientePersistido)
+        public static Resultado<bool> GuardarAlerta(ushort idUsuario, ModelNutriente nutriente, ModelNutriente nutrientePersistido)
         {
             Resultado<bool> resultado = new Resultado<bool>(false);
             try
             {
-                if (nutrientePersistido != null && nutrientePersistido.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica && !ServiceShared.ValidarPermisos().Data)
+                if (nutrientePersistido != null && nutrientePersistido.NutrientesAlerta.First().Alerta.TipoAlerta.EsGenerica && !ServiceShared.ValidarPermisos(idUsuario).Data)
                 {
                     resultado.ObtenerError("No posee los permisos para modificar. Comuníquese con el administrador del sistema.");
                     return resultado;
@@ -233,7 +232,7 @@ namespace Services
             return resultado;
         }
 
-        public static ModelNutriente ObtenerPorId(int idAlerta)
+        public static ModelNutriente ObtenerPorId(ushort idUsuario, int idAlerta)
         {
             DataSet ds = MySQLRepositorySello.ObtenerUno(idUsuario, idAlerta);
             DataTable dt = ds.Tables[0];
@@ -276,7 +275,7 @@ namespace Services
             return nutrientes.First();
         }
 
-        public static List<ModelNutriente> ObtenerUltimosSellos()
+        public static List<ModelNutriente> ObtenerUltimosSellos(ushort idUsuario)
         {
             List<ModelNutriente> items = new List<ModelNutriente>();
             DataTable dt = MySQLRepositorySello.ObtenerUltimosSellos(idUsuario);

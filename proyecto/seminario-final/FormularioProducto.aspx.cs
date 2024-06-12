@@ -10,6 +10,8 @@ namespace seminario_final
     {
         protected ModelProducto producto;
         string idProducto = "";
+        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             idProducto = Request.QueryString["pro"];
@@ -200,7 +202,7 @@ namespace seminario_final
                 return;
             }
 
-            var resModificacion = ServiceProducto.ModificarProducto(nuevoProducto);
+            var resModificacion = ServiceProducto.ModificarProducto(idUsuario, nuevoProducto);
             if (!resModificacion.Ok)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resModificacion.Errores), true);

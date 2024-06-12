@@ -8,6 +8,8 @@ namespace seminario_final
     {
         List<ModelProducto> productos = new List<ModelProducto>();
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
+        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Title = "Productos";
@@ -34,7 +36,7 @@ namespace seminario_final
 
         private void MostrarCheckEliminados()
         {
-            var resValidacion = ServiceShared.ValidarPermisos();
+            var resValidacion = ServiceShared.ValidarPermisos(idUsuario);
             if (!resValidacion.Ok || !resValidacion.Data)
             {
                 ch_eliminados.Visible = false;
@@ -79,7 +81,7 @@ namespace seminario_final
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
                 return;
             }
-            var resEliminar = ServiceProducto.Eliminar(idProducto);
+            var resEliminar = ServiceProducto.Eliminar(idUsuario, idProducto);
             if (!resEliminar.Ok)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resEliminar.Errores), true);
@@ -96,7 +98,7 @@ namespace seminario_final
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al recuperar"), true);
                 return;
             }
-            var resRecuperar = ServiceProducto.Recuperar(idProducto);
+            var resRecuperar = ServiceProducto.Recuperar(idUsuario, idProducto);
             if (!resRecuperar.Ok)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resRecuperar.Errores), true);
@@ -160,7 +162,7 @@ namespace seminario_final
             hfSortDir.Value = sortDir;
             //Fetch data from Server 
 
-            productos = ServiceProducto.ObtenerTodosFiltrados(out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, ch_eliminados.Checked);
+            productos = ServiceProducto.ObtenerTodosFiltrados(idUsuario, out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, ch_eliminados.Checked);
             cantPags = (encontrados / filasPorPag) + ((encontrados % filasPorPag) > 0 ? 1 : 0);
             vista_lista.DataSource = productos;
             vista_lista.DataBind();

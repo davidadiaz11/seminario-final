@@ -9,6 +9,8 @@ namespace seminario_final
     {
         List<ModelAnalisis> analisis = new List<ModelAnalisis>();
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
+        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -87,7 +89,7 @@ namespace seminario_final
             hfSortDir.Value = sortDir;
             //Fetch data from Server 
 
-            analisis = ServiceAnalisis.ObtenerTodosFiltrados(out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, false);
+            analisis = ServiceAnalisis.ObtenerTodosFiltrados(idUsuario, out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, false);
             cantPags = (encontrados / filasPorPag) + ((encontrados % filasPorPag) > 0 ? 1 : 0);
             vista_lista.DataSource = analisis;
             vista_lista.DataBind();

@@ -9,8 +9,7 @@ namespace Services
         public ServiceUsuario()
         {
         }
-        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
-        public static ModelUsuario ObtenerUsuario()
+        public static ModelUsuario ObtenerUsuario(ushort idUsuario)
         {
             DataTable dt = MySQLRepositoryUsuario.ObtenerUsuario(idUsuario);
             DataRow dr = dt.Rows[0];
@@ -19,7 +18,7 @@ namespace Services
                 Id = Convert.ToUInt16(dr["usu_id"]),
                 Nombre = dr["usu_nombre"].ToString(),
                 Rol = dr["rol_nombre"].ToString(),
-                Perfiles = ServicePerfiles.ObtenerPerfiles()
+                Perfiles = ServicePerfiles.ObtenerPerfiles(idUsuario)
             };
             return item;
         }

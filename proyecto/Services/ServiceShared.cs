@@ -135,10 +135,10 @@ namespace Services
             return resultado;
         }
 
-        public static Resultado<bool> ValidarPermisos()
+        public static Resultado<bool> ValidarPermisos(ushort idUsuario)
         {
             Resultado<bool> resultado = new Resultado<bool>(false);
-            ModelUsuario usuarioActual = ServiceUsuario.ObtenerUsuario();
+            ModelUsuario usuarioActual = ServiceUsuario.ObtenerUsuario(idUsuario);
             resultado.Data = usuarioActual.Rol == RolesEnum.Administrador.ToString();
             return resultado;
         }

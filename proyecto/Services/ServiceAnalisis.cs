@@ -12,7 +12,6 @@ namespace Services
         public ServiceAnalisis()
         {
         }
-        static ushort idUsuario = ServiceSesion.ObtenerUsuario();
         private static ModelProducto Mapper(ushort idUsuario, int idProducto)
         {
             DataSet ds = MySQLRepositoryAnalisis.ObtenerProductoPorId(idUsuario, idProducto);
@@ -83,7 +82,7 @@ namespace Services
             return item;
         }
 
-        public static ModelProducto ObtenerPorId(int idProducto)
+        public static ModelProducto ObtenerPorId(ushort idUsuario, int idProducto)
         {
             ModelProducto item = Mapper(idUsuario, idProducto);
             List<ModelNutrienteProducto> listaAlertas = new List<ModelNutrienteProducto>();
@@ -99,7 +98,7 @@ namespace Services
             item.NutrienteAlertas = listaAlertas.Where(x => x.Nutriente.NutrientesAlerta != null).Select(x => x.Nutriente.NutrientesAlerta.First()).ToList();
 
             item.IngredientesAlertas = new List<ModelAlerta>();
-            List<ModelPerfil> perfiles = ObtenerPerfiles();
+            List<ModelPerfil> perfiles = ObtenerPerfiles(idUsuario);
 
             foreach (ModelPerfil prf in perfiles)
             {
@@ -119,13 +118,13 @@ namespace Services
             return item;
         }
 
-        private static List<ModelPerfil> ObtenerPerfiles()
+        private static List<ModelPerfil> ObtenerPerfiles(ushort idUsuario)
         {
-            return ServicePerfiles.ObtenerPerfiles();
+            return ServicePerfiles.ObtenerPerfiles(idUsuario);
 
         }
 
-        public static List<ModelAnalisis> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
+        public static List<ModelAnalisis> ObtenerTodosFiltrados(ushort idUsuario, out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
         {
             DataTable dt = MySQLRepositoryAnalisis.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, idUsuario, eliminados);
             List<ModelAnalisis> items = new List<ModelAnalisis>();
@@ -145,7 +144,7 @@ namespace Services
             return items;
         }
 
-        public static List<ModelAnalisis> ObtenerUltimosAnalisis()
+        public static List<ModelAnalisis> ObtenerUltimosAnalisis(ushort idUsuario)
         {
             DataTable dt = MySQLRepositoryAnalisis.ObtenerUltimosAnalisis(idUsuario);
             List<ModelAnalisis> items = new List<ModelAnalisis>();
@@ -165,7 +164,7 @@ namespace Services
             return items;
         }
 
-        public static bool VerificarProductoAnalizado(uint idProducto)
+        public static bool VerificarProductoAnalizado(ushort idUsuario, uint idProducto)
         {
             var resultado = false;
             try
@@ -180,12 +179,12 @@ namespace Services
             return resultado;
         }
 
-        public static bool GuardarAnalisis(uint idProducto)
+        public static bool GuardarAnalisis(ushort idUsuario, uint idProducto)
         {
             var resultado = false;
             try
             {
-                if (VerificarProductoAnalizado(idProducto))
+                if (VerificarProductoAnalizado(idUsuario, idProducto))
                 {
                     resultado = true;
                     return resultado;

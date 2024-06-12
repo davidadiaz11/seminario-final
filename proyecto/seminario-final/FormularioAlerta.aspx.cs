@@ -11,6 +11,8 @@ namespace seminario_final
         protected ModelNutriente nutrientePersistido;
         protected ModelAlerta alertaPersistida;
         string idNutrienteAlerta = "";
+        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             idNutrienteAlerta = Request.QueryString["anu"];
@@ -186,7 +188,7 @@ namespace seminario_final
 
             ModelNutriente nuevoElemento = crearObjetoDesdeFormulario();
 
-            var resModificacion = ServiceSello.GuardarAlerta(nuevoElemento, nutrientePersistido);
+            var resModificacion = ServiceSello.GuardarAlerta(idUsuario, nuevoElemento, nutrientePersistido);
             var master = Master as MasterPage;
             if (!resModificacion.Ok)
             {

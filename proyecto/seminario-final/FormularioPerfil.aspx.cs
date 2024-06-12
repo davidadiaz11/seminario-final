@@ -9,6 +9,8 @@ namespace seminario_final
         protected ModelPerfil perfilPersistido;
         string idPerfilstring = "";
         uint idPerfil = 0;
+        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             idPerfilstring = Request.QueryString["prf"];
@@ -35,7 +37,7 @@ namespace seminario_final
 
         private bool ObtenerPerfil()
         {
-            var resPerfilPersistido = ServicePerfiles.ObtenerPerfil(idPerfil);
+            var resPerfilPersistido = ServicePerfiles.ObtenerPerfil(idUsuario, idPerfil);
             if (!resPerfilPersistido.Ok)
             {
                 var master = Master as MasterPage;
@@ -105,7 +107,7 @@ namespace seminario_final
                 return;
             }
             ModelPerfil nuevoElemento = CrearObjeto();
-            var resModificacion = ServicePerfiles.GuardarPerfil(nuevoElemento, Convert.ToUInt32(idPerfilstring));
+            var resModificacion = ServicePerfiles.GuardarPerfil(idUsuario, nuevoElemento, Convert.ToUInt32(idPerfilstring));
             var master = Master as MasterPage;
             if (!resModificacion.Ok)
             {

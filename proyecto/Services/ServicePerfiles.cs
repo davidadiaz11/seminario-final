@@ -11,8 +11,7 @@ namespace Services
         public ServicePerfiles()
         {
         }
-        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
-        public static List<ModelPerfil> ObtenerPerfiles()
+        public static List<ModelPerfil> ObtenerPerfiles(ushort idUsuario)
         {
             DataTable dt = MySQLRepositoryPerfil.ObtenerPerfiles(idUsuario);
             List<ModelPerfil> items = new List<ModelPerfil>();
@@ -31,12 +30,12 @@ namespace Services
             return items;
         }
 
-        public static Resultado<bool> Eliminar(uint idPerfil)
+        public static Resultado<bool> Eliminar(ushort idUsuario, uint idPerfil)
         {
             Resultado<bool> resultado = new Resultado<bool>(false);
             try
             {
-                var resPerfil = ObtenerPerfil(idPerfil).Data;
+                var resPerfil = ObtenerPerfil(idUsuario, idPerfil).Data;
 
                 if (resPerfil.EsPrincipal)
                 {
@@ -59,7 +58,7 @@ namespace Services
             return resultado;
         }
 
-        public static Resultado<bool> Recuperar(uint idPerfil)
+        public static Resultado<bool> Recuperar(ushort idUsuario, uint idPerfil)
         {
             Resultado<bool> resultado = new Resultado<bool>(false);
             try
@@ -78,10 +77,10 @@ namespace Services
             }
             return resultado;
         }
-        public static Resultado<ModelPerfil> ObtenerPerfil(uint idPerfil)
+        public static Resultado<ModelPerfil> ObtenerPerfil(ushort idUsuario, uint idPerfil)
         {
             var resultado = new Resultado<ModelPerfil>();
-            var resPerfil = ObtenerPerfiles().FirstOrDefault(x => x.Id == idPerfil);
+            var resPerfil = ObtenerPerfiles(idUsuario).FirstOrDefault(x => x.Id == idPerfil);
             if (resPerfil == null)
             {
                 resultado.ObtenerError("No se encontró el perfil buscado");
@@ -91,14 +90,14 @@ namespace Services
             return resultado;
         }
 
-        public static Resultado<bool> GuardarPerfil(ModelPerfil perfil, uint idPerfilPersistido)
+        public static Resultado<bool> GuardarPerfil(ushort idUsuario, ModelPerfil perfil, uint idPerfilPersistido)
         {
             Resultado<bool> resultado = new Resultado<bool>(false);
             try
             {
                 if (idPerfilPersistido > 0)
                 {
-                    ModelPerfil perfilPersistido = ObtenerPerfil(idPerfilPersistido).Data;
+                    ModelPerfil perfilPersistido = ObtenerPerfil(idUsuario, idPerfilPersistido).Data;
                     if (perfil.Id > 0 && perfil.Nombre == perfilPersistido.Nombre && perfil.FechaNacimiento == perfilPersistido.FechaNacimiento && perfil.IngredientesProhibidos == perfilPersistido.IngredientesProhibidos)
                     {
                         resultado.Mensaje = "No hay cambios para guardar.";
@@ -123,7 +122,7 @@ namespace Services
             return resultado;
         }
 
-        public static List<ModelPerfil> ObtenerTodosFiltrados(out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
+        public static List<ModelPerfil> ObtenerTodosFiltrados(ushort idUsuario, out int encontrados, List<ModelFiltro> filtros, int inicio, int cant, string columna, string sort, bool eliminados)
         {
             DataTable dt = MySQLRepositoryPerfil.ObtenerTodosFiltrados(out encontrados, filtros, inicio, cant, columna, sort, idUsuario, eliminados);
             List<ModelPerfil> items = new List<ModelPerfil>();
