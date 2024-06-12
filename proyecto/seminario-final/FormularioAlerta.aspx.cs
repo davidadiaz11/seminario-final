@@ -11,10 +11,11 @@ namespace seminario_final
         protected ModelNutriente nutrientePersistido;
         protected ModelAlerta alertaPersistida;
         string idNutrienteAlerta = "";
-        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
+        private ushort idUsuario = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            idUsuario = ServiceSesion.ObtenerUsuario();
             idNutrienteAlerta = Request.QueryString["anu"];
             if (!IsPostBack)
             {

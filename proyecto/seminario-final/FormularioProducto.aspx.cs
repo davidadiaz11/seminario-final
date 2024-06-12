@@ -10,10 +10,11 @@ namespace seminario_final
     {
         protected ModelProducto producto;
         string idProducto = "";
-        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
+        private ushort idUsuario = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            idUsuario = ServiceSesion.ObtenerUsuario();
             idProducto = Request.QueryString["pro"];
             if (!IsPostBack)
             {

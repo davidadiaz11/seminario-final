@@ -9,10 +9,11 @@ namespace seminario_final
         protected ModelPerfil perfilPersistido;
         string idPerfilstring = "";
         uint idPerfil = 0;
-        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
+        private ushort idUsuario = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            idUsuario = ServiceSesion.ObtenerUsuario();
             idPerfilstring = Request.QueryString["prf"];
             if (!IsPostBack)
             {

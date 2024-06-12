@@ -8,10 +8,11 @@ namespace seminario_final
     {
         List<ModelProducto> productos = new List<ModelProducto>();
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
-        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
+        private ushort idUsuario = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            idUsuario = ServiceSesion.ObtenerUsuario();
             Page.Title = "Productos";
             MostrarCheckEliminados();
             if (!IsPostBack)

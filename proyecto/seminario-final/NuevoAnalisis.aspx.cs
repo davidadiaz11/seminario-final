@@ -6,10 +6,12 @@ namespace seminario_final
 {
     public partial class NuevoAnalisis : System.Web.UI.Page
     {
+        private static ushort idUsuario = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            idUsuario = ServiceSesion.ObtenerUsuario();
         }
-        private static ushort idUsuario = ServiceSesion.ObtenerUsuario();
+        
 
 
         [WebMethod]

@@ -7,9 +7,11 @@ namespace seminario_final
     public partial class Inicio : System.Web.UI.Page
     {
 
-        private ushort idUsuario = ServiceSesion.ObtenerUsuario();
+        private ushort idUsuario = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            idUsuario = ServiceSesion.ObtenerUsuario();
+
             if (!IsPostBack)
             {
                 if (ValidarLogin())
