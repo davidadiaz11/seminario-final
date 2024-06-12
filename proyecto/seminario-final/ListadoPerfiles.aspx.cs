@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Models;
+using Services;
 
 namespace seminario_final
 {
@@ -104,12 +105,12 @@ namespace seminario_final
 
         protected string GetSortLink(string dataField)
         {
-            return ServiceShared.GetSortLink(dataField, Request);
+            return ServiceSharedFront.GetSortLink(dataField, Request);
         }
 
         protected string GetPageLink(int noOfPage)
         {
-            return ServiceShared.GetPageLink(noOfPage, Request, "listadoperfiles");
+            return ServiceSharedFront.GetPageLink(noOfPage, Request, "listadoperfiles");
         }
 
         private void populate(int filasPorPag)

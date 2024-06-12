@@ -50,9 +50,6 @@
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.3.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
-    <Reference Include="FluentValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.11.9.1\lib\netstandard2.0\FluentValidation.dll</HintPath>
-    </Reference>
     <Reference Include="Google.Protobuf, Version=3.25.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.25.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
@@ -69,9 +66,6 @@
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MySql.Data, Version=8.3.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.3.0\lib\net48\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -238,11 +232,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Enums\RolesEnum.cs" />
-    <Compile Include="Enums\FormasEnum.cs" />
-    <Compile Include="Enums\TiposNutrienteEnum.cs" />
-    <Compile Include="Enums\TiposCalculoEnum.cs" />
-    <Compile Include="Enums\ColoresEnum.cs" />
     <Compile Include="FormularioPerfil.aspx.cs">
       <DependentUpon>FormularioPerfil.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -285,47 +274,6 @@
     <Compile Include="ListadoAlertas.aspx.designer.cs">
       <DependentUpon>ListadoAlertas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\CalculosAlerta\CalculoSobreCalorias.cs" />
-    <Compile Include="Models\CalculosAlerta\CalculoCuantitativo.cs" />
-    <Compile Include="Models\CalculosAlerta\CalculoPorcentual.cs" />
-    <Compile Include="Models\CalculosAlerta\ICalculoAlerta.cs" />
-    <Compile Include="Models\ModelColorAlerta.cs" />
-    <Compile Include="Models\ModelFormaAlerta.cs" />
-    <Compile Include="Models\ModelAnalisis.cs" />
-    <Compile Include="Models\ModelNutrienteAlerta.cs" />
-    <Compile Include="Models\ModelNutrienteProducto.cs" />
-    <Compile Include="Models\ModelTipoNutriente.cs" />
-    <Compile Include="Models\ModelTipoCalculo.cs" />
-    <Compile Include="Models\ModelTipoAlerta.cs" />
-    <Compile Include="Models\ModelFiltro.cs" />
-    <Compile Include="Models\ModelAlerta.cs" />
-    <Compile Include="Models\ModelTipoPorcion.cs" />
-    <Compile Include="Models\ModelNutriente.cs" />
-    <Compile Include="Models\ModelPerfil.cs" />
-    <Compile Include="Models\ModelResultado.cs" />
-    <Compile Include="Models\ModelUsuario.cs" />
-    <Compile Include="Models\ModelProducto.cs" />
-    <Compile Include="Repositories\MySQLRepositoryNutriente.cs" />
-    <Compile Include="Repositories\MySQLRepositoryAnalisis.cs" />
-    <Compile Include="Repositories\MySQLRepositoryPerfil.cs" />
-    <Compile Include="Repositories\MySQLRepositorySello.cs" />
-    <Compile Include="Repositories\MySQLRepositoryTiposCalculo.cs" />
-    <Compile Include="Repositories\MySQLRepositoryUsuario.cs" />
-    <Compile Include="Repositories\MySQLRepositoryTiposPorcion.cs" />
-    <Compile Include="Repositories\MySQLRepositoryShared.cs" />
-    <Compile Include="Services\Fabrics\CalculoAlertaFabric.cs" />
-    <Compile Include="Services\ServiceSesion.cs" />
-    <Compile Include="Services\ServiceUsuario.cs" />
-    <Compile Include="Services\ServiceAnalisis.cs" />
-    <Compile Include="Services\ServicePerfiles.cs" />
-    <Compile Include="Services\ServiceTiposNutriente.cs" />
-    <Compile Include="Services\ServiceSello.cs" />
-    <Compile Include="Services\ServiceNutriente.cs" />
-    <Compile Include="Services\ServiceTiposCalculo.cs" />
-    <Compile Include="Services\ServiceTiposPorcion.cs" />
-    <Compile Include="Services\ServiceShared.cs" />
-    <Compile Include="Services\ServiceProducto.cs" />
-    <Compile Include="Repositories\MySQLRepositoryProducto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -358,8 +306,8 @@
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validators\NutrienteAlertaValidator.cs" />
-    <Compile Include="Validators\AlertaValidator.cs" />
+    <Compile Include="Services\ServiceSesionFront.cs" />
+    <Compile Include="Services\ServiceSharedFront.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -388,6 +336,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{e11ee760-0457-4a87-8411-260bcc9bd7e6}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{2a45221c-fa7f-4907-8e89-3afcef222f45}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

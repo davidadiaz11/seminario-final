@@ -8,6 +8,8 @@ namespace Services
         {
         }
 
+        //TODO-TESIS: resolver el guardado y obtención del usuario
+
         public static bool GuardarUsuario(string idString)
         {
             bool resultado = false;
@@ -18,7 +20,7 @@ namespace Services
                     return resultado;
                 }
 
-                HttpContext.Current.Session["usuID"] = idString;
+                //HttpContext.Current.Session["usuID"] = idString;
                 resultado = true;
             }
             catch (Exception ex)
@@ -33,7 +35,7 @@ namespace Services
             ushort resultado = 0;
             try
             {
-                string idString = HttpContext.Current.Session["usuID"].ToString();
+                string idString = "2";
                 return Convert.ToUInt16(idString);
             }
             catch (Exception)

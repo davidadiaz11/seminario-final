@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.UI;
-
+using Models;
+using Services;
 namespace seminario_final
 {
     public partial class FormularioPerfil : Page

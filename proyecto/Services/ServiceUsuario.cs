@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data;
+using Models;
+using Repositories;
 namespace Services
 {
     public class ServiceUsuario

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Models;
+using Services;
 namespace seminario_final
 {
     public partial class ListadoProductos : System.Web.UI.Page
@@ -134,12 +135,12 @@ namespace seminario_final
 
         protected string GetSortLink(string dataField)
         {
-            return ServiceShared.GetSortLink(dataField, Request);
+            return ServiceSharedFront.GetSortLink(dataField, Request);
         }
 
         protected string GetPageLink(int noOfPage)
         {
-            return ServiceShared.GetPageLink(noOfPage, Request, "productos");
+            return ServiceSharedFront.GetPageLink(noOfPage, Request, "productos");
         }
 
         private void populate(int filasPorPag)

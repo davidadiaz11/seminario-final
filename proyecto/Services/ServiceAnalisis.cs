@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
-using seminario_final.Models;
-using seminario_final.Services.Fabrics;
+using Models;
+using Services.Fabrics;
+using Repositories;
 namespace Services
 {
     public class ServiceAnalisis

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using Models;
+using Repositories;
 namespace Services
 {
     public class ServicePerfiles

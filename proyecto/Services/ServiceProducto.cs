@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
+using Models;
+using Repositories;
 namespace Services
 {
     public class ServiceProducto

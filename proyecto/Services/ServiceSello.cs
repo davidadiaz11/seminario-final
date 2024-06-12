@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
-using seminario_final.Validators;
-using FluentValidation.Results;
-
+using Models;
+using Repositories;
+using Validators;
 namespace Services
 {
     public class ServiceSello
@@ -205,14 +205,14 @@ namespace Services
                 nutriente.NutrientesAlerta.First().TipoCalculo = tipoCalculo.Find(x => x.Id == idTipoCalculoSeleccionado);
 
                 var validator = new AlertaValidator();
-                ValidationResult result = validator.Validate(nutriente.NutrientesAlerta.First().Alerta);
+                var result = validator.Validate(nutriente.NutrientesAlerta.First().Alerta);
                 if (!result.IsValid)
                 {
                     resultado.ObtenerError(result.Errors.First().ErrorMessage);
                     return resultado;
                 }
                 var validatorNutrienteAlerta = new NutrienteAlertaValidator();
-                ValidationResult resultNutrienteAlerta = validatorNutrienteAlerta.Validate(nutriente.NutrientesAlerta.First());
+                var resultNutrienteAlerta = validatorNutrienteAlerta.Validate(nutriente.NutrientesAlerta.First());
                 if (!resultNutrienteAlerta.IsValid)
                 {
                     resultado.ObtenerError(resultNutrienteAlerta.Errors.First().ErrorMessage);

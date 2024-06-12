@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Models;
+using Repositories;
+
 namespace Services
 {
     public class ServiceNutriente

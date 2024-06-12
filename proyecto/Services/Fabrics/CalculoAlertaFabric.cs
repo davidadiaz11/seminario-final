@@ -1,4 +1,5 @@
-﻿using seminario_final.Models;
+﻿using Models;
+using Services;
 namespace Services.Fabrics
 {
     internal class CalculoAlertaFabric
