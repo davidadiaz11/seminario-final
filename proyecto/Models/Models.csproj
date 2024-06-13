@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="ModelAlerta.cs" />
     <Compile Include="ModelAnalisis.cs" />
     <Compile Include="ModelColorAlerta.cs" />
