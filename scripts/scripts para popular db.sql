@@ -329,7 +329,7 @@ NPR_USU_ID_MODIFICACION)
 VALUES(
 (select PRO_ID from productos where PRO_NOMBRE='Queso untable Finlandia light'),
 (select NUT_ID from nutrientes where NUT_NOMBRE='Azúcares añadidos'),
-1.6,
+0,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -702,7 +702,7 @@ NPR_USU_ID_MODIFICACION)
 VALUES(
 (select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
 (select NUT_ID from nutrientes where NUT_NOMBRE='Carbohidratos'),
-26,
+25,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -714,7 +714,7 @@ NPR_USU_ID_MODIFICACION)
 VALUES(
 (select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
 (select NUT_ID from nutrientes where NUT_NOMBRE='Proteínas'),
-2.6,
+2.4,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -737,7 +737,7 @@ NPR_USU_ID_MODIFICACION)
 VALUES(
 (select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
 (select NUT_ID from nutrientes where NUT_NOMBRE='Grasas saturadas'),
-6.2,
+6.5,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
@@ -784,7 +784,7 @@ NPR_USU_ID_MODIFICACION)
 VALUES(
 (select PRO_ID from productos where PRO_NOMBRE='Alfajor Milka Mousse'),
 (select NUT_ID from nutrientes where NUT_NOMBRE='Calorías'),
-219,
+220,
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin'),
 (SELECT USU_ID FROM USUARIOS WHERE USU_NOMBRE='Admin')
 );
