@@ -12,10 +12,14 @@ namespace Services
 
             if (item2.Nutriente.NutrientesAlerta[0].Operador == ">" && cantidadCalculada >= item2.Nutriente.NutrientesAlerta[0].ValorCritico)
             {
+                item2.Nutriente.NutrientesAlerta[0].ValorReal = cantidadCalculada;
+                item2.Nutriente.NutrientesAlerta[0].ValorDiferencial = (item2.Nutriente.NutrientesAlerta[0].ValorReal - item2.Nutriente.NutrientesAlerta[0].ValorCritico) / item2.Nutriente.NutrientesAlerta[0].ValorCritico * 100;
                 listaAlertas.Add(item2);
             }
             else if (item2.Nutriente.NutrientesAlerta[0].Operador == "<" && cantidadCalculada <= item2.Nutriente.NutrientesAlerta[0].ValorCritico)
             {
+                item2.Nutriente.NutrientesAlerta[0].ValorReal = cantidadCalculada;
+                item2.Nutriente.NutrientesAlerta[0].ValorDiferencial = (item2.Nutriente.NutrientesAlerta[0].ValorReal - item2.Nutriente.NutrientesAlerta[0].ValorCritico) / item2.Nutriente.NutrientesAlerta[0].ValorCritico * 100;
                 listaAlertas.Add(item2);
             }
             return listaAlertas;
