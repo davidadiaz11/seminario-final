@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.UI;
-
+using Models;
+using Services;
 namespace seminario_final
 {
     public partial class FormularioPerfil : Page
@@ -8,8 +9,11 @@ namespace seminario_final
         protected ModelPerfil perfilPersistido;
         string idPerfilstring = "";
         uint idPerfil = 0;
+        private ushort idUsuario = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            idUsuario = ServiceSesion.ObtenerUsuario();
             idPerfilstring = Request.QueryString["prf"];
             if (!IsPostBack)
             {
@@ -34,7 +38,7 @@ namespace seminario_final
 
         private bool ObtenerPerfil()
         {
-            var resPerfilPersistido = ServicePerfiles.ObtenerPerfil(idPerfil);
+            var resPerfilPersistido = ServicePerfiles.ObtenerPerfil(idUsuario, idPerfil);
             if (!resPerfilPersistido.Ok)
             {
                 var master = Master as MasterPage;
@@ -104,7 +108,7 @@ namespace seminario_final
                 return;
             }
             ModelPerfil nuevoElemento = CrearObjeto();
-            var resModificacion = ServicePerfiles.GuardarPerfil(nuevoElemento, Convert.ToUInt32(idPerfilstring));
+            var resModificacion = ServicePerfiles.GuardarPerfil(idUsuario, nuevoElemento, Convert.ToUInt32(idPerfilstring));
             var master = Master as MasterPage;
             if (!resModificacion.Ok)
             {

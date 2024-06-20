@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Models;
+using Services;
 
 namespace seminario_final
 {
@@ -8,8 +9,11 @@ namespace seminario_final
     {
         List<ModelNutriente> nutrientes = new List<ModelNutriente>();
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
+        private ushort idUsuario = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            idUsuario = ServiceSesion.ObtenerUsuario();
             if (!IsPostBack)
             {
                 configurarPantalla();
@@ -68,7 +72,7 @@ namespace seminario_final
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
                 return;
             }
-            var resEliminar = ServiceSello.Eliminar(idNutrienteAlerta);
+            var resEliminar = ServiceSello.Eliminar(idUsuario, idNutrienteAlerta);
             if (!resEliminar.Ok)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resEliminar.Errores), true);
@@ -84,7 +88,7 @@ namespace seminario_final
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al recuperar"), true);
                 return;
             }
-            var resRecuperar = ServiceSello.Recuperar(idNutrienteAlerta);
+            var resRecuperar = ServiceSello.Recuperar(idUsuario, idNutrienteAlerta);
             if (!resRecuperar.Ok)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al recuperar"), true);
@@ -103,12 +107,12 @@ namespace seminario_final
 
         protected string GetSortLink(string dataField)
         {
-            return ServiceShared.GetSortLink(dataField, Request);
+            return ServiceSharedFront.GetSortLink(dataField, Request);
         }
 
         protected string GetPageLink(int noOfPage)
         {
-            return ServiceShared.GetPageLink(noOfPage, Request, "listadoalertas");
+            return ServiceSharedFront.GetPageLink(noOfPage, Request, "listadoalertas");
         }
 
         private void populate(int filasPorPag)
@@ -128,7 +132,7 @@ namespace seminario_final
             hfSortDir.Value = sortDir;
             //Fetch data from Server 
 
-            nutrientes = ServiceSello.ObtenerTodosFiltrados(out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, ch_eliminados.Checked);
+            nutrientes = ServiceSello.ObtenerTodosFiltrados(idUsuario, out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, ch_eliminados.Checked);
             cantPags = (encontrados / filasPorPag) + ((encontrados % filasPorPag) > 0 ? 1 : 0);
             vista_lista.DataSource = nutrientes;
             vista_lista.DataBind();

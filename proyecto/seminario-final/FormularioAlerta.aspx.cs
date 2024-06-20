@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
-
+using Models;
+using Services;
 namespace seminario_final
 {
     public partial class FormularioAlerta : Page
@@ -10,8 +11,11 @@ namespace seminario_final
         protected ModelNutriente nutrientePersistido;
         protected ModelAlerta alertaPersistida;
         string idNutrienteAlerta = "";
+        private ushort idUsuario = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            idUsuario = ServiceSesion.ObtenerUsuario();
             idNutrienteAlerta = Request.QueryString["anu"];
             if (!IsPostBack)
             {
@@ -185,7 +189,7 @@ namespace seminario_final
 
             ModelNutriente nuevoElemento = crearObjetoDesdeFormulario();
 
-            var resModificacion = ServiceSello.GuardarAlerta(nuevoElemento, nutrientePersistido);
+            var resModificacion = ServiceSello.GuardarAlerta(idUsuario, nuevoElemento, nutrientePersistido);
             var master = Master as MasterPage;
             if (!resModificacion.Ok)
             {

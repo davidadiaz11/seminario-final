@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
-
+using Models;
+using Services;
 namespace seminario_final
 {
     public partial class FormularioProducto : Page
     {
         protected ModelProducto producto;
         string idProducto = "";
+        private ushort idUsuario = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            idUsuario = ServiceSesion.ObtenerUsuario();
             idProducto = Request.QueryString["pro"];
             if (!IsPostBack)
             {
@@ -199,7 +203,7 @@ namespace seminario_final
                 return;
             }
 
-            var resModificacion = ServiceProducto.ModificarProducto(nuevoProducto);
+            var resModificacion = ServiceProducto.ModificarProducto(idUsuario, nuevoProducto);
             if (!resModificacion.Ok)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resModificacion.Errores), true);

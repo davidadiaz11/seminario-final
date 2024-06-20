@@ -1,5 +1,0 @@
-﻿enum RolesEnum
-{
-    Administrador,
-    Usuarioconsumidor
-}

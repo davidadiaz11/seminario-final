@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI;
-
+using Models;
+using Services;
 namespace seminario_final
 {
     public partial class ListadoAnalisis : System.Web.UI.Page
     {
         List<ModelAnalisis> analisis = new List<ModelAnalisis>();
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
+        private ushort idUsuario = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            idUsuario = ServiceSesion.ObtenerUsuario();
             if (!IsPostBack)
             {
                 configurarPantalla();
@@ -61,12 +65,12 @@ namespace seminario_final
 
         protected string GetSortLink(string dataField)
         {
-            return ServiceShared.GetSortLink(dataField, Request);
+            return ServiceSharedFront.GetSortLink(dataField, Request);
         }
 
         protected string GetPageLink(int noOfPage)
         {
-            return ServiceShared.GetPageLink(noOfPage, Request, "listadoanalisis");
+            return ServiceSharedFront.GetPageLink(noOfPage, Request, "listadoanalisis");
         }
 
         private void populate(int filasPorPag)
@@ -86,7 +90,7 @@ namespace seminario_final
             hfSortDir.Value = sortDir;
             //Fetch data from Server 
 
-            analisis = ServiceAnalisis.ObtenerTodosFiltrados(out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, false);
+            analisis = ServiceAnalisis.ObtenerTodosFiltrados(idUsuario, out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, false);
             cantPags = (encontrados / filasPorPag) + ((encontrados % filasPorPag) > 0 ? 1 : 0);
             vista_lista.DataSource = analisis;
             vista_lista.DataBind();
