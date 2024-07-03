@@ -308,7 +308,10 @@
                                                 <asp:Button CssClass="btn btn-light col-5 col-md-4" runat="server" Text="Cancelar" OnClientClick="history.go(-1);" />
                                                 <br />
                                                 <br />
-                                                <a class="btn btn-success col-12 col-md-4" href="FormularioUsuario">Crear cuenta</a>
+                                                <hr />
+                                                <a class="btn btn-success col-12 col-md-4 mr-1" href="FormularioUsuario">Crear cuenta</a>
+                                                <asp:Button CssClass="btn btn-primary col-12 col-md-4 mt-1" runat="server" Text="Demo" ID="btn_demo" CausesValidation="False" OnClick="btn_demo_Click" />
+
                                             </div>
                                         </div>
                                     </div>

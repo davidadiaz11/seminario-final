@@ -57,17 +57,12 @@ namespace seminario_final
             GuardarUsuarioEnSesion(res.Data.Id.ToString());
         }
 
-        protected void btn_admin_Click(object sender, EventArgs e)
-        {
-            GuardarUsuarioEnSesion("1");
-        }
-
         protected void btn_ingresar_Click(object sender, EventArgs e)
         {
             Autenticar();
         }
 
-        protected void btn_usu_Click(object sender, EventArgs e)
+        protected void btn_demo_Click(object sender, EventArgs e)
         {
             GuardarUsuarioEnSesion("2");
         }
