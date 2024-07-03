@@ -21,10 +21,13 @@ namespace Services
                 {
                     Id = Convert.ToUInt16(dr["prf_id"]),
                     Nombre = dr["prf_nombre"].ToString(),
-                    FechaNacimiento = Convert.ToDateTime(dr["prf_fecha_nacimiento"]),
-                    IngredientesProhibidos = dr["prf_ingredientes_prohibidos"].ToString(),
+                    IngredientesProhibidos = dr["prf_ingredientes_prohibidos"] != DBNull.Value ? dr["prf_ingredientes_prohibidos"].ToString() : "",
                     EsPrincipal = Convert.ToBoolean(dr["prf_es_principal"])
                 };
+                if (dr["prf_fecha_nacimiento"] != DBNull.Value)
+                {
+                    x.FechaNacimiento = Convert.ToDateTime(dr["prf_fecha_nacimiento"]);
+                }
                 items.Add(x);
             }
             return items;
@@ -133,10 +136,13 @@ namespace Services
                 {
                     Id = Convert.ToUInt16(dr["prf_id"]),
                     Nombre = dr["prf_nombre"].ToString(),
-                    IngredientesProhibidos = dr["prf_ingredientes_prohibidos"].ToString(),
-                    FechaNacimiento = Convert.ToDateTime(dr["prf_fecha_nacimiento"]),
+                    IngredientesProhibidos = dr["prf_ingredientes_prohibidos"] != DBNull.Value ? dr["prf_ingredientes_prohibidos"].ToString() : "",
                     EsPrincipal = Convert.ToBoolean(dr["prf_es_principal"])
                 };
+                if (dr["prf_fecha_nacimiento"] != DBNull.Value)
+                {
+                    x.FechaNacimiento = Convert.ToDateTime(dr["prf_fecha_nacimiento"]);
+                }
                 items.Add(x);
             }
             return items;

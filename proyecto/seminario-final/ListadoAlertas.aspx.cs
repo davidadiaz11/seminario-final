@@ -16,6 +16,7 @@ namespace seminario_final
             idUsuario = ServiceSesion.ObtenerUsuario();
             if (!IsPostBack)
             {
+                ValidarLogin();
                 configurarPantalla();
             }
             else
@@ -157,6 +158,15 @@ namespace seminario_final
         protected void ch_eliminados_CheckedChanged(object sender, EventArgs e)
         {
             populate(vista_lista.PageSize);
+        }
+
+        private void ValidarLogin()
+        {
+            ushort idUsuario = ServiceSesion.ObtenerUsuario();
+            if (idUsuario == 0)
+            {
+                Response.Redirect("Login");
+            }
         }
     }
 }

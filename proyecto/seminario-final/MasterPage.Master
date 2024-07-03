@@ -388,7 +388,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">
+                        <a class="nav-link" href="CerrarSesion">
                             <i class="menu-icon mdi mdi-power"></i>
                             <span class="menu-title">Cerrar sesión</span>
                         </a>

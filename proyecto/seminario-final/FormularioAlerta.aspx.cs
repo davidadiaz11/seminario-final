@@ -19,6 +19,7 @@ namespace seminario_final
             idNutrienteAlerta = Request.QueryString["anu"];
             if (!IsPostBack)
             {
+                ValidarLogin();
                 CargarColores();
                 CargarNutrientes();
                 CargarTiposCalculo();
@@ -40,6 +41,15 @@ namespace seminario_final
                 {
                     CargarAlerta();
                 }
+            }
+        }
+
+        private void ValidarLogin()
+        {
+            ushort idUsuario = ServiceSesion.ObtenerUsuario();
+            if (idUsuario == 0)
+            {
+                Response.Redirect("Login");
             }
         }
 

@@ -18,6 +18,7 @@ namespace seminario_final
             idProducto = Request.QueryString["pro"];
             if (!IsPostBack)
             {
+                ValidarLogin();
                 CargarTiposPorcion();
                 if (idProducto == null)
                 {
@@ -210,6 +211,15 @@ namespace seminario_final
                 return;
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito("Modificado correctamente."), true);
+        }
+
+        private void ValidarLogin()
+        {
+            ushort idUsuario = ServiceSesion.ObtenerUsuario();
+            if (idUsuario == 0)
+            {
+                Response.Redirect("Login");
+            }
         }
     }
 }

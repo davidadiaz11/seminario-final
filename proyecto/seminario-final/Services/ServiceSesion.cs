@@ -43,5 +43,25 @@ namespace seminario_final
             }
         }
 
+        public static bool CerrarSesion()
+        {
+            bool resultado = false;
+            try
+            {
+                ushort idUsuario = ObtenerUsuario();
+                if (idUsuario == 0)
+                {
+                    return true;
+                }
+                HttpContext.Current.Session["usuID"] = "";
+                resultado = true;
+            }
+            catch (Exception ex)
+            {
+                resultado = false;
+            }
+            return resultado;
+        }
+
     }
 }

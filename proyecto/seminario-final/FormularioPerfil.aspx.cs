@@ -17,6 +17,7 @@ namespace seminario_final
             idPerfilstring = Request.QueryString["prf"];
             if (!IsPostBack)
             {
+                ValidarLogin();
                 if (idPerfilstring == null)
                 {
                     return;
@@ -52,7 +53,7 @@ namespace seminario_final
         private void CargarPerfil()
         {
             txt_nombre.Text = perfilPersistido.Nombre;
-            txt_fecha_nacimiento.Text = perfilPersistido.FechaNacimiento.ToString("yyyy-MM-dd");
+            txt_fecha_nacimiento.Text = perfilPersistido.FechaNacimiento?.ToString("yyyy-MM-dd");
             txt_ingredientes_prohibidos.Text = perfilPersistido.IngredientesProhibidos;
         }
 
@@ -122,6 +123,15 @@ namespace seminario_final
             else
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_exito(resModificacion.Mensaje), true);
+            }
+        }
+
+        private void ValidarLogin()
+        {
+            ushort idUsuario = ServiceSesion.ObtenerUsuario();
+            if (idUsuario == 0)
+            {
+                Response.Redirect("Login");
             }
         }
     }

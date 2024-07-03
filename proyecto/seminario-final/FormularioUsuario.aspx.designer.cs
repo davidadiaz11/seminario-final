@@ -11,7 +11,7 @@ namespace seminario_final
 {
 
 
-    public partial class Login
+    public partial class FormularioUsuario
     {
 
         /// <summary>
@@ -22,6 +22,24 @@ namespace seminario_final
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor acceso;
+
+        /// <summary>
+        /// Control txt_nombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_nombre;
+
+        /// <summary>
+        /// Control rf_nombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rf_nombre;
 
         /// <summary>
         /// Control txt_email.
@@ -60,12 +78,12 @@ namespace seminario_final
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rf_contrasenia;
 
         /// <summary>
-        /// Control btn_ingresar.
+        /// Control btn_guardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_ingresar;
+        protected global::System.Web.UI.WebControls.Button btn_guardar;
     }
 }

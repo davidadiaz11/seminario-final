@@ -10,6 +10,10 @@ namespace seminario_final
         protected void Page_Load(object sender, EventArgs e)
         {
             idUsuario = ServiceSesion.ObtenerUsuario();
+            if (!IsPostBack)
+            {
+                ValidarLogin();
+            }
         }
         
 
@@ -30,6 +34,15 @@ namespace seminario_final
         {
             bool res = ServiceAnalisis.GuardarAnalisis(idUsuario, idProducto);
             return res;
+        }
+
+        private void ValidarLogin()
+        {
+            ushort idUsuario = ServiceSesion.ObtenerUsuario();
+            if (idUsuario == 0)
+            {
+                Response.Redirect("Login");
+            }
         }
     }
 }

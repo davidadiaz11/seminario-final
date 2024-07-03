@@ -14,19 +14,19 @@ namespace seminario_final
 
             if (!IsPostBack)
             {
-                if (ValidarLogin())
-                {
-                    Response.Redirect("Login");
-                }
+                ValidarLogin();
                 ObtenerUltimosAnalisis();
                 ObtenerUltimosSellos();
             }
         }
 
-        private bool ValidarLogin()
+        private void ValidarLogin()
         {
             ushort idUsuario = ServiceSesion.ObtenerUsuario();
-            return idUsuario == 0;
+            if (idUsuario == 0)
+            {
+                Response.Redirect("Login");
+            }
         }
 
         private void ObtenerUltimosAnalisis()

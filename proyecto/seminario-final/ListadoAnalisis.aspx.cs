@@ -16,6 +16,7 @@ namespace seminario_final
             idUsuario = ServiceSesion.ObtenerUsuario();
             if (!IsPostBack)
             {
+                ValidarLogin();
                 configurarPantalla();
             }
             else
@@ -104,6 +105,15 @@ namespace seminario_final
         protected void ddl_cant_filas_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session["cant_resultados"] = Convert.ToByte(ddl_cant_filas.SelectedValue);
+        }
+
+        private void ValidarLogin()
+        {
+            ushort idUsuario = ServiceSesion.ObtenerUsuario();
+            if (idUsuario == 0)
+            {
+                Response.Redirect("Login");
+            }
         }
     }
 }

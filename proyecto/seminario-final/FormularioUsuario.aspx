@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="seminario_final.Login" %>
+﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" CodeBehind="FormularioUsuario.aspx.cs" Inherits="seminario_final.FormularioUsuario" %>
 
 <!DOCTYPE html>
 <html lang="es-AR" xmlns="http://www.w3.org/1999/xhtml">
@@ -7,15 +7,36 @@
     <meta charset="utf-8" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="title" content="Seminario Final - Díaz David" />
+    <meta name="description" content="Seminario Final de Ingeniería en Software - David Díaz" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.alimentosconciencia.com.ar/" />
+    <meta property="og:title" content="Seminario Final de Ingeniería en Software - David Díaz" />
+    <meta property="og:description" content="Seminario Final de Ingeniería en Software - David Díaz" />
+
+    <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css" />
     <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.min.css" />
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <%--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--%>
     <link href="css/iziToast.css" rel="stylesheet" />
     <script src="js/iziToast.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="stylesheet" href="css/sweetalert2.min.css" />
+    <script src="js/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <%--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--%>
+    <%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>--%>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- endinject -->
     <link rel="shortcut icon" href="images/logo.ico" />
 
+    <link rel="stylesheet" type="text/css" href="css/slick.css" />
     <style>
         body {
             /*            width: 100%;*/
@@ -284,6 +305,7 @@
 
                 </div>
             </nav>
+
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="col-12 col-md-4">
@@ -295,6 +317,11 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="form-group">
+                                                    <label for="txt_nombre">Nombre <small class="text-danger">*</small></label>
+                                                    <asp:TextBox placeholder="Ingrese nombre" ID="txt_nombre" AutoCompleteType="Disabled" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator Display="Dynamic" CssClass="p-0 text-danger small" ControlToValidate="txt_nombre" ID="rf_nombre" runat="server" ErrorMessage="Ingrese Nombre"></asp:RequiredFieldValidator>
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="txt_email">Email <small class="text-danger">*</small></label>
                                                     <asp:TextBox placeholder="Ingrese email" ID="txt_email" AutoCompleteType="Disabled" CssClass="form-control" runat="server"></asp:TextBox>
                                                     <asp:RequiredFieldValidator Display="Dynamic" CssClass="p-0 text-danger small" ControlToValidate="txt_email" ID="rf_email" runat="server" ErrorMessage="Ingrese Email"></asp:RequiredFieldValidator>
@@ -304,11 +331,8 @@
                                                     <asp:TextBox placeholder="Ingrese contraseña" ID="txt_contrasenia" AutoCompleteType="Disabled" CssClass="form-control" runat="server"></asp:TextBox>
                                                     <asp:RequiredFieldValidator Display="Dynamic" CssClass="p-0 text-danger small" ControlToValidate="txt_contrasenia" ID="rf_contrasenia" runat="server" ErrorMessage="Ingrese Contraseña"></asp:RequiredFieldValidator>
                                                 </div>
-                                                <asp:Button CssClass="btn btn-primary col-5 col-md-4" ID="btn_ingresar" runat="server" Text="Ingresar" OnClick="btn_ingresar_Click" />
+                                                <asp:Button CssClass="btn btn-primary col-5 col-md-4" ID="btn_guardar" runat="server" Text="Guardar" OnClick="btn_guardar_Click" />
                                                 <asp:Button CssClass="btn btn-light col-5 col-md-4" runat="server" Text="Cancelar" OnClientClick="history.go(-1);" />
-                                                <br />
-                                                <br />
-                                                <a class="btn btn-success col-12 col-md-4" href="FormularioUsuario">Crear cuenta</a>
                                             </div>
                                         </div>
                                     </div>
@@ -328,4 +352,3 @@
     </div>
 </body>
 </html>
-

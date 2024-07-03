@@ -90,7 +90,7 @@
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField>
-                                                    <ItemTemplate><%# Convert.ToDateTime(Eval("FechaNacimiento")).ToString("dd/MM/yyyy") %></ItemTemplate>
+                                                    <ItemTemplate><%# Eval("FechaNacimiento") != null ? Convert.ToDateTime(Eval("FechaNacimiento")).ToString("dd/MM/yyyy") : "" %></ItemTemplate>
                                                     <HeaderTemplate>
                                                         <asp:HyperLink runat="server" CssClass='<%#hfSortName.Value.ToLower() == "fecha_nacimiento"? hfSortDir.Value.ToLower() : "" %>'
                                                             Text="Fecha Nacimiento" NavigateUrl='<%#string.Format("/ListadoPerfiles?{0}",GetSortLink("fecha_nacimiento")) %>'></asp:HyperLink>
@@ -175,7 +175,7 @@
                                                             </p>
 
                                                             <p class="mb-1">
-                                                                <asp:Label Text='<%# "Fecha Nac: " + Convert.ToDateTime(Eval("FechaNacimiento")).ToString("dd/MM/yyyy") %>' runat="server" />
+                                                                <asp:Label Text='<%# "Fecha Nac: " + Eval("FechaNacimiento") != null ? Convert.ToDateTime(Eval("FechaNacimiento")).ToString("dd/MM/yyyy") : "" %>' runat="server" />
                                                             </p>
                                                             <p class="mb-1">
                                                                 <asp:Label Text='<%# "Ingredientes prohibidos: " + Eval("IngredientesProhibidos").ToString() %>' runat="server" />
