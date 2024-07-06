@@ -308,8 +308,10 @@
                 </a>
 
             </div>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none" type="button" style="align-self: normal;" data-toggle="offcanvas">
+                <span class="mdi mdi-menu text-white"></span>
+            </button>
         </nav>
-
 
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
