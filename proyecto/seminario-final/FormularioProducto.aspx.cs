@@ -172,18 +172,42 @@ namespace seminario_final
 
             List<ModelNutrienteProducto> nuevosNutrientesProductos = new List<ModelNutrienteProducto>();
 
-            foreach (ModelNutrienteProducto item in producto.NutrientesProducto)
-            {
-                ModelNutrienteProducto mnp = new ModelNutrienteProducto()
-                {
-                    Id = item.Id,
-                    Nutriente = new ModelNutriente()
-                    {
-                        CantidadPorPorcion = item.Nutriente.CantidadPorPorcion
-                    }
-                };
-                nuevosNutrientesProductos.Add(mnp);
-            }
+            var azucares = producto.NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Azúcares añadidos");
+            azucares.Nutriente.CantidadPorPorcion = Convert.ToDouble(txt_azucares.Text.Replace(".", ","));
+            nuevosNutrientesProductos.Add(azucares);
+
+            var carbohidratos = producto.NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Carbohidratos");
+            carbohidratos.Nutriente.CantidadPorPorcion = Convert.ToDouble(txt_carbohidratos.Text.Replace(".", ","));
+            nuevosNutrientesProductos.Add(carbohidratos);
+            
+            var fibra = producto.NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Fibra");
+            fibra.Nutriente.CantidadPorPorcion = Convert.ToDouble(txt_fibra.Text.Replace(".", ","));
+            nuevosNutrientesProductos.Add(fibra);
+
+            var grasas_saturadas = producto.NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Grasas saturadas");
+            grasas_saturadas.Nutriente.CantidadPorPorcion = Convert.ToDouble(txt_grasas_saturadas.Text.Replace(".", ","));
+            nuevosNutrientesProductos.Add(grasas_saturadas);
+            
+            var grasas_totales = producto.NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Grasas totales");
+            grasas_totales.Nutriente.CantidadPorPorcion = Convert.ToDouble(txt_grasas_totales.Text.Replace(".", ","));
+            nuevosNutrientesProductos.Add(grasas_totales);
+                  
+            var grasas_trans = producto.NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Grasas trans");
+            grasas_trans.Nutriente.CantidadPorPorcion = Convert.ToDouble(txt_grasas_trans.Text.Replace(".", ","));
+            nuevosNutrientesProductos.Add(grasas_trans);
+                  
+            var proteinas = producto.NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Proteínas");
+            proteinas.Nutriente.CantidadPorPorcion = Convert.ToDouble(txt_proteinas.Text.Replace(".", ","));
+            nuevosNutrientesProductos.Add(proteinas);
+            
+            var sodio = producto.NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Sodio");
+            sodio.Nutriente.CantidadPorPorcion = Convert.ToDouble(txt_sodio.Text.Replace(",", "."));
+            nuevosNutrientesProductos.Add(sodio);
+                       
+            var valor_energetico = producto.NutrientesProducto.FirstOrDefault(x => x.Nutriente.Nombre == "Calorías");
+            valor_energetico.Nutriente.CantidadPorPorcion = Convert.ToDouble(txt_valor_energetico.Text.Replace(",", "."));
+            nuevosNutrientesProductos.Add(valor_energetico);
+
             nuevoProducto.NutrientesProducto = nuevosNutrientesProductos;
             return nuevoProducto;
         }

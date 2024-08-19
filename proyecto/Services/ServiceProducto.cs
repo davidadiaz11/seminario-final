@@ -142,7 +142,8 @@ namespace Services
 
                 ModelNutrienteProducto y = new ModelNutrienteProducto()
                 {
-                    Id = Convert.ToUInt32(drNut["npr_pro_id"]),
+                    Id = Convert.ToUInt32(drNut["npr_id"]),
+                    IdProducto = Convert.ToUInt32(drNut["npr_pro_id"]),
                     Nutriente = new ModelNutriente()
                     {
                         Nombre = drNut["nut_nombre"].ToString(),
@@ -151,7 +152,7 @@ namespace Services
                 };
                 nutrientes.Add(y);
             }
-            var dic_nutrientes = nutrientes.GroupBy(x => x.Id).ToDictionary(g => g.Key, g => g);
+            var dic_nutrientes = nutrientes.GroupBy(x => x.IdProducto).ToDictionary(g => g.Key, g => g);
             item.NutrientesProducto = dic_nutrientes[item.Id].ToList();
             resultado.Data = item;
             return resultado;
