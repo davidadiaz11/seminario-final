@@ -8,6 +8,8 @@ namespace Models
         }
 
         public uint Id { get; set; }
+        public uint IdProducto { get; set; }
+
         public ModelNutriente Nutriente { get; set; }
 
     }
