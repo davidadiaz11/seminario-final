@@ -296,12 +296,12 @@
                                             <div class="card-body">
                                                 <div class="form-group">
                                                     <label for="txt_email">Email <small class="text-danger">*</small></label>
-                                                    <asp:TextBox placeholder="Ingrese email" ID="txt_email" AutoCompleteType="Disabled" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox placeholder="Ingrese email" ID="txt_email" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Email" runat="server"></asp:TextBox>
                                                     <asp:RequiredFieldValidator Display="Dynamic" CssClass="p-0 text-danger small" ControlToValidate="txt_email" ID="rf_email" runat="server" ErrorMessage="Ingrese Email"></asp:RequiredFieldValidator>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="txt_contrasenia">Contraseña <small class="text-danger">*</small></label>
-                                                    <asp:TextBox placeholder="Ingrese contraseña" ID="txt_contrasenia" AutoCompleteType="Disabled" CssClass="form-control" runat="server"></asp:TextBox>
+                                                    <asp:TextBox placeholder="Ingrese contraseña" ID="txt_contrasenia" AutoCompleteType="Disabled" TextMode="Password" CssClass="form-control" runat="server"></asp:TextBox>
                                                     <asp:RequiredFieldValidator Display="Dynamic" CssClass="p-0 text-danger small" ControlToValidate="txt_contrasenia" ID="rf_contrasenia" runat="server" ErrorMessage="Ingrese Contraseña"></asp:RequiredFieldValidator>
                                                 </div>
                                                 <asp:Button CssClass="btn btn-primary col-5 col-md-4" ID="btn_ingresar" runat="server" Text="Ingresar" OnClick="btn_ingresar_Click" />
