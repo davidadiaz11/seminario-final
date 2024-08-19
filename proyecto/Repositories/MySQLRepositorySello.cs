@@ -292,7 +292,7 @@ namespace Repositories
                     }
 
 
-                    cmd.CommandText = @"UPDATE alertas set ale_nombre=@ale_nombre, ale_leyenda=@ale_leyenda, ale_tal_id=@ale_tal_id, ale_usu_id_modificacion=@usu_id 
+                    cmd.CommandText = @"UPDATE alertas set ale_nombre=@ale_nombre, ale_leyenda=@ale_leyenda, ale_tal_id=@ale_tal_id, ale_usu_id_modificacion=@usu_id, ale_fecha_modificacion=now()  
                                 WHERE ale_id=@ale_id and ale_fecha_baja IS NULL;";
                     cmd.Parameters.Add(new MySqlParameter("@ale_id", alerta.Id));
                     cmd.Parameters.Add(new MySqlParameter("@ale_nombre", alerta.Nombre));
@@ -328,7 +328,7 @@ namespace Repositories
                             )
                     {
                         string cmdUpdateRelacion = @"UPDATE ALERTAS_X_NUTRIENTE set ANU_TCA_ID=@ANU_TCA_ID, ANU_OPERADOR=@ANU_OPERADOR, ANU_VALOR_CRITICO=@ANU_VALOR_CRITICO,
-                                                ANU_USU_ID_MODIFICACION=@usu_id WHERE anu_id=@anu_id;";
+                                                ANU_FECHA_MODIFICACION=NOW(), ANU_USU_ID_MODIFICACION=@usu_id WHERE anu_id=@anu_id;";
                         cmd.CommandText = cmdUpdateRelacion;
                         cmd.Parameters.Add(new MySqlParameter("@anu_id", nutriente.NutrientesAlerta.First().Id));
                         cmd.Parameters.Add(new MySqlParameter("@ANU_TCA_ID", nutriente.NutrientesAlerta.First().TipoCalculo.Id));

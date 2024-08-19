@@ -68,7 +68,7 @@ namespace Repositories
                 else
                 {
 
-                    cmd.CommandText = @"UPDATE PERFILES set prf_nombre=@prf_nombre, prf_fecha_nacimiento=@prf_fecha_nacimiento, prf_ingredientes_prohibidos=@prf_ingredientes_prohibidos, prf_usu_id_modificacion=@usu_id 
+                    cmd.CommandText = @"UPDATE PERFILES set prf_nombre=@prf_nombre, prf_fecha_nacimiento=@prf_fecha_nacimiento, prf_ingredientes_prohibidos=@prf_ingredientes_prohibidos, prf_usu_id_modificacion=@usu_id, prf_fecha_modificacion=now()  
                                 WHERE prf_id=@prf_id and prf_fecha_baja IS NULL;";
                     cmd.Parameters.Add(new MySqlParameter("@prf_id", perfil.Id));
                     cmd.ExecuteNonQuery();

@@ -176,7 +176,7 @@ namespace Repositories
                 cmd.Parameters.Add(new MySqlParameter("@pro_id", idProducto));
 
                 dt.Load(cmd.ExecuteReader());
-                string terceraQuery = @"SELECT npr_pro_id, nut_nombre, NPR_CANTIDAD_POR_PORCION from
+                string terceraQuery = @"SELECT npr_id, npr_pro_id, nut_nombre, NPR_CANTIDAD_POR_PORCION from
                                 nutrientes_x_productos
                                 join nutrientes on npr_nut_id=nut_id
 								LEFT JOIN alertas_x_nutriente on npr_nut_id=anu_nut_id
@@ -214,7 +214,7 @@ namespace Repositories
                 cmd.Parameters.Clear();
                 cmd.Connection = cn;
                 cmd.CommandText = @"UPDATE productos set pro_nombre=@pro_nombre, pro_porcion=@pro_porcion,
-                                pro_tpo_id=@pro_tpo_id
+                                pro_tpo_id=@pro_tpo_id, pro_fecha_modificacion=now()
                                 WHERE pro_id=@pro_id and pro_fecha_baja IS NULL;";
                 cmd.Parameters.Add(new MySqlParameter("@pro_id", nuevoProducto.Id));
                 cmd.Parameters.Add(new MySqlParameter("@pro_nombre", nuevoProducto.Nombre));
@@ -223,7 +223,7 @@ namespace Repositories
                 cmd.ExecuteNonQuery();
                 foreach (ModelNutrienteProducto nutriente in nuevoProducto.NutrientesProducto)
                 {
-                    var sssql = "update nutrientes_x_productos set NPR_CANTIDAD_POR_PORCION=@NPR_CANTIDAD_POR_PORCION where npr_id=@npr_id;";
+                    var sssql = "update nutrientes_x_productos set NPR_CANTIDAD_POR_PORCION=@NPR_CANTIDAD_POR_PORCION, npr_fecha_modificacion=now() where npr_id=@npr_id;";
                     cmd.Parameters.Add(new MySqlParameter("@NPR_CANTIDAD_POR_PORCION", nutriente.Nutriente.CantidadPorPorcion));
                     cmd.Parameters.Add(new MySqlParameter("@npr_id", nutriente.Id));
                     cmd.CommandText = sssql;
