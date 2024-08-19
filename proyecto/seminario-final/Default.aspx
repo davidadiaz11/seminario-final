@@ -406,7 +406,7 @@
                             <br />
                             <div class="col-12 align-items-stretch text-center">
                                 <span class="text-center  suconsulta">Alimentate <b>con-ciencia</b></span><br />
-                                <span class="text-center  suconsulta">www.alimentateconciencia.com.ar</span><br />
+                                <span class="text-center  suconsulta">www.alimentosconciencia.com.ar</span><br />
                                 <br />
                                 <a class="btn btn-outline-success btn-fw botones" rel="noopener noreferrer" target="_blank" href="#"><i class="mdi mdi-whatsapp"></i>Enviar WhatsApp</a>
                                 <br />
