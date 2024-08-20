@@ -66,7 +66,7 @@
 
                                                 <asp:TemplateField HeaderText="Acción">
                                                     <ItemTemplate>
-                                                        <a href="<%# String.Format("VerAnalisis?ahi={0}", Eval("Id")) %>" class="mr-3">
+                                                        <a href="#" class="mr-3">
                                                             <i class="mdi mdi-eye icon-md"></i>
                                                         </a>
                                                     </ItemTemplate>
@@ -94,7 +94,7 @@
                                     <div class="col-md-4">
                                         <div class="card card-statistics">
                                             <div class="card-body">
-                                                <a class="text-black" href="<%# String.Format("VerAnalisis?ahi={0}", Eval("Id")) %>">
+                                                <a class="text-black" href="#">
 
                                                     <div class="wrapper d-flex justify-content-between">
                                                         <div class="side-left">

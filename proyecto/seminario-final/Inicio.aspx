@@ -99,7 +99,7 @@
                                 <hr class="hr" />
                                 <asp:Repeater ID="rpt_ultimos" runat="server">
                                     <ItemTemplate>
-                                        <a class="text-black" href="<%# String.Format("VerAnalisis?ahi={0}", Eval("Id")) %>">
+                                        <a class="text-black" href="#">
                                             <div class="wrapper d-flex justify-content-between">
                                                 <div class="side-left">
                                                     <p class="mb-1 font-weight-light">
