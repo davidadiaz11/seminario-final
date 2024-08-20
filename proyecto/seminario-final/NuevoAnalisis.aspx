@@ -113,15 +113,15 @@
 
             <%--<a-entity id="grafico" position="-4 -2.5 -20" rotation="20 45 100" charts="type: pie; pie_radius: 1; dataPoints: ./dataPie.json; pie_doughnut: false; "></a-entity>--%>
             <a-entity id="nombre_producto" position="0.45 0.6 0.1" text=" font: exo2bold; color:#000; width:2; align:left;"></a-entity>
-            <a-entity id="calorias_producto" position="-0.4 0.23 0.1" text="font: exo2bold; color:#000; align:center; width:2.5;"></a-entity>
-            <a-entity                        position="0.2 0.2 0.1" text="font:exo2bold; color:#000; value:kcal/porcion; align:left; width:1;"></a-entity>
-            <a-entity id="porcion_producto" position="0.23 0.14 0.1" text="font:exo2bold; color:#757575; align:left; width:0.8;"></a-entity>
-            <a-entity id="porcentaje_azucares" position="0.8 0 0.1" text="font: exo2semibold; width:1.7; color: #000;"></a-entity>
-            <a-entity id="porcentaje_carbohidratos" position="0.8 -0.1 0.1" text="font: exo2semibold; width:1.7; color:#e4605e;"></a-entity>
-            <a-entity id="porcentaje_proteinas" position="0.8 -0.2 0.1" text="font: exo2semibold; width:1.7; color: #0159ff;"></a-entity>
-            <a-entity id="porcentaje_fibra" position="0.8 -0.3 0.1" text="font: exo2semibold; width:1.7; color: #7fe757;"></a-entity>
-            <a-entity id="porcentaje_grasas_totales" position="0.8 -0.4 0.1" text="font: exo2semibold; width:1.7; color:#e5d972;"></a-entity>
-            <a-entity id="porcentaje_sodio" position="0.8 -0.5 0.1" text="font: exo2semibold; width:1.7; color: #eeeeee;"></a-entity>
+            <a-entity id="calorias_producto" position="0.71 0.23 0.1" text="font: exo2bold; color:#000; align:left; width:2.5;"></a-entity>
+            <a-entity                        position="-0.03 0.14 0.1" text="font:exo2bold; color:#000; value:kcal/porcion; align:left; width:1;"></a-entity>
+            <a-entity id="porcion_producto" position="0.84 0.22 0.1" text="font:exo2bold; color:#757575; align:left; width:2;"></a-entity>
+            <a-entity id="porcentaje_azucares" position="0.7 0 0.1" text="font: exo2semibold; width:1.7; color: #000;"></a-entity>
+            <a-entity id="porcentaje_carbohidratos" position="0.7 -0.1 0.1" text="font: exo2semibold; width:1.7; color:#e4605e;"></a-entity>
+            <a-entity id="porcentaje_proteinas" position="0.7 -0.2 0.1" text="font: exo2semibold; width:1.7; color: #0159ff;"></a-entity>
+            <a-entity id="porcentaje_fibra" position="0.7 -0.3 0.1" text="font: exo2semibold; width:1.7; color: #7fe757;"></a-entity>
+            <a-entity id="porcentaje_grasas_totales" position="0.7 -0.4 0.1" text="font: exo2semibold; width:1.7; color:#e5d972;"></a-entity>
+            <a-entity id="porcentaje_sodio" position="0.7 -0.5 0.1" text="font: exo2semibold; width:1.7; color: #eeeeee;"></a-entity>
 
             <a-box id="boxLineaNegra" visible="false" color="#000" width="0.3" height="0.025" depth="0.001"></a-box>
             <a-box id="boxLineaRoja" visible="false" color="#ff0000" width="0.7" height="0.025" depth="0.001"></a-box>
@@ -158,15 +158,15 @@
             id="boxIzquierda">
 
             <a-entity id="nombre_producto2" position="0.45 0.6 0.1" text=" font: exo2bold; color:#000; width:2; align:left;  value:"></a-entity>
-            <a-entity id="calorias_producto2" position="-0.4 0.23 0.1" text=" font: exo2bold; color:#000; align:center; width:2.5; value:"></a-entity>
-            <a-entity                        position="0.2 0.2 0.1" text=" font: exo2bold; color:#000; value:kcal/porcion; align:left; width:1;"></a-entity>
-            <a-entity id="porcion_producto2" position="0.23 0.14 0.1" text=" font: exo2bold; color:#757575; align:left; width:0.8; value:"></a-entity>
-            <a-entity id="porcentaje_azucares2" position="0.75 0 0.1" text="font: exo2semibold; width:1.7; color: #000; value:"></a-entity>
-            <a-entity id="porcentaje_carbohidratos2" position="0.75 -0.1 0.1" text="font: exo2semibold; width:1.7; color:#e4605e; value:"></a-entity>
-            <a-entity id="porcentaje_proteinas2" position="0.75 -0.2 0.1" text="font: exo2semibold; width:1.7; color: #0159ff; value:"></a-entity>
-            <a-entity id="porcentaje_fibra2" position="0.75 -0.3 0.1" text="font: exo2semibold; width:1.7; color: #7fe757; value:"></a-entity>
-            <a-entity id="porcentaje_grasas_totales2" position="0.75 -0.4 0.1" text="font: exo2semibold; width:1.7; color:#e5d972; value:"></a-entity>
-            <a-entity id="porcentaje_sodio2" position="0.75 -0.5 0.1" text="font: exo2semibold; width:1.7; color: #eeeeee; value:"></a-entity>
+            <a-entity id="calorias_producto2" position="0.71 0.23 0.1" text=" font: exo2bold; color:#000; align:left; width:2.5; value:"></a-entity>
+            <a-entity                        position="-0.03 0.12 0.1" text=" font: exo2bold; color:#000; value:kcal/porcion; align:left; width:1;"></a-entity>
+            <a-entity id="porcion_producto2" position="0.84 0.22 0.1" text=" font: exo2bold; color:#757575; align:left; width:2; value:"></a-entity>
+            <a-entity id="porcentaje_azucares2" position="0.70 0 0.1" text="font: exo2semibold; width:1.7; color: #000; value:"></a-entity>
+            <a-entity id="porcentaje_carbohidratos2" position="0.70 -0.1 0.1" text="font: exo2semibold; width:1.7; color:#e4605e; value:"></a-entity>
+            <a-entity id="porcentaje_proteinas2" position="0.70 -0.2 0.1" text="font: exo2semibold; width:1.7; color: #0159ff; value:"></a-entity>
+            <a-entity id="porcentaje_fibra2" position="0.70 -0.3 0.1" text="font: exo2semibold; width:1.7; color: #7fe757; value:"></a-entity>
+            <a-entity id="porcentaje_grasas_totales2" position="0.70 -0.4 0.1" text="font: exo2semibold; width:1.7; color:#e5d972; value:"></a-entity>
+            <a-entity id="porcentaje_sodio2" position="0.70 -0.5 0.1" text="font: exo2semibold; width:1.7; color: #eeeeee; value:"></a-entity>
 
             <a-box id="boxLineaNegra2" visible="false" color="#000" width="0.3" height="0.025" depth="0.001"></a-box>
             <a-box id="boxLineaRoja2" visible="false" color="#ff0000" width="0.7" height="0.025" depth="0.001"></a-box>
@@ -199,7 +199,7 @@
             position="3.6 1.4 -3"
             rotation="0 -40 0"
             text="align: center;color: white;">
-            <a-entity id="ingredientes" position="0 -0.1 0.1" text="font: exo2semibold; width:3; color: #000; value:"></a-entity>
+            <a-entity id="ingredientes" position="0 -0.1 0.1" text="font: exo2semibold; width:2.5; color: #000; value:"></a-entity>
             <a-entity id="titulo_ingredientes" position="0.5 1.2 0.2" text="font: exo2semibold; width:4; color: #000; value: Ingredientes"></a-entity>
         </a-box>
         <a-box opacity="0.75" color="#fff" width="3.7" height="2.8" depth="0.01"
@@ -208,7 +208,7 @@
             position="-3.6 1.4 -3"
             rotation="0 40 0"
             text="align: center;color: white; value:">
-            <a-entity id="ingredientes2" position="0 -0.1 0.1" text="font: exo2semibold; width:3; color: #000; value:"></a-entity>
+            <a-entity id="ingredientes2" position="0 -0.1 0.1" text="font: exo2semibold; width:2.5; color: #000; value:"></a-entity>
             <a-entity id="titulo_ingredientes2" position="0.5 1.2 0.2" text="font: exo2semibold; width:4; color: #000; value: Ingredientes"></a-entity>
         </a-box>
     </a-scene>

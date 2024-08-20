@@ -22,7 +22,7 @@ namespace Models
         public string NutrientesText { get { return String.Join(", ", NutrientesProducto.Select(x => x.Nutriente.Nombre + ": " + x.Nutriente.CantidadPorPorcion + " g").ToList()); } }
         public uint Porcion { get; set; }
         public ModelTipoPorcion TipoPorcion { get; set; }
-        public string PorcionText { get { return Porcion + " (" + TipoPorcion?.Nombre + ")"; } }
+        public string PorcionText { get { return Porcion + TipoPorcion?.Nombre[0].ToString().ToLower(); } }
         public string Ingredientes { get; set; }
         public List<ModelNutrienteAlerta> NutrienteAlertas { get; set; }
         public List<ModelAlerta> IngredientesAlertas { get; set; }
