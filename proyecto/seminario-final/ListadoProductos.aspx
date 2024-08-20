@@ -139,10 +139,10 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Acción">
                                                     <ItemTemplate>
-                                                        <a title="Eliminar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' href="<%# String.Format("FormularioProducto?pro={0}", Eval("ID")) %>" class="mr-3">
+                                                        <a title="Modificar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' href="<%# String.Format("FormularioProducto?pro={0}", Eval("ID")) %>" class="mr-3">
                                                             <i class="mdi mdi-pencil text-dark icon-md"></i>
                                                         </a>
-                                                        <a title="Modificar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
+                                                        <a title="Eliminar" style='<%# ch_eliminados.Checked ? "display:none": "" %>' onclick="eliminar('<%# Eval("id") %>');" href="#">
                                                             <i class="mdi mdi-delete text-danger icon-md"></i>
                                                         </a>
                                                         <a title="Recuperar" style='<%# ch_eliminados.Checked ? "": "display:none" %>' onclick="hacerpostbackRecuperar('<%# Eval("Id") %>');" href="#">
