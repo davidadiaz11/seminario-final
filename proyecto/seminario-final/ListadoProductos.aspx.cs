@@ -8,7 +8,7 @@ namespace seminario_final
     {
         List<ModelProducto> productos = new List<ModelProducto>();
         private List<ModelFiltro> filtros = new List<ModelFiltro>();
-        private ushort idUsuario = 0;
+        private ushort _idUsuario = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,7 +30,7 @@ namespace seminario_final
                     Recuperar(Convert.ToInt32(Request["__EVENTARGUMENT"]));
                 }
             }
-            idUsuario = ServiceSesion.ObtenerUsuario();
+            _idUsuario = ServiceSesion.ObtenerUsuario();
             MostrarCheckEliminados();
             buscar_filtros();
             populate(vista_lista.PageSize);
@@ -38,7 +38,7 @@ namespace seminario_final
 
         private void MostrarCheckEliminados()
         {
-            var resValidacion = ServiceShared.ValidarPermisos(idUsuario);
+            var resValidacion = ServiceShared.ValidarPermisos(_idUsuario);
             if (!resValidacion.Ok || !resValidacion.Data)
             {
                 ch_eliminados.Visible = false;
@@ -77,13 +77,14 @@ namespace seminario_final
 
         private void Eliminar(int idProducto)
         {
+            ValidarLogin();
             var master = Master as MasterPage;
             if (idProducto <= 0)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al eliminar"), true);
                 return;
             }
-            var resEliminar = ServiceProducto.Eliminar(idUsuario, idProducto);
+            var resEliminar = ServiceProducto.Eliminar(_idUsuario, idProducto);
             if (!resEliminar.Ok)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resEliminar.Errores), true);
@@ -100,7 +101,7 @@ namespace seminario_final
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error("Error al recuperar"), true);
                 return;
             }
-            var resRecuperar = ServiceProducto.Recuperar(idUsuario, idProducto);
+            var resRecuperar = ServiceProducto.Recuperar(_idUsuario, idProducto);
             if (!resRecuperar.Ok)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "toastr_message", master.generar_js_error(resRecuperar.Errores), true);
@@ -164,7 +165,7 @@ namespace seminario_final
             hfSortDir.Value = sortDir;
             //Fetch data from Server 
 
-            productos = ServiceProducto.ObtenerTodosFiltrados(idUsuario, out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, ch_eliminados.Checked);
+            productos = ServiceProducto.ObtenerTodosFiltrados(_idUsuario, out encontrados, filtros, filasPorPag * (pageNo - 1), filasPorPag, sortName, sortDir, ch_eliminados.Checked);
             cantPags = (encontrados / filasPorPag) + ((encontrados % filasPorPag) > 0 ? 1 : 0);
             vista_lista.DataSource = productos;
             vista_lista.DataBind();
@@ -195,6 +196,7 @@ namespace seminario_final
             {
                 Response.Redirect("Login");
             }
+            _idUsuario = idUsuario;
         }
     }
 }
